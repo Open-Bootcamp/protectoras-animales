@@ -1,0 +1,39 @@
+.section {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+}
+
+.info {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    height: 18rem;
+}
+
+.info h1 {
+    font-size: 2.5rem;
+}
+
+.info p {
+    font-size: 1.3rem;
+    width: 70%;
+    margin-bottom: 3rem;
+}
+
+.info .button {
+    background-color: #CD7474;
+    border: none;
+    border-radius: .3rem;
+    width: 50%;
+    font-size: 1.2rem;
+    height: 2.5rem;
+}
+
+.arrow {
+    position: fixed;
+    top: 12rem;
+    left: 33rem;
+}
