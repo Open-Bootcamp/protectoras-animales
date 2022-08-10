@@ -30,8 +30,8 @@ function Header() {
               <li className={styles.nav_item}><a className={styles.nav_item_link} href="/">Colaborar</a></li>
             </div>
             <div className={styles.buttons}>
-              <li><button className={styles.nav_btn1}>Iniciar sesión</button></li>
-              <li><button className={styles.nav_btn2}>Soy protectora</button></li>
+              <li><button className={styles.nav_btn1}>Soy protectora</button></li>
+              <li><button className={styles.nav_btn2}>Iniciar sesión</button></li>
             </div>
           </ul>
       </nav>
