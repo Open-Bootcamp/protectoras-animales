@@ -1,39 +1,44 @@
-.section {
+.banner {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: fixed;
 }
 
 .info {
     width: 45%;
     display: flex;
     flex-direction: column;
-    height: 18rem;
+    height: 20rem;
 }
 
-.info h1 {
-    font-size: 2.5rem;
+.info .h1tittle {
+    font-size: 2.35rem;
 }
 
-.info p {
-    font-size: 1.3rem;
-    width: 70%;
+.info .pparragraph {
+    font-size: 1.1rem;
+    width: 95%;
     margin-bottom: 3rem;
 }
 
 .info .button {
-    background-color: #CD7474;
+    background-color: #cd7474;
     border: none;
     border-radius: .3rem;
-    width: 50%;
+    width: 55%;
     font-size: 1.2rem;
     height: 2.5rem;
+    margin-top: 3.2rem;
+}
+
+.info .button:hover {
+    background-color: #578887;
+    transition: 0.5s;
 }
 
 .arrow {
-    position: fixed;
-    top: 12rem;
-    left: 33rem;
+    top: 14rem;
+    left: calc(100% - 62rem);
+    position: absolute;
 }
