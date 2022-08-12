@@ -1,40 +1,29 @@
-import React, { useState } from "react";
-import styles from './Header.module.css';
-import Logo from "../Logo/Logo";
+import { Button, calc, Flex, Heading, Image, Stack, Text } from '@chakra-ui/react';
+import { Hide } from '@chakra-ui/react';
 
-function Header() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleOpen = e => {
-    e.preventDefault();
-    setIsOpen(!isOpen);
-  }
-
+export default function Header() {
   return (
-    <header className={styles.header}>
-      <nav className={styles.nav}>
-        <div className={styles.logoimg}>
-          <Logo />
-        </div>
-        <button onClick={handleOpen} className={styles.nav_toggle}>
-          <span className={isOpen ? styles.brgOpn1 : styles.burguer1}></span>
-          <span className={isOpen ? styles.brgOpn2 : styles.burguer2}></span>
-          <span className={isOpen ? styles.brgOpn3 : styles.burguer3}></span>
-        </button>
-        <ul className={isOpen ? `${styles.nav_menu} ${styles.nav_menu_visible}` : styles.nav_menu}>
-          <div className={styles.options}>
-            <li className={styles.nav_item}><a className={styles.nav_item_link} href="/">Quiero adoptar</a></li>
-            <li className={styles.nav_item}><a className={styles.nav_item_link} href="/">Protectoras</a></li>
-            <li className={styles.nav_item}><a className={styles.nav_item_link} href="/">Colaborar</a></li>
-          </div>
-          <div className={styles.buttons}>
-            <li><button className={styles.nav_btn1}>Soy protectora</button></li>
-            <li><button className={styles.nav_btn2}>Iniciar sesión</button></li>
-          </div>
-        </ul>
-      </nav>
-    </header>
+    <Stack minH={'70vh'} direction={{ base: 'column', md: 'row' }}>
+      <Flex flex={1} p={['20px 0 0 0', 6]} align={['flex-start', 'center']} justify={['center', 'flex-end']}>
+        <Stack spacing={[6, 10]} w={'full'} maxW={['100%', '90%']}>
+          <Heading maxW={'100%'} fontSize={{ base: '3xl', md: '4xl', lg: '4xl' }}>
+            <Text color={'#000000'} as={'span'}>Unimos protectoras y adoptantes</Text>{' '}
+          </Heading>
+          <Text fontSize={{ base: 'md', lg: 'lg' }} color={'#3c3f41'}>
+            Adoptando un animal, le das una segunda vida a aquellos que no 
+            han tenido tanta suerte.
+          </Text>
+          <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
+            <Button w={['max-content', '65%']} rounded={'md'} bg={'#cd7474'} color={'white'} _hover={{ bg: '#578887', }}>Encuentra a tu mejor amigo</Button>
+          </Stack>
+        </Stack>
+      </Flex>
+      <Hide below='md'>
+        <Image zIndex={-1} pos={'absolute'} w={{ md: '150px', lg: '220px' }} h={{ md: '150px', lg: '220px' }} top={{ md: 'calc(70vh - 200px)', lg: 'calc(70vh - 285px)'}} left={{ md: 'calc(70% - 360px)', lg: 'calc(70% - 520px)' }} alt={'Arrow'} objectFit={'contain'} src={'./arrow.svg'}/>
+        <Flex flex={1}>
+          <Image alt={'Login Image'} objectFit={'contain'} src={'./illustration.svg'}/>
+        </Flex>
+      </Hide>
+    </Stack>
   );
 }
-
-export default Header;

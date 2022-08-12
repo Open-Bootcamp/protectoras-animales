@@ -1,8 +1,5 @@
-
-import Footer from '../components/Footer/Footer'
-import Header from '../components/Header/Header'
-import styles from '../styles/Home.module.css'
-import Banner from '../components/Banner/Banner';
+import styles from '../styles/Home.module.css';
+import Header from '../components/Header/Header';
 import Head from 'next/head';
 
 export default function Home() {
@@ -14,10 +11,8 @@ export default function Home() {
         <link rel="icon" href="/accent.svg" />
       </Head>
       <Header />
-      <Banner />
       <main className={styles.main}>
       </main>
-      <Footer />
     </div>
   )
 }
