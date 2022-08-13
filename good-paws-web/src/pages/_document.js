@@ -1,6 +1,10 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 import { ServerStyleSheet } from "styled-components";
 
+
+//! Este document: los cree y modifique para que pueda funcionar bien el STYLED COMPONENTS, lo saque desde la documentacion oficial.
+
+
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet();
