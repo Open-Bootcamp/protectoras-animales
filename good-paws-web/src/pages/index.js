@@ -1,6 +1,7 @@
 import styles from '../styles/Home.module.css';
 import Header from '../components/Header/Header';
 import Head from 'next/head';
+import { About_us, Container } from "../components/About_us/About_us.jsx";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
         <link rel="icon" href="/accent.svg" />
       </Head>
       <Header />
+      <About_us />
       <main className={styles.main}>
       </main>
     </div>
