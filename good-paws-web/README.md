@@ -11,7 +11,7 @@
 * Git
 
 
-### Pasos para 
+### Pasos para iniciar el proyecto
 1. Clonar el repo.
 2. Intalar dependencias.
 ```bash
