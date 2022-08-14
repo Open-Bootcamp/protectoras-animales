@@ -4,6 +4,7 @@ import { FeatureIcon, Subtitle, Title } from '../ui'
 
 export const Container = styled.div`
   margin: 0px 12px;
+  background-color: #F9fafb;
   text-align: center;
 
   @media (max-width: 600px){
@@ -47,8 +48,8 @@ const Features = styled.div`
 export const About_us = () => {
 
   return (
-    <>
-      <Title mt='48px' mx='0px' weight='600'>¿Qué sómos?</Title>
+    <Container>
+      <Title mx='0px' weight='600'>¿Qué sómos?</Title>
       <SubtitleWraper>
 
         <Subtitle
@@ -104,6 +105,6 @@ export const About_us = () => {
           </Features>
         </Wrapper>
       </div>
-    </>
+    </Container>
   )
 }
