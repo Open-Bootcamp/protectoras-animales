@@ -30,7 +30,7 @@ const index = () => {
   })
 
   return (
-    // HEADER
+    // Componente Header
 
     <MainContainer>
       <div className='section-form'>
@@ -67,6 +67,7 @@ const index = () => {
                     name='recordar'
                     onChange={handleChange}
                   />
+                  Recordarme
                 </div>
 
                 <p>Olivide mi contraseña</p>

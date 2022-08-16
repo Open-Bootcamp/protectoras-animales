@@ -35,8 +35,7 @@ const index = () => {
   })
 
   return (
-    // HEADER
-
+    // Componente Header
     <MainContainer>
       <div className='section-form'>
         <Formik
