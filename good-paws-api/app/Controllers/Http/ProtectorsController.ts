@@ -4,6 +4,7 @@ import ErrorReporter from 'App/Validators/Reporters/ErrorReporter'
 import { paginationSchema } from 'App/Validators/Schemas/PaginationSchema'
 import { protectorSchema } from 'App/Validators/Schemas/ProtectorSchema'
 import Protector from 'App/Models/Protector'
+import AlreadyExistException from 'App/Exceptions/AlreadyExistException'
 
 export default class ProtectorsController {
   public async index({ request, response }: HttpContextContract) {
@@ -11,7 +12,6 @@ export default class ProtectorsController {
       schema: paginationSchema,
       reporter: ErrorReporter,
     })
-    // TODO: handle status 422 to 400
 
     const protectors: ModelPaginatorContract<Protector> = await Protector.query().paginate(
       page,
@@ -29,10 +29,12 @@ export default class ProtectorsController {
       schema: protectorSchema,
       reporter: ErrorReporter,
     })
-    // TODO: handle status 422 to 400
 
-    // TODO: response when the protector already exist 409
-    const protector: Protector = await Protector.create(body)
+    let protector: Protector | null = await Protector.findBy('coordinates', body.coordinates)
+    if (protector !== null) {
+      throw new AlreadyExistException('coordinates')
+    }
+    protector = await Protector.create(body)
 
     response.status(201).send(protector)
   }
@@ -41,7 +43,6 @@ export default class ProtectorsController {
     const id: number = request.param('id')
 
     const protector: Protector = await Protector.findOrFail(id)
-    // TODO: handle error 404
 
     response.status(200).send(protector)
   }
@@ -52,10 +53,8 @@ export default class ProtectorsController {
       schema: protectorSchema,
       reporter: ErrorReporter,
     })
-    // TODO: handle status 422 to 400
 
     const protector: Protector = await Protector.findOrFail(id)
-    // TODO: handle error 404
     await protector.merge(body).save()
 
     response.status(200).send(protector)
@@ -65,10 +64,8 @@ export default class ProtectorsController {
     const id: number = request.param('id')
 
     const protector: Protector = await Protector.findOrFail(id)
-    // TODO: handle error 404
     await protector.merge({ status: false }).save()
 
-    response.status(200).send({})
-    // TODO: body response???
+    response.status(200).send(null)
   }
 }
