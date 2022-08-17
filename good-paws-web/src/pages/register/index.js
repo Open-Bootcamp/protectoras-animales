@@ -12,12 +12,13 @@ const initialState = {
   email: '',
   password: '',
   confirmPassword: '',
+  toggle: false,
 }
 
 const index = () => {
   const [values, setValues] = useState(initialState)
 
-  const { name, lastname, email, password, confirmPassword } = values
+  const { name, lastname, email, password, confirmPassword, toggle } = values
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value })
   }
@@ -32,7 +33,24 @@ const index = () => {
       .required('La contraseña es requerido')
       .min(6, 'La contraseña debe contener 6 caracteres como minimo')
       .max(36, "La contraseña debe contener 6 caracteres como máximo'"),
+    confirmPassword: Yup.string()
+      .when('password', {
+        is: (value) => (value && value.length > 0 ? true : false),
+        then: Yup.string().oneOf(
+          [Yup.ref('password')],
+          'Las contraseñas deben ser iguales'
+        ),
+      })
+      .required('you must confirm the password'),
+    toggle: Yup.boolean().oneOf(
+      [true],
+      'Se debe aceptar las politicas de privacidad'
+    ),
   })
+
+  const onChange = () => {
+    setValues({ ...values, toggle: !toggle })
+  }
 
   return (
     // Componente Header
@@ -46,6 +64,7 @@ const index = () => {
             email,
             password,
             confirmPassword,
+            toggle,
           }}
           validationSchema={formValidation}
           onSubmit={() => {}}
@@ -91,10 +110,13 @@ const index = () => {
 
               <div className='recording'>
                 <div>
-                  <p>
-                    <input type='checkbox' name='recordar' /> Acepto la politica
-                    de privacidad
-                  </p>
+                  <Input
+                    type='checkbox'
+                    name='toggle'
+                    onChange={onChange}
+                    checkbox
+                    labelText='Acepto la politica de privacidad'
+                  />
                 </div>
               </div>
               <button type='submit' className='btn '>

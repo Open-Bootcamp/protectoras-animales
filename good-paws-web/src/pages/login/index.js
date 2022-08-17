@@ -64,8 +64,9 @@ const index = () => {
                 <div>
                   <input
                     type='checkbox'
-                    name='recordar'
-                    onChange={handleChange}
+                    name='toggle'
+                    onClick={() => setValues({ ...values, toggle: !toggle })}
+                    checbox
                   />
                   Recordarme
                 </div>

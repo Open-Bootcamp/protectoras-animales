@@ -22,7 +22,12 @@ const Wrapper = styled.div`
       /* width: 60%; */
     }
   }
-
+  .checbox {
+    input {
+      width: auto;
+      display: inline-block;
+    }
+  }
   label {
     font-family: 'Inter';
     font-size: 12px;
