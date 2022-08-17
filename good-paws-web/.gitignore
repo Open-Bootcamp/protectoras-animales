@@ -4,10 +4,6 @@
 /node_modules
 /.pnp
 .pnp.js
-/src/components/01-Header
-/src/components/Happy_family
-/src/components/protectoras_cercanas
-
 
 # testing
 /coverage
