@@ -9,12 +9,24 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.2.6",
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
+    "framer-motion": "^7.0.1",
+    "leaflet": "^1.8.0",
     "next": "12.2.4",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-icons": "^4.4.0",
+    "react-leaflet": "^4.0.1",
+    "styled-components": "^5.3.5",
+    "yarn": "^1.22.19"
   },
   "devDependencies": {
     "eslint": "8.21.0",
     "eslint-config-next": "12.2.4"
+  },
+  "resolutions": {
+    "styled-components": "^5"
   }
 }
