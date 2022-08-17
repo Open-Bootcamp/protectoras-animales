@@ -2,7 +2,7 @@ import React from "react";
 import { Text, Box, Flex } from "@chakra-ui/react";
 import Logo from "../Logo/Logo";
 import Link from "next/link";
-import github from "../../public/assets/images/github.svg";
+import github from "../../../public/assets/images/github.svg";
 import Image from "next/image";
 import LinksFooter from "./LinksFooter";
 

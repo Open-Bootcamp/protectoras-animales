@@ -1,5 +1,5 @@
 import MenuButton from "./MenuButton/MenuButton";
-import NavbarContainer from "./NavbarContainer/NavbarContainer";
+import NavbarContainer from "./NavbarContainer";
 import Logo from "../Logo/Logo";
 import MenuLinks from "./MenuLinks/MenuLinks";
 import { Box, Button, useDisclosure } from "@chakra-ui/react";
