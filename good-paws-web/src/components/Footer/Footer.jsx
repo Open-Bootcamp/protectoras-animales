@@ -4,7 +4,7 @@ import Logo from "../Logo/Logo";
 import Link from "next/link";
 import github from "../../../public/assets/images/github.svg";
 import Image from "next/image";
-import LinksFooter from "./LinksFooter";
+import FooterLinks from "./FooterLinks";
 
 export default function Footer() {
   return (
@@ -22,7 +22,7 @@ export default function Footer() {
           tenido tanta suerte.
         </Box>
 
-        <LinksFooter />
+        <FooterLinks />
 
         <Box display={{ base: "none", md: "block" }}>
           <Flex align="center" justify="space-between" pb={10}>

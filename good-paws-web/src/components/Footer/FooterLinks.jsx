@@ -2,7 +2,7 @@ import { Box, Divider, Stack } from "@chakra-ui/react";
 import Link from "next/link";
 import React from "react";
 
-export default function LinksFooter() {
+export default function FooterLinks() {
   return (
     <>
       <Box display={{ base: "none", md: "block" }}>
@@ -60,6 +60,7 @@ export default function LinksFooter() {
         </Stack>
       </Box>
       <Divider
+        display={{ base: "block", md: "none" }}
         orientation="horizontal"
         mt={{ base: 8, md: 16 }}
         mb={{ base: 5, md: 10 }}
