@@ -9,9 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.8",
     "@chakra-ui/react": "^2.2.6",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
+    "chakra-react-select": "^4.1.4",
     "formik": "^2.2.9",
     "framer-motion": "^7.0.1",
     "next": "12.2.4",
