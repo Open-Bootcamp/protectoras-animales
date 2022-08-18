@@ -9,9 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ajna/pagination": "^1.4.19",
+    "@chakra-ui/clickable": "^2.0.8",
+    "@chakra-ui/icons": "^2.0.8",
     "@chakra-ui/react": "^2.2.6",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
+    "chakra-react-select": "^4.1.4",
     "framer-motion": "^7.0.1",
     "next": "12.2.4",
     "react": "18.2.0",

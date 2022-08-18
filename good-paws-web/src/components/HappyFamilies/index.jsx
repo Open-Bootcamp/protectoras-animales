@@ -1,10 +1,8 @@
 import { useState } from 'react';
-
-import { Carousel, Dots, DotsContainer, Dot } from './styles';
-import { ImageCarousel } from '../ImageCarousel';
-import { Arrow } from '../Arrow';
-
-
+import { Title } from '../ui';
+import { Carousel, Dots, DotsContainer, Dot, Container } from './styles';
+import { ImageCarousel } from './ImageCarousel/index';
+import { Arrow } from './Arrow/index';
 
 const HappyFamilies = ({images}) => {
 
@@ -31,40 +29,43 @@ const HappyFamilies = ({images}) => {
     }
 
     return (
-        <Carousel>
-            {
-                images.map(({id, url, title, description}, index)=> (    
-                    <ImageCarousel 
-                        key={id} 
-                        imageIndex={imageIndex} 
-                        index={index} 
-                        url={url}  
-                        title={title}
-                        description={description}
-                    />
-                ))
-            }
+        <Container>
+            <Title size='35px' mx='30px' weight='700'>Familias Felices</Title>
+            <Carousel>
+                {
+                    images.map(({id, url, title, description}, index)=> (    
+                        <ImageCarousel 
+                            key={id} 
+                            imageIndex={imageIndex} 
+                            index={index} 
+                            url={url}  
+                            title={title}
+                            description={description}
+                        />
+                    ))
+                }
 
-            <Arrow action={nextImage} direction='right' />
-            <Arrow action={prevImage} direction='left' />
+                <Arrow action={nextImage} direction='right' />
+                <Arrow action={prevImage} direction='left' />
 
-            
-            
-            <Dots>
-                <DotsContainer>
-                    {
-                        images.map((dot ,index) => (
-                            <Dot 
-                                key={index} 
-                                onClick={() => selectDot(index + 1)} 
-                                active={ imageIndex === index + 1 ? '#3C3F41' : '#C3C6C8'} 
-                            />
-                        ))
-                    }        
-                </DotsContainer>
-            </Dots>
-            
-        </Carousel>
+                
+                
+                <Dots>
+                    <DotsContainer>
+                        {
+                            images.map((dot ,index) => (
+                                <Dot 
+                                    key={index} 
+                                    onClick={() => selectDot(index + 1)} 
+                                    active={ imageIndex === index + 1 ? '#3C3F41' : '#C3C6C8'} 
+                                />
+                            ))
+                        }        
+                    </DotsContainer>
+                </Dots>
+                
+            </Carousel>
+        </Container>
     );
 }
 

@@ -1,5 +1,17 @@
 import styled from 'styled-components';
 
+export const Container = styled.div`
+text-align: center;
+padding: 15px;
+
+@media (max-width: 600px){
+  padding: 0;
+  height: auto;
+  margin: 0px 12px;
+  text-align: center;
+};
+`
+
 export const Carousel = styled.div`
     max-width: 977px;
     min-width: 320px;
@@ -8,6 +20,7 @@ export const Carousel = styled.div`
     position: relative; 
     border-radius: 8px;
     margin: 0 auto;
+    text-align: justify;
 `;
 
 export const ButtonAction = styled.button`

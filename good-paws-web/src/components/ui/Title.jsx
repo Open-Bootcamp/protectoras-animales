@@ -10,7 +10,6 @@ export const Title = styled.h1`
 
   text-align: ${props => props.aling};
   margin: ${props => props.my} ${props => props.mx};
-  margin-top: ${props => props.mt};
 
   padding: ${props => props.p};
   letter-spacing: -0.02em;
