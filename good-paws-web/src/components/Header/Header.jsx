@@ -1,4 +1,5 @@
-import { Button, calc, Flex, Heading, Image, Stack, Text } from '@chakra-ui/react';
+import { Button, Flex, Heading, Image, Stack, Text } from '@chakra-ui/react';
+import NextLink from "next/link";
 import { Hide } from '@chakra-ui/react';
 
 export default function Header() {
@@ -14,7 +15,9 @@ export default function Header() {
             han tenido tanta suerte.
           </Text>
           <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
-            <Button w={['max-content', '65%']} rounded={'md'} bg={'#cd7474'} color={'white'} _hover={{ bg: '#578887', }}>Encuentra a tu mejor amigo</Button>
+            <NextLink href='/newpartner' passHref>
+              <Button w={['max-content', '65%']} rounded={'md'} bg={'#cd7474'} color={'white'} _hover={{ bg: '#578887', }}>Encuentra a tu mejor amigo</Button>
+            </NextLink>
           </Stack>
         </Stack>
       </Flex>
