@@ -91,8 +91,9 @@ export default class CentersController {
       .if(coordinates, (query) => {
         const [latitude, longitude] = coordinates!.split(',').map((value) => parseFloat(value))
 
-        query.whereRaw('ABS(latitude - :latitude) <= :radius', { latitude, radius })
-        .andWhereRaw('ABS(longitude - :longitude) <= :radius', { longitude, radius })
+        query
+          .whereRaw('ABS(latitude - :latitude) <= :radius', { latitude, radius })
+          .andWhereRaw('ABS(longitude - :longitude) <= :radius', { longitude, radius })
       })
       .if(protectorName, (query) => {
         query.whereIn(
