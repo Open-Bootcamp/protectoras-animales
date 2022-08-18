@@ -77,22 +77,34 @@ export default class CentersController {
     })
     const {
       coordinates,
-      radius,
+      radius = 500,
       protectorName = '',
+      centerName = '',
+      location = '',
     } = await request.validate({
       schema: centerFilterSchema,
       reporter: ErrorReporter,
     })
-    const [latitude, longitude] = coordinates.split(',').map((value) => parseFloat(value))
 
     const centers: ModelPaginatorContract<Center> = await Center.query()
-      .whereRaw('ABS(latitude - :latitude) <= :radius', { latitude, radius })
-      .andWhereRaw('ABS(longitude - :longitude) <= :radius', { longitude, radius })
+      .where('status', true)
+      .if(coordinates, (query) => {
+        const [latitude, longitude] = coordinates!.split(',').map((value) => parseFloat(value))
+
+        query.whereRaw('ABS(latitude - :latitude) <= :radius', { latitude, radius })
+        .andWhereRaw('ABS(longitude - :longitude) <= :radius', { longitude, radius })
+      })
       .if(protectorName, (query) => {
         query.whereIn(
           'protector_id',
           Protector.query().select('protectors.id').whereILike('name', `%${protectorName}%`)
         )
+      })
+      .if(centerName, (query) => {
+        query.whereILike('name', `%${centerName}%`)
+      })
+      .if(location, (query) => {
+        query.whereILike('location', `%${location}%`)
       })
       .paginate(page, size)
 
