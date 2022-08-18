@@ -86,8 +86,8 @@ export default class CentersController {
     const [latitude, longitude] = coordinates.split(',').map((value) => parseFloat(value))
 
     const centers: ModelPaginatorContract<Center> = await Center.query()
-      .whereRaw('ABS(latitude - :latitude) < :radius', { latitude, radius })
-      .andWhereRaw('ABS(longitude - :longitude) < :radius', { longitude, radius })
+      .whereRaw('ABS(latitude - :latitude) <= :radius', { latitude, radius })
+      .andWhereRaw('ABS(longitude - :longitude) <= :radius', { longitude, radius })
       .if(protectorName, (query) => {
         query.whereIn(
           'protector_id',
