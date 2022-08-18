@@ -65,7 +65,6 @@ const index = () => {
                     type='checkbox'
                     name='toggle'
                     onClick={() => setValues({ ...values, toggle: !toggle })}
-                    checbox
                   />
                   Recordarme
                 </div>
