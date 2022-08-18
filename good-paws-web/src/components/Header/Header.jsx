@@ -19,7 +19,7 @@ export default function Header() {
         </Stack>
       </Flex>
       <Hide below='md'>
-        <Image zIndex={-1} pos={'absolute'} w={{ md: '150px', lg: '220px' }} h={{ md: '150px', lg: '220px' }} top={{ md: 'calc(70vh - 200px)', lg: 'calc(70vh - 285px)'}} left={{ md: 'calc(70% - 360px)', lg: 'calc(70% - 520px)' }} alt={'Arrow'} objectFit={'contain'} src={'./arrow.svg'}/>
+        <Image zIndex={-1} pos={'absolute'} w={{ md: '150px', lg: '220px' }} h={{ md: '150px', lg: '220px' }} top={{ md: 'calc(70vh - 180px)', lg: 'calc(70vh - 220px)'}} left={{ md: 'calc(70% - 340px)', lg: 'calc(70% - 525px)' }} alt={'Arrow'} objectFit={'contain'} src={'./arrow.svg'}/>
         <Flex flex={1}>
           <Image alt={'Login Image'} objectFit={'contain'} src={'./illustration.svg'}/>
         </Flex>
