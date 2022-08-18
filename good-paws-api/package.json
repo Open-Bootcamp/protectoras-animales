@@ -19,7 +19,10 @@
     ],
     "rules": {
       "prettier/prettier": [
-        "error"
+        "error",
+        {
+          "endOfLine": "auto"
+        }
       ]
     }
   },
