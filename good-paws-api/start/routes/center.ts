@@ -10,4 +10,5 @@ Route.group(() => {
   })
     .prefix('/:id')
     .where('id', Route.matchers.number())
+  Route.get('/filterBy', 'CentersController.filter')
 }).prefix('/centers')
