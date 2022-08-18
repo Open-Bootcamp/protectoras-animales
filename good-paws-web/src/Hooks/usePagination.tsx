@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 
 const usePagination = <T extends any>(data: T[], volume: number) => {
     /** All pages in total. */
-    const totalPages = useMemo(() => Math.ceil(data.length / volume), [volume, data.length ]);
+    const totalPages = useMemo(() => Math.floor(data.length / volume), [volume, data.length ]);
     
     const [page, setPage] = useState(0);
     
