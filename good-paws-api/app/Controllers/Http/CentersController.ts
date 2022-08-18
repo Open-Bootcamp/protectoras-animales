@@ -2,7 +2,9 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { ModelPaginatorContract } from '@ioc:Adonis/Lucid/Orm'
 import AlreadyExistException from 'App/Exceptions/AlreadyExistException'
 import Center from 'App/Models/Center'
+import Protector from 'App/Models/Protector'
 import ErrorReporter from 'App/Validators/Reporters/ErrorReporter'
+import { centerFilterSchema } from 'App/Validators/Schemas/CenterFilterSchema'
 import { centerSchema } from 'App/Validators/Schemas/CenterSchema'
 import { paginationSchema } from 'App/Validators/Schemas/PaginationSchema'
 
@@ -26,12 +28,13 @@ export default class CentersController {
       schema: centerSchema,
       reporter: ErrorReporter,
     })
+    const [latitude, longitude] = body.coordinates.split(',').map((value) => parseFloat(value))
 
     let center: Center | null = await Center.findBy('coordinates', body.coordinates)
     if (center !== null) {
       throw new AlreadyExistException('coordinates')
     }
-    center = await Center.create(body)
+    center = await Center.create({ ...body, latitude, longitude })
 
     response.status(201).send(center)
   }
@@ -50,9 +53,10 @@ export default class CentersController {
       schema: centerSchema,
       reporter: ErrorReporter,
     })
+    const [latitude, longitude] = body.coordinates.split(',').map((value) => parseFloat(value))
 
     const center = await Center.findOrFail(id)
-    await center.merge(body).save()
+    await center.merge({ ...body, latitude, longitude }).save()
 
     response.status(200).send(center)
   }
@@ -64,5 +68,37 @@ export default class CentersController {
     await center.merge({ status: false }).save()
 
     response.status(200).send(null)
+  }
+
+  public async filter({ request, response }: HttpContextContract) {
+    const { page = 1, size = 10 } = await request.validate({
+      schema: paginationSchema,
+      reporter: ErrorReporter,
+    })
+    const {
+      coordinates,
+      radius,
+      protectorName = '',
+    } = await request.validate({
+      schema: centerFilterSchema,
+      reporter: ErrorReporter,
+    })
+    const [latitude, longitude] = coordinates.split(',').map((value) => parseFloat(value))
+
+    const centers: ModelPaginatorContract<Center> = await Center.query()
+      .whereRaw('ABS(latitude - :latitude) < :radius', { latitude, radius })
+      .andWhereRaw('ABS(longitude - :longitude) < :radius', { longitude, radius })
+      .if(protectorName, (query) => {
+        query.whereIn(
+          'protector_id',
+          Protector.query().select('protectors.id').whereILike('name', `%${protectorName}%`)
+        )
+      })
+      .paginate(page, size)
+
+    response.ok({
+      totalResults: centers.total,
+      results: centers.all(),
+    })
   }
 }
