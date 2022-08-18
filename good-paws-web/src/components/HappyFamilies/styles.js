@@ -1,8 +1,22 @@
 import styled from 'styled-components';
 
-export const Carousel = styled.div`
+
+export const ContainerHappyFamilies = styled.div`
+    height:610px;
+    width: 100%;
+`;
+
+export const Title = styled.h2`
+    font-size: 2.25rem;
+    font-weight: 600; 
+    text-align: center;
+    line-height: 2.75rem;
+    margin: 4.25rem 0 2.188rem 0;
+`;
+
+export const Carousel = styled.div` 
     max-width: 977px;
-    min-width: 320px;
+    min-width: 280px;
     height: 400px;
     overflow: hidden;
     position: relative; 
