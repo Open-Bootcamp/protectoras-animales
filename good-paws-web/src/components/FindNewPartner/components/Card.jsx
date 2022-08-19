@@ -2,8 +2,8 @@ import { Flex, Tag, Box, Image, useColorModeValue } from '@chakra-ui/react';
 
 function Card({ imageSrc, imageAlt, name, category, description, location }) {
   return (
-    <Flex cursor={'pointer'} p={1} w="full" alignItems="center" justifyContent="center">
-      <Box bg={useColorModeValue('white', 'gray.800')} borderWidth="1px" rounded="lg" shadow="lg">
+    <Flex p={1} h={'auto'} w="full" alignItems="center" justifyContent="center">
+      <Box cursor={'pointer'}  bg={useColorModeValue('white', 'gray.800')} borderWidth="1px" rounded="lg" shadow="lg">
         <Image w={'100%'} roundedTop={'md'} objectFit="cover" src={imageSrc} alt={imageAlt} />
         <Flex h={'8rem'} justifyContent={'space-evenly'} direction={'column'} px="4">
           <Box fontSize="2xl" fontWeight="semibold" as="h4" lineHeight="tight" isTruncated>{name}</Box>
