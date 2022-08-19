@@ -23,7 +23,7 @@ export default function Sidebar({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Box mr={4} w={{ sm: '100%', md: '50%', lg: '25%' }} h={{ sm: '9vh', md: '100vh', lg: "100vh"}}>
+    <Box w={{ sm: '100%', md: '50%', lg: '25%' }} h={{ sm: '9vh', md: '100vh', lg: "100vh"}}>
       <SidebarContent onClose={() => onClose} display={{ base: 'none', md: 'block' }} />
       <Drawer autoFocus={false} isOpen={isOpen} placement="right" onClose={onClose} returnFocusOnClose={false} onOverlayClick={onClose} size="full">
         <DrawerContent>
