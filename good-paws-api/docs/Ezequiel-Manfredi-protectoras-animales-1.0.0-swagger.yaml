@@ -1,0 +1,1579 @@
+openapi: 3.0.0
+servers: []
+info:
+  description: api for protectoras-animales
+  version: "1.0.0"
+  title: Protectora de Animales
+tags:
+  - name: default
+    description: endpoints
+  - name: Centers Filter
+    description: features and funcionality for centers
+  - name: Animals Filter
+    description: features and functionality for animals
+  - name: Protectors
+    description: CRUD of protector
+  - name: Centers
+    description: CRUD of center
+  - name: Animals
+    description: CRUD of animal
+  - name: Races
+    description: CRUD of race
+  - name: Types
+    description: CRUD of type
+  - name: Sexes
+    description: CRUD of sex
+  - name: Users
+    description: CRUD of user
+  
+paths:
+  /races:
+    get:
+      summary: "Search races"
+      tags:
+        - Races
+      parameters:
+        - name: page
+          description: "Page of results"
+          in: query
+          required: false
+          schema:
+            type: number
+        - name: size
+          description: "Max-size of race list"
+          in: query
+          required: false
+          schema:
+            type: number
+      responses:
+        '200':
+          description: "Races list or empty list"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetRaces"
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: "Create a new race"
+      tags:
+        - Races
+      responses:
+        '201':
+          description: "New race has been created"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Race"
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '409':
+          description: "Race already exists"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QueryRace'
+  /races/{id}:
+    get:
+      summary: "Search a race"
+      tags:
+        - Races
+      parameters:
+        - name: id
+          description: "Race id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: "Return a race"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Race"
+        '404':
+          description: "Race not found"
+    put:
+      summary: "Modify an existent race"
+      tags:
+        - Races
+      parameters:
+        - name: id
+          description: "Race id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: "Race has been modified"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Race"
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '404':
+          description: "Race not found"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QueryRace"
+    delete:
+      summary: "Delete an existent race"
+      tags:
+        - Races
+      parameters:
+        - name: id
+          description: "Race id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: "Race has been deleted"
+        '404':
+          description: "Race not found"
+  
+  /types:
+    get:
+      summary: "Search types"
+      tags:
+        - Types
+      parameters:
+        - name: page
+          description: "Page of results"
+          in: query
+          required: false
+          schema:
+            type: number
+        - name: size
+          description: "Max-size of type list"
+          in: query
+          required: false
+          schema:
+            type: number
+      responses:
+        '200':
+          description: "Types list or empty list"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetType"
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: "Create a new type"
+      tags:
+        - Types
+      responses:
+        '201':
+          description: "New type has been created"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Type"
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '409':
+          description: "Type already exists"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QueryType"
+  /types/{id}:
+    get:
+      summary: "Search a type"
+      tags:
+        - Types
+      parameters:
+        - name: id
+          description: "Type id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: "Return a type"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Type"
+        '404':
+          description: "Type not found"
+    put:
+      summary: "Modify an existent type"
+      tags:
+        - Types
+      parameters:
+        - name: id
+          description: "Type id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: "Type has been modified"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Type"
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '404':
+          description: "Type not found"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QueryRace"
+    delete:
+      summary: "Delete an existent type"
+      tags:
+        - Types
+      parameters:
+        - name: id
+          description: "Type id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: "Type has been deleted"
+        '404':
+          description: "Type not found"
+  
+  /sexes:
+    get:
+      summary: "Search sexes"
+      tags:
+        - Sexes
+      parameters:
+        - name: page
+          description: "Page of results"
+          in: query
+          required: false
+          schema:
+            type: number
+        - name: size
+          description: "Max-size of sexes list"
+          in: query
+          required: false
+          schema:
+            type: number
+      responses:
+        '200':
+          description: "Sexes list or empty list"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetSex"
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: "Create a new sex"
+      tags:
+        - Sexes
+      responses:
+        '201':
+          description: "New sex has been created"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Sex"
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '409':
+          description: "Sex already exists"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QuerySex"
+  /sexes/{id}:
+    get:
+      summary: "Search a sex"
+      tags:
+        - Sexes
+      parameters:
+        - name: id
+          description: "Sex id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: "Return a sex"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Sex"
+        '404':
+          description: "Sex not found"
+    put:
+      summary: "Modify an existent sex"
+      tags:
+        - Sexes
+      parameters:
+        - name: id
+          description: "Sex id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: "Sex has been modified"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Sex"
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '404':
+          description: "Sex not found"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QuerySex"
+    delete:
+      summary: "Delete an existent sex"
+      tags:
+        - Sexes
+      parameters:
+        - name: id
+          description: "Sex id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: "Sex has been deleted"
+        '404':
+          description: "Sex not found"
+  
+  /animals:
+    get:
+      summary: "Search animals"
+      tags:
+        - Animals
+      parameters:
+        - name: page
+          description: "Page of results"
+          in: query
+          required: false
+          schema:
+            type: number
+        - name: size
+          description: "Max-size of animals list"
+          in: query
+          required: false
+          schema:
+            type: number
+      responses:
+        '200':
+          description: "Animals list or empty list"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetAnimal"
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: "Create a new animal"
+      tags:
+        - Animals
+      responses:
+        '201':
+          description: "New animal has been created"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Animal"
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '409':
+          description: "Animal already exists"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QueryAnimal"
+  /animals/{id}:
+    get:
+      summary: "Search an animal"
+      tags:
+        - Animals
+      parameters:
+        - name: id
+          description: "Animal id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: "Return an animal"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Animal"
+        '404':
+          description: "Animal not found"
+    put:
+      summary: "Modify an existent animal"
+      tags:
+        - Animals
+      parameters:
+        - name: id
+          description: "Animal id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: "Animal has been modified"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Animal"
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '404':
+          description: "Animal not found"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QueryAnimal"
+    delete:
+      summary: "Delete an existent animal"
+      tags:
+        - Animals
+      parameters:
+        - name: id
+          description: "Animal id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: "Animal has been deleted"
+        '404':
+          description: "Animal not found"
+  
+  /protectors:
+    get:
+      summary: "Search protectors"
+      tags:
+        - Protectors
+      parameters:
+        - name: page
+          description: "Page of results"
+          in: query
+          required: false
+          schema:
+            type: number
+        - name: size
+          description: "Max-size of protectors list"
+          in: query
+          required: false
+          schema:
+            type: number
+      responses:
+        '200':
+          description: "Protectors list or empty list"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetProtector"
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: "Create a new protector"
+      tags:
+        - Protectors
+      responses:
+        '201':
+          description: "New protector has been created"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Protector"
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '409':
+          description: "Protector already exists"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QueryProtector"
+  /protectors/{id}:
+    get:
+      summary: "Search a protector"
+      tags:
+        - Protectors
+      parameters:
+        - name: id
+          description: "Protector id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: "Return a protector"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Protector"
+        '404':
+          description: "Protector not found"
+    put:
+      summary: "Modify an existent protector"
+      tags:
+        - Protectors
+      parameters:
+        - name: id
+          description: "Protector id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: "Protector has been modified"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Protector"
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '404':
+          description: "Protector not found"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QueryProtector"
+    delete:
+      summary: "Delete an existent protector"
+      tags:
+        - Protectors
+      parameters:
+        - name: id
+          description: "Protector id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: "Protector has been deleted"
+        '404':
+          description: "Protector not found"
+  
+  /centers:
+    get:
+      summary: "Search centers"
+      tags:
+        - Centers
+      parameters:
+        - name: page
+          description: "Page of results"
+          in: query
+          required: false
+          schema:
+            type: number
+        - name: size
+          description: "Max-size of centers list"
+          in: query
+          required: false
+          schema:
+            type: number
+      responses:
+        '200':
+          description: "Centers list or empty list"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetCenter"
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: "Create a new center"
+      tags:
+        - Centers
+      responses:
+        '201':
+          description: "New center has been created"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Center"
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '409':
+          description: "Center already exists"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QueryCenter"
+  /centers/{id}:
+    get:
+      summary: "Search a center"
+      tags:
+        - Centers
+      parameters:
+        - name: id
+          description: "Center id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: "Return a center"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Center"
+        '404':
+          description: "Center not found"
+    put:
+      summary: "Modify an existent center"
+      tags:
+        - Centers
+      parameters:
+        - name: id
+          description: "Center id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: "Center has been modified"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Center"
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '404':
+          description: "Center not found"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QueryCenter"
+    delete:
+      summary: "Delete an existent center"
+      tags:
+        - Centers
+      parameters:
+        - name: id
+          description: "Center id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: "Center has been deleted"
+        '404':
+          description: "Center not found"
+  
+  /users:
+    get:
+      summary: "Search users"
+      tags:
+        - Users
+      parameters:
+        - name: page
+          description: "Page of results"
+          in: query
+          required: false
+          schema:
+            type: number
+        - name: size
+          description: "Max-size of users list"
+          in: query
+          required: false
+          schema:
+            type: number
+      responses:
+        '200':
+          description: "Users list or empty list"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetUser"
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: "Create a new user"
+      tags:
+        - Users
+      responses:
+        '201':
+          description: "New user has been created"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '409':
+          description: "User already exists"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QueryUser"
+  /users/{id}:
+    get:
+      summary: "Search a user"
+      tags:
+        - Users
+      parameters:
+        - name: id
+          description: "User id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: "Return a user"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        '404':
+          description: "User not found"
+    put:
+      summary: "Modify an existent user"
+      tags:
+        - Users
+      parameters:
+        - name: id
+          description: "User id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: "User has been modified"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '404':
+          description: "User not found"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QueryUser"
+    delete:
+      summary: "Delete an existent user"
+      tags:
+        - Users
+      parameters:
+        - name: id
+          description: "User id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+      responses:
+        '200':
+          description: "User has been deleted"
+        '404':
+          description: "User not found"
+
+  /animals/filterBy:
+    get:
+      summary: "Animals filter"
+      tags:
+        - Animals Filter
+      parameters:
+        - name: coordinates
+          description: "User coordinates"
+          in: query
+          required: true
+          schema:
+            type: string
+            example: "-122.39636,37.79129"
+        - name: radius
+          description: "Search radius in meters"
+          in: query
+          required: true
+          schema:
+            type: number
+            example: 2000
+        - name: page
+          description: "Page of results"
+          in: query
+          required: false
+          schema:
+            type: number
+            example: 1
+        - name: size
+          description: "Max-size of protectors list"
+          in: query
+          required: false
+          schema:
+            type: number
+            example: 10
+        - name: protector
+          description: "Protector name"
+          in: query
+          required: false
+          schema:
+            type: string
+            example: "Rabitos Felices"
+        - name: race
+          description: "Race id"
+          in: query
+          required: false
+          schema:
+            type: number
+            example: 1
+        - name: type
+          description: "Type id"
+          in: query
+          required: false
+          schema:
+            type: number
+            example: 1
+        - name: sex
+          description: "Sex id"
+          in: query
+          required: false
+          schema:
+            type: number
+            example: 1
+        - name: age
+          description: "Approximate age of animal"
+          in: query
+          schema:
+            type: number
+            example: 6
+      responses:
+        '200':
+          description: "Return animals list or empty list"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetAnimal'
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /centers/filterBy:
+    get:
+      summary: "Order of protectors"
+      tags:
+        - Centers Filter
+      parameters:
+        - name: coordinates
+          description: "User coordinates"
+          in: query
+          required: false
+          schema:
+            type: string
+            example: "-122.39636,37.79129"
+        - name: radius
+          description: "Search radius in meters"
+          in: query
+          required: false
+          schema:
+            type: number
+            example: 2000
+        - name: page
+          description: "Page of results"
+          in: query
+          required: false
+          schema:
+            type: number
+            example: 1
+        - name: size
+          description: "Max-size of protectors list"
+          in: query
+          required: false
+          schema:
+            type: number
+            example: 10
+        - name: protectorName
+          description: "Name of protector"
+          in: query
+          required: false
+          schema:
+            type: string
+            example: "Rabitos Felices"
+        - name: centerName
+          description: "Name of protector"
+          in: query
+          required: false
+          schema:
+            type: string
+            example: "Rabitos Felices"
+        - name: location
+          description: "specific location of center"
+          in: query
+          required: false
+          schema:
+            type: string
+            example: "Valencia"
+        
+      responses:
+        '200':
+          description: "Return centers list or empty list"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetCenter'
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  
+components:
+  schemas:
+    FieldError:
+      type: object
+      required:
+        - field
+        - error
+      properties:
+        field:
+          type: string
+          example: "some field"
+        error:
+          type: string
+          example: "why the field is wrong"
+    Error:
+      type: object
+      required:
+        - totalErrors
+        - errors
+      properties:
+        totalErrors:
+          type: number
+          example: 100
+        errors:
+          type: array
+          items:
+            $ref: "#/components/schemas/FieldError"
+    
+    Race:
+      type: object
+      required: 
+        - id
+        - name
+        - status
+      properties:
+        id:
+          type: number
+          example: 1
+        name:
+          type: string
+          example: "chiguagua"
+        status:
+          type: boolean
+          example: false
+    GetRaces:
+      type: object
+      required:
+        - totalResults
+        - results
+      properties:
+        totalResults:
+          type: number
+          example: 100
+        results:
+          type: array
+          items:
+            $ref: "#/components/schemas/Race"
+    QueryRace:
+      type: object
+      required: 
+        - name
+      properties:
+        name:
+          type: string
+          example: "chiguagua"
+        status:
+          type: boolean
+          example: false
+    
+    Type:
+      type: object
+      required:
+        - id
+        - name
+        - status
+      properties:
+        id:
+          type: number
+          example: 1
+        name:
+          type: string
+          example: perro
+        status:
+          type: boolean
+          example: true
+    GetType:
+      type: object
+      required:
+        - totalResults
+        - results
+      properties:
+        totalResults:
+          type: number
+          example: 100
+        results:
+          type: array
+          items:
+            $ref: "#/components/schemas/Type"
+    QueryType:
+      type: object
+      required: 
+        - name
+      properties:
+        name:
+          type: string
+          example: "perro"
+        status:
+          type: boolean
+          example: true
+    
+    Sex:
+      type: object
+      required:
+        - id
+        - name
+        - status
+      properties:
+        id:
+          type: number
+          example: 1
+        name:
+          type: string
+          example: "femenino"
+        status:
+          type: boolean
+          example: true
+    GetSex:
+      type: object
+      required:
+        - totalResults
+        - results
+      properties:
+        totalResults:
+          type: number
+          example: 100
+        results:
+          type: array
+          items:
+            $ref: "#/components/schemas/Sex"
+    QuerySex:
+      type: object
+      required: 
+        - name
+      properties:
+        name:
+          type: string
+          example: "femenino"
+        status:
+          type: boolean
+          example: true
+    
+    Animal:
+      type: object
+      required:
+        - id
+        - name
+        - raceId
+        - typeId
+        - sexId
+        - adultSize
+        - birthDate
+        - centerId
+        - picture
+        - extraDetails
+        - adopterId
+        - adopted
+        - friendly
+        - canTravel
+        - isElder
+        - hasEspecialCondition
+        - status
+      properties:
+        id:
+          type: number
+          example: 1
+        name:
+          type: string
+          example: "Coco"
+        raceId:
+          type: number
+          example: 1
+        typeId:
+          type: number
+          example: 1
+        sexId:
+          type: number
+          example: 1
+        adultSize:
+          type: string
+          example: "cahorro"
+        birthDate:
+          type: string
+          example: "2020-06-23"
+        centerId:
+          type: number
+          example: 1
+        picture:
+          type: string
+          example: "http://domino.algo/image.png"
+        extraDetails:
+          type: string
+          example: "no le agradan los gatos"
+        adopterId:
+          type: number
+          example: 1
+        friendly:
+          type: boolean
+          example: false
+        canTravel:
+          type: boolean
+          example: true
+        isElder:
+          type: boolean
+          example: false
+        hasEspecialCondition:
+          type: boolean
+          example: false
+        status:
+          type: boolean
+          example: true
+    GetAnimal:
+      type: object
+      required:
+        - totalResults
+        - results
+      properties:
+        totalResults:
+          type: number
+          example: 100
+        results:
+          type: array
+          items:
+            $ref: "#/components/schemas/Animal"
+    QueryAnimal:
+      type: object
+      required: 
+        - name
+        - raceId
+        - typeId
+        - sexId
+        - adultSize
+        - birthDate
+        - centerId
+        - extraDetails
+        - friendly
+        - canTravel
+        - isElder
+        - hasEspecialCondition
+      properties:
+        name:
+          type: string
+          example: "Coco"
+        raceId:
+          type: number
+          example: 1
+        typeId:
+          type: number
+          example: 1
+        sexId:
+          type: number
+          example: 1
+        adultSize:
+          type: string
+          example: "cahorro"
+        birthDate:
+          type: string
+          example: "2020-06-23"
+        centerId:
+          type: number
+          example: 1
+        picture:
+          type: string
+          example: "http://domino.algo/image.png"
+        extraDetails:
+          type: string
+          example: "no le agradan los gatos"
+        adopterId:
+          type: number
+          example: 1
+        friendly:
+          type: boolean
+          example: false
+        canTravel:
+          type: boolean
+          example: true
+        isElder:
+          type: boolean
+          example: false
+        hasEspecialCondition:
+          type: boolean
+          example: false
+        status:
+          type: boolean
+          example: true
+    
+    Protector:
+      type: object
+      required:
+        - id
+        - name
+        - location
+        - coordinates
+        - status
+      properties:
+        id:
+          type: number
+          example: 1
+        name:
+          type: string
+          example: "Asociacion Civil Rabitos Felices"
+        location:
+          type: string
+          example: "Reiseñor 86, Valencia"
+        coordinates:
+          type: string
+          example: "-122.39636,37.79129"
+        status:
+          type: boolean
+          example: true
+    GetProtector:
+      type: object
+      required:
+        - totalResults
+        - results
+      properties:
+        totalResults:
+          type: number
+          example: 100
+        results:
+          type: array
+          items:
+            $ref: "#/components/schemas/Protector"
+    QueryProtector:
+      type: object
+      required: 
+        - name
+        - location
+        - coordinates
+      properties:
+        name:
+          type: string
+          example: "Asociacion Civil Rabitos Felices"
+        location:
+          type: string
+          example: "Reiseñor 86, Valencia"
+        coordinates:
+          type: string
+          example: "-122.39636,37.79129"
+        status:
+          type: boolean
+          example: true
+    
+    Center:
+      type: object
+      required:
+        - id
+        - name
+        - location
+        - coordinates
+        - protectorId
+        - picture
+        - status
+      properties:
+        id:
+          type: number
+          example: 1
+        name:
+          type: string
+          example: "Centro de Acogida de Animales Abandonados"
+        location:
+          type: string
+          example: "Reiseñor 86, Valencia"
+        coordinates:
+          type: string
+          example: "-122.39636,37.79129"
+        protectorId:
+          type: number
+          example: 1
+        picture:
+          type: string
+          example: "http://domino.algo/image.png"
+        status:
+          type: boolean
+          example: true
+    GetCenter:
+      type: object
+      required:
+        - totalResults
+        - results
+      properties:
+        totalResults:
+          type: number
+          example: 100
+        results:
+          type: array
+          items:
+            $ref: "#/components/schemas/Center"
+    QueryCenter:
+      type: object
+      required: 
+        - name
+        - location
+        - coordinates
+        - protectorId
+      properties:
+        name:
+          type: string
+          example: "Centro de Acogida de Animales Abandonados"
+        location:
+          type: string
+          example: "Reiseñor 86, Valencia"
+        coordinates:
+          type: string
+          example: "-122.39636,37.79129"
+        protectorId:
+          type: number
+          example: 1
+        picture:
+          type: string
+          example: "http://domino.algo/image.png"
+        status:
+          type: boolean
+          example: true
+    
+    User:
+      type: object
+      required:
+        - id
+        - username
+        - fullName
+        - email
+        - picture
+        - userLevel
+        - status
+      properties:
+        id:
+          type: number
+          example: 1
+        username:
+          type: string
+          example: "Daisy"
+        fullName:
+          type: string
+          example: "Sabrina Constance"
+        email:
+          type: string
+          example: "SabrinaConstance@email.com"
+        picture:
+          type: string
+          example: "http://domino.algo/image.png"
+        userLevel:
+          type: string
+          example: "admin"
+        centerId:
+          type: number
+          example: 1
+        status:
+          type: boolean
+          example: true
+    GetUser:
+      type: object
+      required:
+        - totalResults
+        - results
+      properties:
+        totalResults:
+          type: number
+          example: 100
+        results:
+          type: array
+          items:
+            $ref: "#/components/schemas/User"
+    QueryUser:
+      type: object
+      required: 
+        - username
+        - password
+        - fullName
+        - email
+        - picture
+        - userLevel
+        - centerId
+        - status
+      properties:
+        username:
+          type: string
+          example: "Daisy"
+        password:
+          type: string
+          example: "Daisy1234"
+        fullName:
+          type: string
+          example: "Sabrina Constance"
+        email:
+          type: string
+          example: "SabrinaConstance@email.com"
+        picture:
+          type: string
+          example: "http://domino.algo/image.png"
+        userLevel:
+          type: string
+          example: "admin"
+        centerId:
+          type: number
+          example: 1
+        status:
+          type: boolean
+          example: true
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Token
