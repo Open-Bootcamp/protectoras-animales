@@ -20,3 +20,8 @@
 
 import './routes/protector'
 import './routes/center'
+import './routes/animal'
+import './routes/race'
+import './routes/type'
+import './routes/sex'
+import './routes/user'
