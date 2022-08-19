@@ -14,6 +14,12 @@ export default class Center extends BaseModel {
   @column()
   public coordinates: string
 
+  @column({ serializeAs: null })
+  public latitude: number
+
+  @column({ serializeAs: null })
+  public longitude: number
+
   @column()
   public picture: string | null
 
