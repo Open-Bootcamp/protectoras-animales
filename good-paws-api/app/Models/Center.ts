@@ -9,6 +9,12 @@ export default class Center extends BaseModel {
   public name: string
 
   @column()
+  public description: string | null
+
+  @column()
+  public contact: object | null
+
+  @column()
   public location: string
 
   @column()
@@ -23,7 +29,7 @@ export default class Center extends BaseModel {
   @column()
   public picture: string | null
 
-  @column()
+  @column({ serializeAs: 'protectorId' })
   public protectorId: number
 
   @column()

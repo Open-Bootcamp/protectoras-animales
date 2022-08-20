@@ -1,5 +1,6 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { AdultSizeEnum } from 'App/Utils/constants'
 
 export default class Animal extends BaseModel {
   @column({ isPrimary: true })
@@ -8,51 +9,60 @@ export default class Animal extends BaseModel {
   @column()
   public name: string
 
-  @column()
+  @column({ serializeAs: 'raceId' })
   public raceId: number
 
-  @column()
+  @column({ serializeAs: 'typeId' })
   public typeId: number
 
-  @column()
+  @column({ serializeAs: 'sexId' })
   public sexId: number
 
-  @column()
-  public adultSize: string
+  @column({ serializeAs: 'adultSize' })
+  public adultSize: AdultSizeEnum | string
 
-  @column()
-  public birthdate: string
+  @column.date({
+    autoCreate: false,
+    serialize: (value) => value.toFormat('yyyy-LL-dd'),
+  })
+  public birthdate: DateTime
 
-  @column()
+  @column({ serializeAs: 'centerId' })
   public centerId: number
 
   @column()
   public picture: string | null
 
-  @column()
+  @column({ serializeAs: 'extraDetails' })
   public extraDetails: string
 
   @column()
-  public adopterId: number
+  public observation: string | null
+
+  @column({ serializeAs: 'adopterId' })
+  public adopterId: number | null
+
+  @column()
+  public adopted: boolean
 
   @column()
   public friendly: boolean
 
-  @column()
+  @column({ serializeAs: 'canTravel' })
   public canTravel: boolean
 
-  @column()
+  @column({ serializeAs: 'isElder' })
   public isElder: boolean
 
-  @column()
+  @column({ serializeAs: 'hasEspecialCondition' })
   public hasEspecialCondition: boolean
 
   @column()
   public status: boolean
 
-  @column.dateTime({ autoCreate: true })
+  @column.dateTime({ autoCreate: true, serializeAs: null })
   public createdAt: DateTime
 
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  @column.dateTime({ autoCreate: true, autoUpdate: true, serializeAs: null })
   public updatedAt: DateTime
 }
