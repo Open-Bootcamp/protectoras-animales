@@ -18,7 +18,7 @@ export default class ProtectorsController {
       size
     )
 
-    response.status(200).send({
+    response.ok({
       totalResults: protectors.total,
       results: protectors.all(),
     })
@@ -36,7 +36,7 @@ export default class ProtectorsController {
     }
     protector = await Protector.create(body)
 
-    response.status(201).send(protector)
+    response.created(protector)
   }
 
   public async show({ request, response }: HttpContextContract) {
@@ -44,7 +44,7 @@ export default class ProtectorsController {
 
     const protector: Protector = await Protector.findOrFail(id)
 
-    response.status(200).send(protector)
+    response.ok(protector)
   }
 
   public async update({ request, response }: HttpContextContract) {
@@ -57,7 +57,7 @@ export default class ProtectorsController {
     const protector: Protector = await Protector.findOrFail(id)
     await protector.merge(body).save()
 
-    response.status(200).send(protector)
+    response.ok(protector)
   }
 
   public async destroy({ request, response }: HttpContextContract) {
@@ -66,6 +66,6 @@ export default class ProtectorsController {
     const protector: Protector = await Protector.findOrFail(id)
     await protector.merge({ status: false }).save()
 
-    response.status(200).send(null)
+    response.ok(null)
   }
 }

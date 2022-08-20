@@ -14,7 +14,7 @@ export default class UsersController {
 
     const user: ModelPaginatorContract<User> = await User.query().paginate(page, size)
 
-    response.status(200).send({
+    response.ok({
       totalResults: user.total,
       results: user.all(),
     })
@@ -28,7 +28,7 @@ export default class UsersController {
 
     const user = await User.create(body)
 
-    response.status(201).send(user)
+    response.created(user)
   }
 
   public async show({ request, response }: HttpContextContract) {
@@ -36,7 +36,7 @@ export default class UsersController {
 
     const user: User = await User.findOrFail(id)
 
-    response.status(200).send(user)
+    response.ok(user)
   }
 
   public async update({ request, response }: HttpContextContract) {
@@ -49,7 +49,7 @@ export default class UsersController {
     const user = await User.findOrFail(id)
     await user.merge(body).save()
 
-    response.status(200).send(user)
+    response.ok(user)
   }
 
   public async destroy({ request, response }: HttpContextContract) {
@@ -58,6 +58,6 @@ export default class UsersController {
     const user: User = await User.findOrFail(id)
     await user.merge({ status: false }).save()
 
-    response.status(200).send(null)
+    response.ok(null)
   }
 }

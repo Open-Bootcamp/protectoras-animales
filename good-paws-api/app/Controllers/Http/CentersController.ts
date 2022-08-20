@@ -17,7 +17,7 @@ export default class CentersController {
 
     const centers: ModelPaginatorContract<Center> = await Center.query().paginate(page, size)
 
-    response.status(200).send({
+    response.ok({
       totalResults: centers.total,
       results: centers.all(),
     })
@@ -36,7 +36,7 @@ export default class CentersController {
     }
     center = await Center.create({ ...body, latitude, longitude })
 
-    response.status(201).send(center)
+    response.created(center)
   }
 
   public async show({ request, response }: HttpContextContract) {
@@ -44,7 +44,7 @@ export default class CentersController {
 
     const center: Center = await Center.findOrFail(id)
 
-    response.status(200).send(center)
+    response.ok(center)
   }
 
   public async update({ request, response }: HttpContextContract) {
@@ -58,7 +58,7 @@ export default class CentersController {
     const center = await Center.findOrFail(id)
     await center.merge({ ...body, latitude, longitude }).save()
 
-    response.status(200).send(center)
+    response.ok(center)
   }
 
   public async destroy({ request, response }: HttpContextContract) {
@@ -67,7 +67,7 @@ export default class CentersController {
     const center: Center = await Center.findOrFail(id)
     await center.merge({ status: false }).save()
 
-    response.status(200).send(null)
+    response.ok(null)
   }
 
   public async filter({ request, response }: HttpContextContract) {
