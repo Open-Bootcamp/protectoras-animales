@@ -3,6 +3,7 @@ import usePagination from '../../hooks/usePagination.tsx';
 import { products } from "../../Mocks/mocks";
 import { Flex, Text, Heading } from '@chakra-ui/react';
 import CardsContainer from '../CardsContainer/CardsContainer';
+import ImgCarousel from './ImgCarousel';
 
 const HomeNewPartner = () => {
     const pagination = usePagination(products, 4);
@@ -16,8 +17,8 @@ const HomeNewPartner = () => {
                 ¿Eres más de gatos? ¿De perros? ¿De pájaros? ¡No importa! 
                 Te ayudaremos a encontrar a tu nuevo mejor amigo.
             </Text>
-            <Flex w={'90%'} direction={'column'}>
-                <CardsContainer data={pagination.data} />
+            <Flex mb={10} w={'90%'} direction={'column'}>
+                <ImgCarousel data={pagination.data} />
             </Flex>
         </Flex>
     )
