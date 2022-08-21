@@ -1,3 +1,4 @@
+import { Attachment } from '@ioc:Adonis/Addons/AttachmentLite'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { ModelPaginatorContract } from '@ioc:Adonis/Lucid/Orm'
 import AlreadyExistException from 'App/Exceptions/AlreadyExistException'
@@ -24,7 +25,7 @@ export default class CentersController {
   }
 
   public async store({ request, response }: HttpContextContract) {
-    const body = await request.validate({
+    const { picture, ...body } = await request.validate({
       schema: centerSchema,
       reporter: ErrorReporter,
     })
@@ -34,7 +35,12 @@ export default class CentersController {
     if (center !== null) {
       throw new AlreadyExistException('coordinates')
     }
-    center = await Center.create({ ...body, latitude, longitude })
+    center = await Center.create({
+      picture: picture ? Attachment.fromFile(picture) : null,
+      latitude,
+      longitude,
+      ...body,
+    })
 
     response.created(center)
   }
@@ -49,14 +55,22 @@ export default class CentersController {
 
   public async update({ request, response }: HttpContextContract) {
     const id: number = request.param('id')
-    const body = await request.validate({
+    const { picture, ...body } = await request.validate({
       schema: centerSchema,
       reporter: ErrorReporter,
     })
     const [latitude, longitude] = body.coordinates.split(',').map((value) => parseFloat(value))
 
     const center = await Center.findOrFail(id)
-    await center.merge({ ...body, latitude, longitude }).save()
+    center.merge({
+      latitude,
+      longitude,
+      ...body,
+    })
+    if (picture) {
+      center.merge({ picture: Attachment.fromFile(picture) })
+    }
+    center.save()
 
     response.ok(center)
   }

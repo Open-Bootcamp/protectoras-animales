@@ -1,5 +1,6 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { attachment, AttachmentContract } from '@ioc:Adonis/Addons/AttachmentLite'
 
 export default class Center extends BaseModel {
   @column({ isPrimary: true })
@@ -26,8 +27,8 @@ export default class Center extends BaseModel {
   @column({ serializeAs: null })
   public longitude: number
 
-  @column()
-  public picture: string | null
+  @attachment({ folder: 'centers', preComputeUrl: true })
+  public picture: AttachmentContract | null
 
   @column({ serializeAs: 'protectorId' })
   public protectorId: number

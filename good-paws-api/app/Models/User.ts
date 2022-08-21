@@ -1,5 +1,6 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { attachment, AttachmentContract } from '@ioc:Adonis/Addons/AttachmentLite'
 import { UserLevelEnum } from 'App/Utils/constants'
 
 export default class User extends BaseModel {
@@ -18,8 +19,8 @@ export default class User extends BaseModel {
   @column({ serializeAs: null })
   public password: string
 
-  @column()
-  public picture: string | null
+  @attachment({ folder: 'users', preComputeUrl: true })
+  public picture: AttachmentContract | null
 
   @column({ serializeAs: 'userLevel' })
   public userLevel: UserLevelEnum | string

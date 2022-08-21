@@ -1,3 +1,4 @@
+import { Attachment } from '@ioc:Adonis/Addons/AttachmentLite'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { ModelPaginatorContract } from '@ioc:Adonis/Lucid/Orm'
 import User from 'App/Models/User'
@@ -21,12 +22,15 @@ export default class UsersController {
   }
 
   public async store({ request, response }: HttpContextContract) {
-    const body = await request.validate({
+    const { picture, ...body } = await request.validate({
       schema: userSchema,
       reporter: ErrorReporter,
     })
 
-    const user = await User.create(body)
+    const user = await User.create({
+      picture: picture ? Attachment.fromFile(picture) : null,
+      ...body,
+    })
 
     response.created(user)
   }
@@ -41,13 +45,17 @@ export default class UsersController {
 
   public async update({ request, response }: HttpContextContract) {
     const id: number = request.param('id')
-    const body = await request.validate({
+    const { picture, ...body } = await request.validate({
       schema: userSchema,
       reporter: ErrorReporter,
     })
 
     const user = await User.findOrFail(id)
-    await user.merge(body).save()
+    user.merge(body)
+    if (picture) {
+      user.merge({ picture: Attachment.fromFile(picture) })
+    }
+    user.save()
 
     response.ok(user)
   }
