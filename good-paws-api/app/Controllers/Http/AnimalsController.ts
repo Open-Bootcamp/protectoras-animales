@@ -9,6 +9,7 @@ import { paginationSchema } from 'App/Validators/Schemas/PaginationSchema'
 import Race from 'App/Models/Race'
 import Type from 'App/Models/Type'
 import Center from 'App/Models/Center'
+import Sex from 'App/Models/Sex'
 
 export default class AnimalsController {
   public async index({ request, response }: HttpContextContract) {
@@ -17,15 +18,15 @@ export default class AnimalsController {
       reporter: ErrorReporter,
     })
     let animals: ModelPaginatorContract<Animal>
-    const queryString = request.qs()
-    console.log(queryString)
-    if (Object.keys(queryString).length !== 0) {
-      animals = await Animal.query()
-        .where(Object.keys(queryString)[0], 'like', Object.values(queryString)[0])
-        .paginate(page, size)
-    } else {
-      animals = await Animal.query().paginate(page, size)
-    }
+    // const queryString = request.qs()
+    // console.log(queryString)
+    // if (Object.keys(queryString).length !== 0) {
+    //   animals = await Animal.query()
+    //     .where(Object.keys(queryString)[0], 'like', Object.values(queryString)[0])
+    //     .paginate(page, size)
+    // } else {
+    animals = await Animal.query().paginate(page, size)
+    // }
 
     //const animals: ModelPaginatorContract<Animal> = await Animal.query().paginate(page, size)
 
@@ -97,7 +98,7 @@ export default class AnimalsController {
       reporter: ErrorReporter,
     })
 
-    const centers: ModelPaginatorContract<Animal> = await Animal.query()
+    const animal: ModelPaginatorContract<Animal> = await Animal.query()
       .where('status', true)
       .if(coordinates, (query) => {
         const [latitude, longitude] = coordinates!.split(',').map((value) => parseFloat(value))
@@ -111,37 +112,40 @@ export default class AnimalsController {
         // query
       })
       .if(name, (query) => {
-        query.whereIn('name', Animal.query().whereILike('name', `%${name}%`))
+        console.log('entramos')
+        query.whereILike('name', `%${name}%`)
+        console.log('Salimos')
       })
       .if(friendly, (query) => {
-        query.whereILike('friendly', `%${friendly}%`)
+        query.where('friendly', friendly)
       })
       .if(canTravel, (query) => {
-        query.whereILike('canTravel', `%${canTravel}%`)
+        query.where('canTravel', canTravel)
       })
       .if(isElder, (query) => {
-        query.whereILike('isElder', `%${isElder}%`)
+        query.where('isElder', isElder)
       })
       .if(hasEspecialCondition, (query) => {
-        query.whereILike('hasEspecialCondition', `%${hasEspecialCondition}%`)
+        query.where('hasEspecialCondition', hasEspecialCondition)
       })
       .if(raceId, (query) => {
-        query.whereIn('id', Race.query().select('races.id').whereILike('id', `%${raceId}%`))
+        query.whereIn('race_id', Race.query().select('races.id').where('id', raceId))
       })
       .if(typeId, (query) => {
-        query.whereIn('id', Type.query().select('types.id').whereILike('id', `%${typeId}%`))
+        query.whereIn('type_id', Type.query().select('types.id').where('id', typeId))
       })
       .if(sexId, (query) => {
-        query.whereIn('id', Type.query().select('sexes.id').whereILike('id', `%${sexId}%`))
+        query.whereIn('sex_id', Sex.query().select('sexes.id').where('id', sexId))
       })
       .if(centerId, (query) => {
-        query.whereIn('id', Type.query().select('centers.id').whereILike('id', `%${centerId}%`))
+        query.whereIn('center_id', Center.query().select('centers.id').where('id', centerId))
       })
       .paginate(page, size)
+    console.log('final')
 
     response.ok({
-      totalResults: centers.total,
-      results: centers.all(),
+      totalResults: animal.total,
+      results: animal.all(),
     })
   }
 }
