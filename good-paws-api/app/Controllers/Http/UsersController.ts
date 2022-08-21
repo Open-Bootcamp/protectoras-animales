@@ -1,5 +1,6 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { ModelPaginatorContract } from '@ioc:Adonis/Lucid/Orm'
+import AlreadyExistException from 'App/Exceptions/AlreadyExistException'
 import User from 'App/Models/User'
 import ErrorReporter from 'App/Validators/Reporters/ErrorReporter'
 import { paginationSchema } from 'App/Validators/Schemas/PaginationSchema'
@@ -26,7 +27,11 @@ export default class UsersController {
       reporter: ErrorReporter,
     })
 
-    const user = await User.create(body)
+    let user: User | null = await User.findBy('email', body.email)
+    if (user !== null) {
+      throw new AlreadyExistException('email')
+    }
+    user = await User.create(body)
 
     response.status(201).send(user)
   }
