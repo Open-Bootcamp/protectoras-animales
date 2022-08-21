@@ -1,5 +1,5 @@
 import { schema, rules } from '@ioc:Adonis/Core/Validator'
-import { AdultSizeEnum, imagesRegex } from 'App/Utils/constants'
+import { AdultSizeEnum } from 'App/Utils/constants'
 
 export const animalSchema = schema.create({
   name: schema.string(),
@@ -9,7 +9,6 @@ export const animalSchema = schema.create({
   adultSize: schema.enum(Object.values(AdultSizeEnum)),
   birthdate: schema.date({ format: 'yyyy-LL-dd' }),
   centerId: schema.number([rules.exists({ table: 'centers', column: 'id' })]),
-  picture: schema.string({}, [rules.regex(imagesRegex)]),
   extraDetails: schema.string(),
   observation: schema.string.optional(),
   adopterId: schema.number.optional([rules.exists({ table: 'users', column: 'id' })]),

@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, column, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm'
 import { AdultSizeEnum } from 'App/Utils/constants'
+import AnimalImage from './AnimalImage'
 
 export default class Animal extends BaseModel {
   @column({ isPrimary: true })
@@ -30,8 +31,8 @@ export default class Animal extends BaseModel {
   @column({ serializeAs: 'centerId' })
   public centerId: number
 
-  @column()
-  public picture: string | null
+  @hasMany(() => AnimalImage)
+  public pictures: HasMany<typeof AnimalImage>
 
   @column({ serializeAs: 'extraDetails' })
   public extraDetails: string
