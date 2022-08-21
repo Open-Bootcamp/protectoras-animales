@@ -4,7 +4,6 @@ import ErrorReporter from 'App/Validators/Reporters/ErrorReporter'
 import { paginationSchema } from 'App/Validators/Schemas/PaginationSchema'
 import { protectorSchema } from 'App/Validators/Schemas/ProtectorSchema'
 import Protector from 'App/Models/Protector'
-import AlreadyExistException from 'App/Exceptions/AlreadyExistException'
 
 export default class ProtectorsController {
   public async index({ request, response }: HttpContextContract) {
@@ -30,11 +29,7 @@ export default class ProtectorsController {
       reporter: ErrorReporter,
     })
 
-    let protector: Protector | null = await Protector.findBy('coordinates', body.coordinates)
-    if (protector !== null) {
-      throw new AlreadyExistException('coordinates')
-    }
-    protector = await Protector.create(body)
+    const protector = await Protector.create(body)
 
     response.created(protector)
   }

@@ -1,7 +1,6 @@
 import { Attachment } from '@ioc:Adonis/Addons/AttachmentLite'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { ModelPaginatorContract } from '@ioc:Adonis/Lucid/Orm'
-import AlreadyExistException from 'App/Exceptions/AlreadyExistException'
 import Center from 'App/Models/Center'
 import Protector from 'App/Models/Protector'
 import ErrorReporter from 'App/Validators/Reporters/ErrorReporter'
@@ -31,11 +30,7 @@ export default class CentersController {
     })
     const [latitude, longitude] = body.coordinates.split(',').map((value) => parseFloat(value))
 
-    let center: Center | null = await Center.findBy('coordinates', body.coordinates)
-    if (center !== null) {
-      throw new AlreadyExistException('coordinates')
-    }
-    center = await Center.create({
+    const center = await Center.create({
       picture: picture ? Attachment.fromFile(picture) : null,
       latitude,
       longitude,

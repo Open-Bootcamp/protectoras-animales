@@ -6,6 +6,9 @@ export const protectorSchema = schema.create({
   description: schema.string.optional(),
   contact: schema.object.optional().anyMembers(),
   location: schema.string(),
-  coordinates: schema.string({}, [rules.regex(coordinatesRegex)]),
+  coordinates: schema.string({}, [
+    rules.regex(coordinatesRegex),
+    rules.unique({ table: 'protectors', column: 'coordinates' }),
+  ]),
   status: schema.boolean.optional(),
 })

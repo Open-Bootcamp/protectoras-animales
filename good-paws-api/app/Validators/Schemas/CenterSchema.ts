@@ -6,7 +6,10 @@ export const centerSchema = schema.create({
   description: schema.string.optional(),
   contact: schema.object.optional().anyMembers(),
   location: schema.string(),
-  coordinates: schema.string({}, [rules.regex(coordinatesRegex)]),
+  coordinates: schema.string({}, [
+    rules.regex(coordinatesRegex),
+    rules.unique({ table: 'centers', column: 'coordinates' }),
+  ]),
   protectorId: schema.number([rules.exists({ table: 'protectors', column: 'id' })]),
   picture: schema.file.optional({
     size: '2mb',
