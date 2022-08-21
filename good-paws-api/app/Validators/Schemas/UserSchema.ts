@@ -4,7 +4,7 @@ import { UserLevelEnum } from 'App/Utils/constants'
 export const userSchema = schema.create({
   username: schema.string(),
   fullname: schema.string(),
-  email: schema.string({}, [rules.email()]),
+  email: schema.string({}, [rules.email(), rules.unique({ table: 'user', column: 'email' })]),
   password: schema.string({}, [rules.confirmed()]),
   picture: schema.file.optional({
     size: '2mb',
