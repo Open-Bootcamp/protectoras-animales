@@ -33,4 +33,4 @@ const ImgCarousel = ({ data }) => {
     )
 }
 
-export default ImgCarousel
+export default ImgCarousel;
