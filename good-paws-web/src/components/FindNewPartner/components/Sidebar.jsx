@@ -4,6 +4,7 @@ import { BsPerson } from 'react-icons/bs';
 import { SearchIcon } from '@chakra-ui/icons';
 import { Select } from "chakra-react-select";
 import SliderInp from './Slider';
+import { colors } from '../../ui/colors';
 
 const groupedOptions = [
     {
@@ -76,7 +77,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                 <Select useBasicStyles name="ages" options={groupedOptions} selectedOptionStyle="check" placeholder="Selecciona una opción" closeMenuOnSelect={true}/>
             </FormControl>
             <FormControl display={'flex'} flexDirection={'column'}>
-                <CheckboxGroup variantColor="green">
+                <CheckboxGroup variantColor={colors.primarylight}>
                     <Checkbox mt={3} value="shelter">Casa de acogida</Checkbox>
                     <Checkbox mt={3} value="urgent">Caso urgente</Checkbox>
                 </CheckboxGroup>
@@ -91,7 +92,7 @@ const MenuIcon = () => <Image width={'25px'} src="./button_icon.svg" alt="button
 const MobileNav = ({ onOpen, ...rest }) => {
   return (
     <Flex ml={{ base: 0, md: 60 }} px={{ base: 4, md: 24 }} height="20" alignItems="center" bg={useColorModeValue('white', 'gray.900')} justifyContent="flex-end" {...rest}>
-      <IconButton colorScheme='#C3C6C8' w={'17%'} h={'3rem'} variant="outline" onClick={onOpen} aria-label="open menu" icon={<MenuIcon />} />
+      <IconButton colorScheme={colors.gray3} w={'17%'} h={'3rem'} variant="outline" onClick={onOpen} aria-label="open menu" icon={<MenuIcon />} />
     </Flex>
   );
 };
