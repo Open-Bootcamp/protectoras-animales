@@ -6,7 +6,7 @@ import { responsive } from './breakpoints';
 
 const ImgCarousel = ({ data }) => {
     return (
-        <Carousel arrows={false} responsive={responsive}>
+        <Carousel partialVisible={true} arrows={false} responsive={responsive}>
             {data.map((p) => (
                 <Card key={p.id} {...p} />
             ))}
