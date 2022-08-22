@@ -10,6 +10,7 @@ import {
   DrawerOverlay,
   Flex,
   Stack,
+  Link,
 } from "@chakra-ui/react";
 import MenuItem from "../MenuItem/MenuItem";
 import Logo from "../../Logo/Logo";

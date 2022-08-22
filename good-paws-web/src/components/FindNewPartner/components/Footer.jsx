@@ -39,9 +39,9 @@ export default function Footer({ page, totalPages, setPage }) {
       <Divider orientation="horizontal" />
       <Container as={Stack} maxW={"6xl"} py={4} direction={{ base: "column", md: "row" }} spacing={4} justify={{ base: "center", md: "space-between" }} align={{ base: "center", md: "center" }}>
         <Flex w={"100%"} justifyContent={"space-between"} direction={"row"} spacing={6}>
-          <Clickable as="div" onClick={onPrevPage} _active={{ bg: colors.primarylight, color: colors.white }} _disabled={{ opacity: 0.4, pointerEvents: "none" }}><FaArrowLeft /></Clickable>
+          <Clickable as="button" onClick={onPrevPage} _active={{ bg: colors.primarylight, color: colors.white }} _disabled={{ opacity: 0.4, pointerEvents: "none" }}><FaArrowLeft /></Clickable>
           <Text>Página {page + 1} de {totalPages + 1}</Text>
-          <Clickable as="div" onClick={onNextPage}_active={{ bg: colors.primarylight, color: colors.white }} _disabled={{ opacity: 0.4, pointerEvents: "none" }}><FaArrowRight /></Clickable>
+          <Clickable as="button" onClick={onNextPage}_active={{ bg: colors.primarylight, color: colors.white }} _disabled={{ opacity: 0.4, pointerEvents: "none" }}><FaArrowRight /></Clickable>
         </Flex>
       </Container>
     </Box>
