@@ -12,7 +12,7 @@ const HomeNewPartner = () => {
     return (
         <Flex borderTop={`1px solid ${colors.gray2}`} alignItems={'center'} pt={12} pl={10} pr={10} direction={'column'}>
             <Heading mb={6} textAlign={'center'} maxW={'100%'} fontSize={{ base: '3xl', md: '4xl', lg: '4xl' }}>
-                <Text color={colors.white} as={'span'}>Unimos protectoras y adoptantes</Text>
+                <Text color={colors.black} as={'span'}>Unimos protectoras y adoptantes</Text>
             </Heading>
             <Text w={'36%'} mb={10} textAlign={'center'} fontSize={{ base: 'md', lg: 'lg' }} color={colors.gray5}>
                 ¿Eres más de gatos? ¿De perros? ¿De pájaros? ¡No importa! 
