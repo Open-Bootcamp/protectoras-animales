@@ -4,10 +4,10 @@ export const ImageCarousel = ({imageIndex, index, url, title, description}) => {
   return (
     <ImageContainer  opacity={imageIndex === index + 1 ? 1 : 0 } >
         <Image src={url} alt={title} />
-        <InfoContainer background={ (title === '' || description === '') ? false : true}>
+        <InfoContainer >
             <ImageInfo>
-                <Title>{(title === '' ) ? '' : title}</Title>
-                <Description>{description === '' ? '' : description }</Description>
+                <Title>{ title }</Title>
+                <Description>{ description }</Description>
             </ImageInfo>
         </InfoContainer>
     </ImageContainer>
