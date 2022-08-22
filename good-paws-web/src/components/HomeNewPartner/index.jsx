@@ -2,7 +2,6 @@ import React from 'react';
 import usePagination from '../../hooks/usePagination.tsx';
 import { products } from "../../Mocks/mocks";
 import { Flex, Text, Heading } from '@chakra-ui/react';
-import CardsContainer from '../CardsContainer/CardsContainer';
 import ImgCarousel from './ImgCarousel';
 import { colors } from '../ui/colors';
 
