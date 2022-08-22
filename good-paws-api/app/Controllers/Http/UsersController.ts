@@ -1,3 +1,4 @@
+import { Attachment } from '@ioc:Adonis/Addons/AttachmentLite'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { ModelPaginatorContract } from '@ioc:Adonis/Lucid/Orm'
 import User from 'App/Models/User'
@@ -14,21 +15,24 @@ export default class UsersController {
 
     const user: ModelPaginatorContract<User> = await User.query().paginate(page, size)
 
-    response.status(200).send({
+    response.ok({
       totalResults: user.total,
       results: user.all(),
     })
   }
 
   public async store({ request, response }: HttpContextContract) {
-    const body = await request.validate({
+    const { picture, ...body } = await request.validate({
       schema: userSchema,
       reporter: ErrorReporter,
     })
 
-    const user = await User.create(body)
+    const user = await User.create({
+      picture: picture ? Attachment.fromFile(picture) : null,
+      ...body,
+    })
 
-    response.status(201).send(user)
+    response.created(user)
   }
 
   public async show({ request, response }: HttpContextContract) {
@@ -36,20 +40,24 @@ export default class UsersController {
 
     const user: User = await User.findOrFail(id)
 
-    response.status(200).send(user)
+    response.ok(user)
   }
 
   public async update({ request, response }: HttpContextContract) {
     const id: number = request.param('id')
-    const body = await request.validate({
+    const { picture, ...body } = await request.validate({
       schema: userSchema,
       reporter: ErrorReporter,
     })
 
     const user = await User.findOrFail(id)
-    await user.merge(body).save()
+    user.merge(body)
+    if (picture) {
+      user.merge({ picture: Attachment.fromFile(picture) })
+    }
+    user.save()
 
-    response.status(200).send(user)
+    response.ok(user)
   }
 
   public async destroy({ request, response }: HttpContextContract) {
@@ -58,6 +66,6 @@ export default class UsersController {
     const user: User = await User.findOrFail(id)
     await user.merge({ status: false }).save()
 
-    response.status(200).send(null)
+    response.ok(null)
   }
 }

@@ -10,6 +10,12 @@ export default class Protector extends BaseModel {
   public name: string
 
   @column()
+  public description: string | null
+
+  @column()
+  public contact: object | null
+
+  @column()
   public location: string
 
   @column()

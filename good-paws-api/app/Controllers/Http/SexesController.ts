@@ -14,7 +14,7 @@ export default class SexesController {
 
     const sex: ModelPaginatorContract<Sex> = await Sex.query().paginate(page, size)
 
-    response.status(200).send({
+    response.ok({
       totalResults: sex.total,
       results: sex.all(),
     })
@@ -28,7 +28,7 @@ export default class SexesController {
 
     const sex = await Sex.create(body)
 
-    response.status(201).send(sex)
+    response.created(sex)
   }
 
   public async show({ request, response }: HttpContextContract) {
@@ -36,7 +36,7 @@ export default class SexesController {
 
     const sex: Sex = await Sex.findOrFail(id)
 
-    response.status(200).send(sex)
+    response.ok(sex)
   }
 
   public async update({ request, response }: HttpContextContract) {
@@ -49,7 +49,7 @@ export default class SexesController {
     const sex = await Sex.findOrFail(id)
     await sex.merge(body).save()
 
-    response.status(200).send(sex)
+    response.ok(sex)
   }
 
   public async destroy({ request, response }: HttpContextContract) {
@@ -58,6 +58,6 @@ export default class SexesController {
     const sex: Sex = await Sex.findOrFail(id)
     await sex.merge({ status: false }).save()
 
-    response.status(200).send(null)
+    response.ok(null)
   }
 }

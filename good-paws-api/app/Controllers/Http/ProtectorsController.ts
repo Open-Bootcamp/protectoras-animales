@@ -4,7 +4,6 @@ import ErrorReporter from 'App/Validators/Reporters/ErrorReporter'
 import { paginationSchema } from 'App/Validators/Schemas/PaginationSchema'
 import { protectorSchema } from 'App/Validators/Schemas/ProtectorSchema'
 import Protector from 'App/Models/Protector'
-import AlreadyExistException from 'App/Exceptions/AlreadyExistException'
 
 export default class ProtectorsController {
   public async index({ request, response }: HttpContextContract) {
@@ -18,7 +17,7 @@ export default class ProtectorsController {
       size
     )
 
-    response.status(200).send({
+    response.ok({
       totalResults: protectors.total,
       results: protectors.all(),
     })
@@ -30,13 +29,9 @@ export default class ProtectorsController {
       reporter: ErrorReporter,
     })
 
-    let protector: Protector | null = await Protector.findBy('coordinates', body.coordinates)
-    if (protector !== null) {
-      throw new AlreadyExistException('coordinates')
-    }
-    protector = await Protector.create(body)
+    const protector = await Protector.create(body)
 
-    response.status(201).send(protector)
+    response.created(protector)
   }
 
   public async show({ request, response }: HttpContextContract) {
@@ -44,7 +39,7 @@ export default class ProtectorsController {
 
     const protector: Protector = await Protector.findOrFail(id)
 
-    response.status(200).send(protector)
+    response.ok(protector)
   }
 
   public async update({ request, response }: HttpContextContract) {
@@ -57,7 +52,7 @@ export default class ProtectorsController {
     const protector: Protector = await Protector.findOrFail(id)
     await protector.merge(body).save()
 
-    response.status(200).send(protector)
+    response.ok(protector)
   }
 
   public async destroy({ request, response }: HttpContextContract) {
@@ -66,6 +61,6 @@ export default class ProtectorsController {
     const protector: Protector = await Protector.findOrFail(id)
     await protector.merge({ status: false }).save()
 
-    response.status(200).send(null)
+    response.ok(null)
   }
 }
