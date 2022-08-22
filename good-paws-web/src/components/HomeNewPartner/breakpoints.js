@@ -20,7 +20,7 @@ export const responsive = {
             min: 464
         },
         items: 2,
-        partialVisibilityGutter: 30 // this is needed to tell the amount of px that should be visible.
+        partialVisibilityGutter: 40 // this is needed to tell the amount of px that should be visible.
     },
     mobile: {
         breakpoint: {
@@ -28,6 +28,6 @@ export const responsive = {
             min: 0
         },
         items: 1,
-        partialVisibilityGutter: 30 // this is needed to tell the amount of px that should be visible.
+        partialVisibilityGutter: 40 // this is needed to tell the amount of px that should be visible.
     }
 };
