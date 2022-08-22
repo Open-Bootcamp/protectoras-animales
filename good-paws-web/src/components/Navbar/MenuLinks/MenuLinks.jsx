@@ -2,9 +2,8 @@ import { Box, Stack } from "@chakra-ui/react";
 import React from "react";
 import Logo from "../../Logo/Logo";
 import MenuItem from "../MenuItem/MenuItem";
-import MenuDrawer from "../MenuDrawer/MenuDrawer";
 
-export default function MenuLinks({ isOpen, onClose }) {
+export default function MenuLinks() {
   return (
     <>
       <Box display={{ base: "none", md: "block" }}>
@@ -19,7 +18,6 @@ export default function MenuLinks({ isOpen, onClose }) {
           <MenuItem to="/adoptar" title="Quiero adoptar" />
           <MenuItem to="/protectoras" title="Protectoras" />
         </Stack>
-        <MenuDrawer isOpen={isOpen} onClose={onClose} />
       </Box>
     </>
   );
