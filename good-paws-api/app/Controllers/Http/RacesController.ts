@@ -15,7 +15,7 @@ export default class RacesController {
 
     const race: ModelPaginatorContract<Race> = await Race.query().paginate(page, size)
 
-    response.status(200).send({
+    response.ok({
       totalResults: race.total,
       results: race.all(),
     })
@@ -33,7 +33,7 @@ export default class RacesController {
     }
     race = await Race.create(body)
 
-    response.status(201).send(race)
+    response.created(race)
   }
 
   public async show({ request, response }: HttpContextContract) {
@@ -41,7 +41,7 @@ export default class RacesController {
 
     const race: Race = await Race.findOrFail(id)
 
-    response.status(200).send(race)
+    response.ok(race)
   }
 
   public async update({ request, response }: HttpContextContract) {
@@ -54,7 +54,7 @@ export default class RacesController {
     const race = await Race.findOrFail(id)
     await race.merge(body).save()
 
-    response.status(200).send(race)
+    response.ok(race)
   }
 
   public async destroy({ request, response }: HttpContextContract) {
@@ -63,6 +63,6 @@ export default class RacesController {
     const race: Race = await Race.findOrFail(id)
     await race.merge({ status: false }).save()
 
-    response.status(200).send(null)
+    response.ok(null)
   }
 }

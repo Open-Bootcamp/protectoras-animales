@@ -1,5 +1,7 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { attachment, AttachmentContract } from '@ioc:Adonis/Addons/AttachmentLite'
+import { UserLevelEnum } from 'App/Utils/constants'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -14,24 +16,24 @@ export default class User extends BaseModel {
   @column()
   public email: string
 
-  @column()
+  @column({ serializeAs: null })
   public password: string
 
-  @column()
-  public picture: string | null
+  @attachment({ folder: 'users', preComputeUrl: true })
+  public picture: AttachmentContract | null
 
-  @column()
-  public userLevel: string
+  @column({ serializeAs: 'userLevel' })
+  public userLevel: UserLevelEnum | string
 
   @column()
   public status: boolean
 
-  @column()
-  public centerId: number
+  @column({ serializeAs: 'centerId' })
+  public centerId: number | null
 
-  @column.dateTime({ autoCreate: true })
+  @column.dateTime({ autoCreate: true, serializeAs: null })
   public createdAt: DateTime
 
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  @column.dateTime({ autoCreate: true, autoUpdate: true, serializeAs: null })
   public updatedAt: DateTime
 }

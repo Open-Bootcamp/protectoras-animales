@@ -1,15 +1,16 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
+import { attachment, AttachmentContract } from '@ioc:Adonis/Addons/AttachmentLite'
 
-export default class Sex extends BaseModel {
+export default class AnimalImage extends BaseModel {
   @column({ isPrimary: true })
   public id: number
 
-  @column()
-  public name: string
+  @column({ serializeAs: 'animalId' })
+  public animalId: number
 
-  @column()
-  public status: boolean
+  @attachment({ folder: 'animals', preComputeUrl: true })
+  public picture: AttachmentContract
 
   @column.dateTime({ autoCreate: true, serializeAs: null })
   public createdAt: DateTime

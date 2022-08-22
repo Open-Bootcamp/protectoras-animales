@@ -15,7 +15,7 @@ export default class TypesController {
 
     const type: ModelPaginatorContract<Type> = await Type.query().paginate(page, size)
 
-    response.status(200).send({
+    response.ok({
       totalResults: type.total,
       results: type.all(),
     })
@@ -33,7 +33,7 @@ export default class TypesController {
     }
     type = await Type.create(body)
 
-    response.status(201).send(type)
+    response.created(type)
   }
 
   public async show({ request, response }: HttpContextContract) {
@@ -41,7 +41,7 @@ export default class TypesController {
 
     const type: Type = await Type.findOrFail(id)
 
-    response.status(200).send(type)
+    response.ok(type)
   }
 
   public async update({ request, response }: HttpContextContract) {
@@ -54,7 +54,7 @@ export default class TypesController {
     const type = await Type.findOrFail(id)
     await type.merge(body).save()
 
-    response.status(200).send(type)
+    response.ok(type)
   }
 
   public async destroy({ request, response }: HttpContextContract) {
@@ -63,6 +63,6 @@ export default class TypesController {
     const type: Type = await Type.findOrFail(id)
     await type.merge({ status: false }).save()
 
-    response.status(200).send(null)
+    response.ok(null)
   }
 }

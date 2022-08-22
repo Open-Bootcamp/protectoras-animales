@@ -20,7 +20,7 @@ export default class AnimalsController {
 
     animals = await Animal.query().paginate(page, size)
 
-    response.status(200).send({
+    response.ok({
       totalResults: animals.total,
       results: animals.all(),
     })
@@ -33,7 +33,7 @@ export default class AnimalsController {
     })
     const animal = await Animal.create(body)
 
-    response.status(201).send(animal)
+    response.created(animal)
   }
 
   public async show({ request, response }: HttpContextContract) {
@@ -41,7 +41,7 @@ export default class AnimalsController {
 
     const animal: Animal = await Animal.findOrFail(id)
 
-    response.status(200).send(animal)
+    response.ok(animal)
   }
 
   public async update({ request, response }: HttpContextContract) {
@@ -54,7 +54,7 @@ export default class AnimalsController {
     const animal = await Animal.findOrFail(id)
     await animal.merge(body).save()
 
-    response.status(200).send(animal)
+    response.ok(animal)
   }
 
   public async destroy({ request, response }: HttpContextContract) {
@@ -63,7 +63,7 @@ export default class AnimalsController {
     const animal: Animal = await Animal.findOrFail(id)
     await animal.merge({ status: false }).save()
 
-    response.status(200).send(null)
+    response.ok(null)
   }
 
   public async filter({ request, response }: HttpContextContract) {
