@@ -1,4 +1,3 @@
-// import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { ModelPaginatorContract } from '@ioc:Adonis/Lucid/Orm'
 import Animal from 'App/Models/Animal'
@@ -18,17 +17,8 @@ export default class AnimalsController {
       reporter: ErrorReporter,
     })
     let animals: ModelPaginatorContract<Animal>
-    // const queryString = request.qs()
-    // console.log(queryString)
-    // if (Object.keys(queryString).length !== 0) {
-    //   animals = await Animal.query()
-    //     .where(Object.keys(queryString)[0], 'like', Object.values(queryString)[0])
-    //     .paginate(page, size)
-    // } else {
-    animals = await Animal.query().paginate(page, size)
-    // }
 
-    //const animals: ModelPaginatorContract<Animal> = await Animal.query().paginate(page, size)
+    animals = await Animal.query().paginate(page, size)
 
     response.status(200).send({
       totalResults: animals.total,
@@ -109,12 +99,9 @@ export default class AnimalsController {
             .whereRaw('ABS(latitude - :latitude) <= :radius', { latitude, radius })
             .andWhereRaw('ABS(longitude - :longitude) <= :radius', { longitude, radius })
         )
-        // query
       })
       .if(name, (query) => {
-        console.log('entramos')
         query.whereILike('name', `%${name}%`)
-        console.log('Salimos')
       })
       .if(friendly, (query) => {
         query.where('friendly', friendly)
@@ -141,7 +128,6 @@ export default class AnimalsController {
         query.whereIn('center_id', Center.query().select('centers.id').where('id', centerId))
       })
       .paginate(page, size)
-    console.log('final')
 
     response.ok({
       totalResults: animal.total,
