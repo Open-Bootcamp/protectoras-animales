@@ -4,16 +4,18 @@ import Logo from "../Logo/Logo";
 import MenuLinks from "./MenuLinks/MenuLinks";
 import { Box, Button, useDisclosure } from "@chakra-ui/react";
 import MenuItem from "./MenuItem/MenuItem";
+import Link from "next/link";
 
 export default function Navbar(props) {
+  const toggle = () => setIsOpen(!isOpen);
   const { isOpen, onOpen, onClose } = useDisclosure();
-
   return (
     <NavbarContainer {...props}>
       <Box display={{ base: "block", md: "none" }}>
         <Logo />
       </Box>
-      <MenuButton onOpen={onOpen} />
+      <MenuButton onOpen={onOpen} isOpen={isOpen} onClose={onClose} />
+
       <MenuLinks isOpen={isOpen} onClose={onClose} />
       <Box display={{ base: "none", md: "block" }}>
         <MenuItem
@@ -27,7 +29,9 @@ export default function Navbar(props) {
           color={"#ffffff"}
           ml={10}
         >
-          Iniciar sesion
+          <Link href="/login">
+            <a>Iniciar sesion</a>
+          </Link>
         </Button>
       </Box>
     </NavbarContainer>
