@@ -15,5 +15,6 @@ export const colors = {
     favorite: '#fac847',
     success: '#a0da67',
     warning: '#f49d48',
-    failure: '#f1554b'
+    failure: '#f1554b',
+    error: '#667085'
 }
