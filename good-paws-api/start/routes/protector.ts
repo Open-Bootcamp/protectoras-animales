@@ -10,4 +10,6 @@ Route.group(() => {
   })
     .prefix('/:id')
     .where('id', Route.matchers.number())
-}).prefix('/protectors')
+})
+  .prefix('/protectors')
+  .middleware('auth')
