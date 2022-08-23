@@ -41,10 +41,12 @@ const index = () => {
             toggle,
           }}
           validationSchema={formValidation}
-          onSubmit={() => {}}
+          onSubmit={() => {
+            console.log('goi')
+          }}
         >
           {(formik) => (
-            <Form className='form-container'>
+            <Form className='form-container' onSubmit={formik.handleSubmit}>
               <h3>Iniciar Sesión</h3>
               <Input
                 name='email'
@@ -53,6 +55,7 @@ const index = () => {
                 onChange={handleChange}
               />
               <Input
+                type='password'
                 name='password'
                 placeholder='********'
                 labelText='Contraseña'
