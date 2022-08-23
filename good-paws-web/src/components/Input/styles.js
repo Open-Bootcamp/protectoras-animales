@@ -2,7 +2,16 @@ import styled from 'styled-components'
 
 const Wrapper = styled.div`
   margin-bottom: 7px;
-
+  textarea {
+    width: 100%;
+    border: 1px solid #c3c6c8;
+    /* Shadow/xs */
+    outline: none;
+    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+    border-radius: 8px;
+    height: 249px;
+    padding: 3px;
+  }
   .error-message {
     color: tomato;
     font-size: 11px;
