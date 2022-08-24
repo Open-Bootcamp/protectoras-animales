@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { MainContext } from '../context/mainContext';
 
 export const useForm = ( initialObject, validationsForm ) => {
+    const { setData, setIsLogged } = useContext(MainContext);
     const [form, setForm] = useState(initialObject);
     const [errors, setErrors] = useState({});
 
@@ -22,16 +24,16 @@ export const useForm = ( initialObject, validationsForm ) => {
         if (Object.keys(errors).length === 0) {
             (async () => {
             try {
-                // const rs = await fetch(process.env.REACT_APP_LOGIN_URL, {
-                //     method: 'POST',
-                //     headers: { 'Content-Type': 'application/json' },
-                //     body: JSON.stringify({ email: email, password: password })
-                // });
-                // const data = await rs.json();
-                // setIsLogged(data);
+                const rs = await fetch('http://localhost:4005/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: form.email, password: form.password })
+                });
+                const data = await rs.json();
+                setIsLogged(true);
+                setData(data);
             } catch (e) {
-                // setIsLogged({});
-                console.log(e);
+                console.log('error', e);
             }
             })();
         }
