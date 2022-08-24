@@ -59,6 +59,7 @@
     "@adonisjs/auth": "^8.2.2",
     "@adonisjs/core": "^5.8.6",
     "@adonisjs/lucid": "^18.1.0",
+    "@adonisjs/mail": "^8.1.2",
     "@adonisjs/repl": "^3.1.11",
     "luxon": "^3.0.1",
     "pg": "^8.7.3",
