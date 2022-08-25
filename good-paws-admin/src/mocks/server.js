@@ -25,13 +25,14 @@ server.use(cors());
 const { postLogin } = endpoints;
 
 server.post(postLogin.endpoint, (req, res, next) => {
-    const { email, password } = req.body;
+    const { email, password, rememberMe } = req.body;
     const responseObj = postLogin.data.email === email && postLogin.data.password === password ? postLogin.response.token : null;
 
     if (responseObj) {
         res.send({ 
             token: responseObj,
             email,
+            rememberMe,
             photoUrl: 'https://avatars.githubusercontent.com/u/85971180?s=96&v=4'
         });
     } else {
@@ -45,6 +46,4 @@ server.post(postLogin.endpoint, (req, res, next) => {
 });
 
 // SERVER ON PORT NUMBER AS SPECIFIED HERE
-server.listen(4005, () => {
-    console.log('JSON Server is running');
-});
+server.listen(4005, () => console.log('JSON Server is running'));

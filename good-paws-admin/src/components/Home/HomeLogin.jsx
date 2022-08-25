@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { colors } from '../../utils/colors';
 import { MainContext } from '../../context/mainContext';
-import FormLogin from './FormLogin';
+import LoginForm from './LoginForm';
 import { Button, Flex } from "@chakra-ui/react";
 
 
@@ -14,7 +14,7 @@ const HomeLogin = () => {
   }
 
   return (
-    !isLogged ? <FormLogin /> : 
+    !isLogged ? <LoginForm /> : 
     <Flex>
       <Button onClick={handleLogout} type='cancel' color={colors.white} bg={colors.primary} variant="primary">Cerrar sesión</Button>
     </Flex>
