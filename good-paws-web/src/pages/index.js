@@ -5,6 +5,7 @@ import { About_us, Container } from '../components/About_us/About_us.jsx';
 import HappyFamilies from '../components/HappyFamilies';
 import ShelterMap from '../components/ShelterMap';
 import HomeNewPartner from '../components/HomeNewPartner';
+import Shelter from '../components/Shelters';
 
 const images = [
 	{
@@ -42,6 +43,7 @@ export default function Home() {
 			</Head>
 
 			<Header />
+			<Shelter />
 			<HomeNewPartner />
 			<About_us />
 			<ShelterMap />
