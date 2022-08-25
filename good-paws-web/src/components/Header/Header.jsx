@@ -5,7 +5,7 @@ import { colors } from '../ui/colors';
 
 export default function Header() {
   return (
-    <Stack minH={'70vh'} direction={{ base: 'column', md: 'row' }}>
+    <Stack p={{base: 5, sm: 5, md:5, lg: 10}} direction={{ base: 'column', md: 'row' }}>
       <Flex flex={1} p={['20px 0 0 0', 6]} align={['flex-start', 'center']} justify={['center', 'flex-end']}>
         <Stack spacing={[6, 10]} w={'full'} maxW={['100%', '90%']}>
           <Heading maxW={'100%'} fontSize={{ base: '3xl', md: '4xl', lg: '4xl' }}>
