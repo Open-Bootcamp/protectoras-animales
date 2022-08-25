@@ -1,6 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { ModelPaginatorContract } from '@ioc:Adonis/Lucid/Orm'
-import AlreadyExistException from 'App/Exceptions/AlreadyExistException'
 import Type from 'App/Models/Type'
 import ErrorReporter from 'App/Validators/Reporters/ErrorReporter'
 import { paginationSchema } from 'App/Validators/Schemas/PaginationSchema'
@@ -27,11 +26,7 @@ export default class TypesController {
       reporter: ErrorReporter,
     })
 
-    let type: Type | null = await Type.findBy('name', body.name)
-    if (type !== null) {
-      throw new AlreadyExistException('name')
-    }
-    type = await Type.create(body)
+    const type = await Type.create(body)
 
     response.created(type)
   }

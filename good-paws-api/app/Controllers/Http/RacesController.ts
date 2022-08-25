@@ -1,6 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { ModelPaginatorContract } from '@ioc:Adonis/Lucid/Orm'
-import AlreadyExistException from 'App/Exceptions/AlreadyExistException'
 import Race from 'App/Models/Race'
 import ErrorReporter from 'App/Validators/Reporters/ErrorReporter'
 import { paginationSchema } from 'App/Validators/Schemas/PaginationSchema'
@@ -27,11 +26,7 @@ export default class RacesController {
       reporter: ErrorReporter,
     })
 
-    let race: Race | null = await Race.findBy('name', body.name)
-    if (race !== null) {
-      throw new AlreadyExistException('name')
-    }
-    race = await Race.create(body)
+    const race = await Race.create(body)
 
     response.created(race)
   }
