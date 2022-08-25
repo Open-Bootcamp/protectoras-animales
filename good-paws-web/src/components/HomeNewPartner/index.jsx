@@ -9,7 +9,7 @@ const HomeNewPartner = () => {
     const pagination = usePagination(products, 4);
 
     return (
-        <Flex borderTop={`1px solid ${colors.gray2}`} alignItems={'center'} pt={12} pl={10} pr={10} direction={'column'}>
+        <Flex alignItems={'center'} pt={12} pl={10} pr={10} direction={'column'}>
             <Heading mb={6} textAlign={'center'} maxW={'100%'} fontSize={{ base: '3xl', md: '4xl', lg: '4xl' }}>
                 <Text color={colors.black} as={'span'}>Unimos protectoras y adoptantes</Text>
             </Heading>
