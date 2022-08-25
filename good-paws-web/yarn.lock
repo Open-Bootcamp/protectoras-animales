@@ -1414,19 +1414,19 @@
   dependencies:
     "@chakra-ui/utils" "1.10.4"
 
-"@chakra-ui/icon@3.0.8":
-  "integrity" "sha512-avd6mthBoG9R8cLLAROi/FItgk7wHy1YpeAXOrGdK/U/ECVWZev64RmI1UduKuVOLlSZldXWzFJmLdw6dAMG7A=="
-  "resolved" "https://registry.npmjs.org/@chakra-ui/icon/-/icon-3.0.8.tgz"
-  "version" "3.0.8"
+"@chakra-ui/icon@3.0.9":
+  "integrity" "sha512-P2Pwm/za6m1W1oqL2kGHH6XrrymsBjqYAFwOW2lB5Q6mI1e+RYe/iMxDoPSLHMYhqdfH7vyib/ffE3Vv3a5oTA=="
+  "resolved" "https://registry.npmjs.org/@chakra-ui/icon/-/icon-3.0.9.tgz"
+  "version" "3.0.9"
   dependencies:
-    "@chakra-ui/utils" "2.0.8"
+    "@chakra-ui/shared-utils" "2.0.1"
 
-"@chakra-ui/icons@^2.0.8":
-  "integrity" "sha512-otX85/laLd9rC26EsaRK/QufXxclfK/JGw3vdxh+sEULFgwuC56tUzmXTwIt8GcDIx/LvZBkDgkXN0sn6Cqmog=="
-  "resolved" "https://registry.npmjs.org/@chakra-ui/icons/-/icons-2.0.8.tgz"
-  "version" "2.0.8"
+"@chakra-ui/icons@^2.0.9":
+  "integrity" "sha512-6xvV2rC8wATgfnRH+fC9mi0nLcgKjhHKO29lV1pGioVI0yWK0dqc//zjcyBhMMpW5ABnSfig7ujVBf3op/Syzg=="
+  "resolved" "https://registry.npmjs.org/@chakra-ui/icons/-/icons-2.0.9.tgz"
+  "version" "2.0.9"
   dependencies:
-    "@chakra-ui/icon" "3.0.8"
+    "@chakra-ui/icon" "3.0.9"
 
 "@chakra-ui/image@1.1.10":
   "integrity" "sha512-PJZmhQ/R1PgdMyCRjALfoyq1FNh/WzMAw70sliHLtLcb9hBXniwQZuckYfUshCkUoFBj/ow9d4byn9Culdpk7Q=="
@@ -1879,6 +1879,11 @@
     "@chakra-ui/form-control" "2.0.6"
     "@chakra-ui/utils" "2.0.6"
 
+"@chakra-ui/shared-utils@2.0.1":
+  "integrity" "sha512-NXDBl/u4wrSNp0ON5R3r3evkRurrAz2yuO7neooaG+O5HEenVouGqm4CsXd6lUAPmjwiGzA0LQFNCt0Hj92dXg=="
+  "resolved" "https://registry.npmjs.org/@chakra-ui/shared-utils/-/shared-utils-2.0.1.tgz"
+  "version" "2.0.1"
+
 "@chakra-ui/skeleton@1.2.14":
   "integrity" "sha512-R0v4DfQ2yjXCJf9SzhTmDb2PLx5//LxsRbjjgRa8qJCR4MZaGswPrekp4dP8YjY8aEYzuZbvHU12T3vqZBk2GA=="
   "resolved" "https://registry.npmjs.org/@chakra-ui/skeleton/-/skeleton-1.2.14.tgz"
@@ -2196,16 +2201,6 @@
     "framesync" "5.3.0"
     "lodash.mergewith" "4.6.2"
 
-"@chakra-ui/utils@2.0.8":
-  "integrity" "sha512-5xSzOYSYbJEh+myY1mC6rOX+mzM/F2fiDqAw0zybHhfUab4zPHCO5RlgYVJ0L1DlGZUogVgRP6szH1xoBCcWQg=="
-  "resolved" "https://registry.npmjs.org/@chakra-ui/utils/-/utils-2.0.8.tgz"
-  "version" "2.0.8"
-  dependencies:
-    "@types/lodash.mergewith" "4.6.6"
-    "css-box-model" "1.2.1"
-    "framesync" "5.3.0"
-    "lodash.mergewith" "4.6.2"
-
 "@chakra-ui/visually-hidden@1.1.6":
   "integrity" "sha512-Xzy5bA0UA+IyMgwJizQYSEdgz8cC/tHdmFB3CniXzmpKTSK8mJddeEBl+cGbXHBzxEUhH7xF1eaS41O+0ezWEQ=="
   "resolved" "https://registry.npmjs.org/@chakra-ui/visually-hidden/-/visually-hidden-1.1.6.tgz"
@@ -2395,6 +2390,11 @@
     "js-yaml" "^4.1.0"
     "minimatch" "^3.1.2"
     "strip-json-comments" "^3.1.1"
+
+"@fontsource/inter@^4.5.12":
+  "integrity" "sha512-bGKk4/8tube/nCk8hav0ZDBVbzJzc7m0Vt4xF5p15IN4YImwGdtKG38Oq5bU8xHNS+VfvbFFCepgQNj7Pr/Lvg=="
+  "resolved" "https://registry.npmjs.org/@fontsource/inter/-/inter-4.5.12.tgz"
+  "version" "4.5.12"
 
 "@gar/promisify@^1.0.1":
   "integrity" "sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw=="
