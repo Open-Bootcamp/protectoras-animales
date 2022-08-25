@@ -7,7 +7,7 @@ export default function MobileMenu({ onOpen, isOpen, onClose }) {
   const btnRef = useRef();
 
   return (
-    <Box display={{ base: "block", md: "none" }}>
+    <Box display={{ base: "block", lg: "none" }}>
       <Button
         ref={btnRef}
         bgColor={"transparent"}

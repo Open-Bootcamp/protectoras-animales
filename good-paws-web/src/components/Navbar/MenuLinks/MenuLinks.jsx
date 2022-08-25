@@ -6,9 +6,9 @@ import MenuItem from "../MenuItem/MenuItem";
 export default function MenuLinks() {
   return (
     <>
-      <Box display={{ base: "none", md: "block" }}>
+      <Box display={{ base: "none", lg: "block" }}>
         <Stack
-          spacing={20}
+          spacing={{ lg: 10, xl: 20 }}
           direction="row"
           align="center"
           justify="space-between"

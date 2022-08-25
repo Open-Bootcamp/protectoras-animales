@@ -10,15 +10,20 @@ export default function Navbar(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <NavbarContainer {...props}>
-      <Box display={{ base: "block", md: "none" }}>
+      <Box display={{ base: "block", lg: "none" }}>
         <Logo />
       </Box>
       <MobileMenu onOpen={onOpen} isOpen={isOpen} onClose={onClose} />
 
       <MenuLinks isOpen={isOpen} onClose={onClose} />
-      <Box display={{ base: "none", md: "block" }}>
+      <Box display={{ base: "none", lg: "block" }}>
         <MenuItem to="/soyprotectora" title="Soy protectora" color="primary" />
-        <Button bg="primary" _hover={{ bg: "primary" }} color="white" ml={10}>
+        <Button
+          bg="primary"
+          _hover={{ bg: "primary" }}
+          color="white"
+          ml={{ lg: 5, xl: 10 }}
+        >
           <NextLink href="/login" passHref>
             <Link>Iniciar sesion</Link>
           </NextLink>
