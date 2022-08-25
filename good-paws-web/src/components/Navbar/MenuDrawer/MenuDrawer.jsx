@@ -14,30 +14,30 @@ import {
 } from "@chakra-ui/react";
 import MenuItem from "../MenuItem/MenuItem";
 import Logo from "../../Logo/Logo";
+import NextLink from "next/link";
 
 export default function MenuDrawer({ isOpen, onClose }) {
   return (
-    <Drawer
-      isOpen={isOpen}
-      placement="top"
-      isFullHeight
-      display={{ md: onClose }}
-      onClose={onClose}
-    >
+    <Drawer isOpen={isOpen} placement="right" size="full" onClose={onClose}>
       <DrawerOverlay />
-      <DrawerContent>
+      <DrawerContent pt={4}>
         <DrawerCloseButton
-          pt={5}
+          size="lg"
+          color="gray4"
           _active={{ bg: "transparent" }}
           _hover={{ bg: "transparent" }}
         />
         <Box pl={4}>
-          <Logo />
+          <Logo onClose={onClose} />
         </Box>
         <DrawerBody mt={10}>
           <Stack spacing={20} direction="column">
-            <MenuItem to="/adoptar" title="Quiero adoptar" />
-            <MenuItem to="/protectoras" title="Protectoras" />
+            <MenuItem
+              to="/newpartner"
+              title="Quiero adoptar"
+              onClose={onClose}
+            />
+            <MenuItem to="/centros" title="Protectoras" onClose={onClose} />
           </Stack>
         </DrawerBody>
         <Divider />
@@ -50,18 +50,22 @@ export default function MenuDrawer({ isOpen, onClose }) {
           pb={8}
         >
           <Button
-            bgColor={"#144353"}
-            _hover={{ bg: "#144353" }}
-            color={"#ffffff"}
+            bg="primary"
+            _hover={{ bg: "primary" }}
+            color="white"
             mb={6}
             size="lg"
             width="90%"
           >
-            <Link href="/login">
-              <a>Iniciar sesion</a>
-            </Link>
+            <NextLink href="/login" passHref>
+              <Link onClick={onClose}>Iniciar sesion</Link>
+            </NextLink>
           </Button>
-          <MenuItem to="/soyprotectora" title="Soy protectora" />
+          <MenuItem
+            to="/soyprotectora"
+            title="Soy protectora"
+            onClose={onClose}
+          />
         </Flex>
       </DrawerContent>
     </Drawer>
