@@ -21,4 +21,6 @@ Route.group(() => {
     .prefix('/:id')
     .where('id', Route.matchers.number())
   Route.get('/filterBy', 'AnimalsController.filter')
-}).prefix('/animals')
+})
+  .prefix('/animals')
+  .middleware('auth')
