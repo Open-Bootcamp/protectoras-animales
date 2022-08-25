@@ -36,7 +36,7 @@ export default function App() {
                             <Checkbox id="rememberMe" name="rememberMe" onChange={formik.handleChange} isChecked={formik.values.rememberMe} colorScheme="teal">Recordarme?</Checkbox>
                             <Button variant="link" color={colors.primarylight} size="sm">Olvidó su contraseña?</Button>
                         </HStack>
-                        <Button p={6} type="submit" color={colors.white} bg={colors.primary} width="full">Iniciar sesión</Button>
+                        <Button p={6} type="submit" color={colors.white} _hover={{ bg: colors.primarylight }} bg={colors.primary} width="full">Iniciar sesión</Button>
                         <Stack w={'100%'} spacing="6">
                             <Button variant="link" color={colors.primarylight}>Registrarse</Button>
                         </Stack>
