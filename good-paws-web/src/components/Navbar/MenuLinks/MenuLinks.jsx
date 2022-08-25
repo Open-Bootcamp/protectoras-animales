@@ -15,8 +15,8 @@ export default function MenuLinks() {
         >
           <Logo />
 
-          <MenuItem to="/adoptar" title="Quiero adoptar" />
-          <MenuItem to="/protectoras" title="Protectoras" />
+          <MenuItem to="/newpartner" title="Quiero adoptar" />
+          <MenuItem to="/centros" title="Protectoras" />
         </Stack>
       </Box>
     </>

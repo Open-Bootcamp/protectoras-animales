@@ -1,5 +1,5 @@
-import { Box, Divider, Stack } from "@chakra-ui/react";
-import Link from "next/link";
+import { Box, Divider, Link, Stack } from "@chakra-ui/react";
+import NextLink from "next/link";
 import React from "react";
 
 export default function FooterLinks() {
@@ -7,24 +7,24 @@ export default function FooterLinks() {
     <>
       <Box display={{ base: "none", md: "block" }}>
         <Stack spacing={16} direction="row">
-          <Link href="/">
-            <a>Overview</a>
-          </Link>
-          <Link href="/">
-            <a>Overview</a>
-          </Link>
-          <Link href="/">
-            <a>Overview</a>
-          </Link>
-          <Link href="/">
-            <a>Overview</a>
-          </Link>
-          <Link href="/">
-            <a>Overview</a>
-          </Link>
-          <Link href="/">
-            <a>Overview</a>
-          </Link>
+          <NextLink href="/" passHref>
+            <Link>Overview</Link>
+          </NextLink>
+          <NextLink href="/" passHref>
+            <Link>Overview</Link>
+          </NextLink>
+          <NextLink href="/" passHref>
+            <Link>Overview</Link>
+          </NextLink>
+          <NextLink href="/" passHref>
+            <Link>Overview</Link>
+          </NextLink>
+          <NextLink href="/" passHref>
+            <Link>Overview</Link>
+          </NextLink>
+          <NextLink href="/" passHref>
+            <Link>Overview</Link>
+          </NextLink>
         </Stack>
         <Divider
           orientation="horizontal"
@@ -36,26 +36,26 @@ export default function FooterLinks() {
       <Box display={{ base: "block", md: "none" }} mt={10} mb={10}>
         <Stack spacing={16} direction="row">
           <Stack spacing={4} direction="column">
-            <Link href="/">
-              <a>Overview</a>
-            </Link>
-            <Link href="/">
-              <a>Overview</a>
-            </Link>
-            <Link href="/">
-              <a>Overview</a>
-            </Link>
+            <NextLink href="/" passHref>
+              <Link>Overview</Link>
+            </NextLink>
+            <NextLink href="/" passHref>
+              <Link>Overview</Link>
+            </NextLink>
+            <NextLink href="/" passHref>
+              <Link>Overview</Link>
+            </NextLink>
           </Stack>
           <Stack spacing={4} direction="column">
-            <Link href="/">
-              <a>Overview</a>
-            </Link>
-            <Link href="/">
-              <a>Overview</a>
-            </Link>
-            <Link href="/">
-              <a>Overview</a>
-            </Link>
+            <NextLink href="/" passHref>
+              <Link>Overview</Link>
+            </NextLink>
+            <NextLink href="/" passHref>
+              <Link>Overview</Link>
+            </NextLink>
+            <NextLink href="/" passHref>
+              <Link>Overview</Link>
+            </NextLink>
           </Stack>
         </Stack>
       </Box>

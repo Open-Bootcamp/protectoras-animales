@@ -1,10 +1,13 @@
 import React from "react";
-import Link from "next/link";
+import NextLink from "next/link";
+import { Link } from "@chakra-ui/react";
 
-export default function MenuItem({ to, title }) {
+export default function MenuItem({ to, title, onClose }) {
   return (
-    <Link href={to} color={"#144353"}>
-      <a>{title}</a>
-    </Link>
+    <NextLink href={to} passHref>
+      <Link color="primary" fontWeight="500" onClick={onClose}>
+        {title}
+      </Link>
+    </NextLink>
   );
 }
