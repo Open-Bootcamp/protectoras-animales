@@ -7,13 +7,13 @@ import MainProvider from "../context/maincontext";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ChakraProvider theme={theme}>
-      <MainProvider>
+    <MainProvider>
+      <ChakraProvider theme={theme}>
         <Layout>
           <Component {...pageProps} />
         </Layout>
-      </MainProvider>
-    </ChakraProvider>
+      </ChakraProvider>
+    </MainProvider>
   );
 }
 
