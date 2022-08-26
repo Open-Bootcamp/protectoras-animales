@@ -6,7 +6,6 @@ import HeadBox from "./Components/HeadBox";
 import CardsContainer from "../CardsContainer/CardsContainer";
 import Sidebar from "./Components/Sidebar";
 import { MainContext } from "../../context/maincontext";
-import { usePagination } from "react-use-pagination";
 
 const Clickable = (props) => {
     const clickable = useClickable(props);
@@ -16,12 +15,8 @@ const Clickable = (props) => {
 };
 
 const FindNewPartner = () => {
-  const { data } = useContext(MainContext);
-  const { currentPage, totalPages, setNextPage, setPreviousPage, nextEnabled, previousEnabled, startIndex, endIndex } = usePagination({ totalItems: data.length, initialPageSize: 8 });
-
-  console.log('startIndex', startIndex);
-  console.log('endIndex', endIndex);
-  console.log(data.slice(startIndex, endIndex + 1));
+  const { data, currentPage, totalPages, setNextPage, setPreviousPage, nextEnabled, previousEnabled, startIndex, endIndex } = useContext(MainContext);
+  
   return (
     <Stack p={10}>
       <Flex direction={'column'}>

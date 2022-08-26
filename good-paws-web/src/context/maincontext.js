@@ -1,9 +1,12 @@
 import { useState, useEffect, createContext } from 'react';
+import { usePagination } from "react-use-pagination";
 
 export const MainContext = createContext();
 
 export default function MainProvider({ children }) {
     const [data, setData] = useState([]);
+    const [initialRegs, setInitialRegs] = useState(8);
+    const { currentPage, totalPages, setNextPage, setPreviousPage, nextEnabled, previousEnabled, startIndex, endIndex } = usePagination({ totalItems: data.length, initialPageSize: initialRegs });
 
     useEffect(() => {
       (async () => {
@@ -21,7 +24,7 @@ export default function MainProvider({ children }) {
     }, []);
     
     return (
-        <MainContext.Provider value={ { data } }>
+        <MainContext.Provider value={ { data, currentPage, totalPages, setNextPage, setPreviousPage, nextEnabled, previousEnabled, startIndex, endIndex, initialRegs, setInitialRegs } }>
           {children}
         </MainContext.Provider>
     );
