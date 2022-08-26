@@ -1,8 +1,9 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState } from "react";
 
-const usePagination = <T extends any>(data: T[], volume: number) => {
+const usePagination = <T extends any>(data: T[], volume: number) => {    
     /** All pages in total. */
     const totalPages = useMemo(() => Math.floor(data.length / volume), [volume, data.length ]);
+    
     const [page, setPage] = useState(0);
     
     /** Data representing one single page. */
