@@ -1,16 +1,27 @@
-import React from "react";
-import { Flex, Stack } from "@chakra-ui/react";
+import React, { useContext } from "react";
+import { useClickable } from "@chakra-ui/clickable";
+import { chakra, Text, Box, Divider, Container, Flex, Stack, useColorModeValue } from "@chakra-ui/react";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import HeadBox from "./Components/HeadBox";
 import CardsContainer from "../CardsContainer/CardsContainer";
-import Footer from "./Components/Footer";
 import Sidebar from "./Components/Sidebar";
-import { products } from "../../Mocks/mocks";
-import usePagination from "../../Hooks/usePagination.tsx";
+import { MainContext } from "../../context/maincontext";
+import { usePagination } from "react-use-pagination";
+
+const Clickable = (props) => {
+    const clickable = useClickable(props);
+    return (
+      <chakra.button border={`1px solid gray`} rounded={"md"} w={8} h={8} cursor={"pointer"} onClick display={"inline-flex"} alignItems={"center"} justifyContent={"center"} transition={"background 0.3s ease"} _hover={{ bg: 'primary', color: 'white' }} {...clickable} />
+    );
+};
 
 const FindNewPartner = () => {
-  // Create pagination.
-  const pagination = usePagination(products, 8);
+  const { data } = useContext(MainContext);
+  const { currentPage, totalPages, setNextPage, setPreviousPage, nextEnabled, previousEnabled, startIndex, endIndex } = usePagination({ totalItems: data.length, initialPageSize: 8 });
 
+  console.log('startIndex', startIndex);
+  console.log('endIndex', endIndex);
+  console.log(data.slice(startIndex, endIndex + 1));
   return (
     <Stack p={10}>
       <Flex direction={'column'}>
@@ -18,8 +29,17 @@ const FindNewPartner = () => {
         <Flex direction={{ base: 'column', md: 'row'}}>
           <Sidebar />
           <Flex w={'full'} direction={'column'}>
-            <CardsContainer data={pagination.data} />
-            <Footer page={pagination.page} totalPages={pagination.totalPages} setPage={pagination.setPage} />
+            <CardsContainer data={data.slice(startIndex, endIndex + 1)} />
+            <Box color={useColorModeValue("gray5", "gray2")}>
+                <Divider orientation="horizontal" />
+                <Container as={Stack} maxW={"6xl"} py={4} direction={{ base: "column", md: "row" }} spacing={4} justify={{ base: "center", md: "space-between" }} align={{ base: "center", md: "center" }}>
+                  <Flex w={"100%"} justifyContent={"space-between"} direction={"row"} spacing={6} alignItems={'center'}>
+                    <Clickable as="button" onClick={setPreviousPage} _active={{ bg: 'primarylight', color: 'white' }} _disabled={!previousEnabled}><FaArrowLeft /></Clickable>
+                    <Text>Página {currentPage + 1} de {totalPages}</Text>
+                    <Clickable as="button" onClick={setNextPage}_active={{ bg: 'primarylight', color: 'white' }} _disabled={!nextEnabled}><FaArrowRight /></Clickable>
+                  </Flex>
+                </Container>
+            </Box>
           </Flex>
         </Flex>
       </Flex>
