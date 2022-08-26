@@ -1,24 +1,24 @@
-import React from 'react';
-import usePagination from '../../hooks/usePagination.tsx';
-import { products } from "../../Mocks/mocks";
+import React, { useContext } from "react";
+import { MainContext } from "../../context/maincontext";
 import { Flex, Text, Heading } from '@chakra-ui/react';
 import ImgCarousel from './ImgCarousel';
-import { colors } from '../ui/colors';
+import { usePagination } from "react-use-pagination";
 
 const HomeNewPartner = () => {
-    const pagination = usePagination(products, 4);
+    const { data } = useContext(MainContext);
+    const { startIndex, endIndex } = usePagination({ totalItems: data.length, initialPageSize: 4 });
 
     return (
         <Flex alignItems={'center'} pt={12} pl={10} pr={10} direction={'column'}>
             <Heading mb={6} textAlign={'center'} maxW={'100%'} fontSize={{ base: '3xl', md: '4xl', lg: '4xl' }}>
-                <Text color={colors.black} as={'span'}>Unimos protectoras y adoptantes</Text>
+                <Text color={'black'} as={'span'}>Unimos protectoras y adoptantes</Text>
             </Heading>
-            <Text w={'36%'} mb={10} textAlign={'center'} fontSize={{ base: 'md', lg: 'lg' }} color={colors.gray5}>
+            <Text w={'36%'} mb={10} textAlign={'center'} fontSize={{ base: 'md', lg: 'lg' }} color={'gray5'}>
                 ¿Eres más de gatos? ¿De perros? ¿De pájaros? ¡No importa! 
                 Te ayudaremos a encontrar a tu nuevo mejor amigo.
             </Text>
             <Flex mb={10} w={'90%'} direction={'column'}>
-                <ImgCarousel data={pagination.data} />
+                <ImgCarousel data={data.slice(startIndex, endIndex + 1)} />
             </Flex>
         </Flex>
     )
