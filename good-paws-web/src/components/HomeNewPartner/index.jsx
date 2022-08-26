@@ -2,14 +2,13 @@ import React, { useContext } from "react";
 import { MainContext } from "../../context/maincontext";
 import { Flex, Text, Heading } from '@chakra-ui/react';
 import ImgCarousel from './ImgCarousel';
-import { usePagination } from "react-use-pagination";
 
 const HomeNewPartner = () => {
-    const { data } = useContext(MainContext);
-    const { startIndex, endIndex } = usePagination({ totalItems: data.length, initialPageSize: 4 });
+    const { data, setInitRegs } = useContext(MainContext);
+    setInitRegs(4);
 
     return (
-        <Flex alignItems={'center'} pt={12} pl={10} pr={10} direction={'column'}>
+        data.results && <Flex alignItems={'center'} p={12} pl={10} pr={10} direction={'column'}>
             <Heading mb={6} textAlign={'center'} maxW={'100%'} fontSize={{ base: '3xl', md: '4xl', lg: '4xl' }}>
                 <Text color={'black'} as={'span'}>Unimos protectoras y adoptantes</Text>
             </Heading>
@@ -18,7 +17,7 @@ const HomeNewPartner = () => {
                 Te ayudaremos a encontrar a tu nuevo mejor amigo.
             </Text>
             <Flex mb={10} w={'90%'} direction={'column'}>
-                <ImgCarousel data={data.slice(startIndex, endIndex + 1)} />
+                <ImgCarousel data={data.results} />
             </Flex>
         </Flex>
     )
