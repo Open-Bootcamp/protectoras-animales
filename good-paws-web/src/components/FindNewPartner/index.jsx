@@ -15,8 +15,9 @@ const Clickable = (props) => {
 };
 
 const FindNewPartner = () => {
-  const { data, currentPage, totalPages, setNextPage, setPreviousPage, nextEnabled, previousEnabled, startIndex, endIndex } = useContext(MainContext);
-  
+  const { data, currentPage, totalPages, setNextPage, setPreviousPage, nextEnabled, previousEnabled, setInitRegs } = useContext(MainContext);
+  setInitRegs(8);
+
   return (
     <Stack p={10}>
       <Flex direction={'column'}>
@@ -24,7 +25,7 @@ const FindNewPartner = () => {
         <Flex direction={{ base: 'column', md: 'row'}}>
           <Sidebar />
           <Flex w={'full'} direction={'column'}>
-            <CardsContainer data={data.slice(startIndex, endIndex + 1)} />
+            <CardsContainer data={data.results && data.results} />
             <Box color={useColorModeValue("gray5", "gray2")}>
                 <Divider orientation="horizontal" />
                 <Container as={Stack} maxW={"6xl"} py={4} direction={{ base: "column", md: "row" }} spacing={4} justify={{ base: "center", md: "space-between" }} align={{ base: "center", md: "center" }}>
