@@ -2,11 +2,11 @@ import React, { useContext } from "react";
 import { MainContext } from "../../context/maincontext";
 import { Flex, Text, Heading } from '@chakra-ui/react';
 import ImgCarousel from './ImgCarousel';
-import { usePagination } from "react-use-pagination";
 
 const HomeNewPartner = () => {
-    const { data } = useContext(MainContext);
-    const { startIndex, endIndex } = usePagination({ totalItems: data.length, initialPageSize: 4 });
+    const { data, setInitialRegs, startIndex, endIndex } = useContext(MainContext);
+    
+    setInitialRegs(4);
 
     return (
         <Flex alignItems={'center'} pt={12} pl={10} pr={10} direction={'column'}>
