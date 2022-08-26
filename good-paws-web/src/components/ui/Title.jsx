@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Title = styled.h1`
   font-style: normal;
@@ -11,18 +11,16 @@ export const Title = styled.h1`
   text-align: ${props => props.aling};
   margin: ${props => props.my} ${props => props.mx};
   margin-top: ${props => props.mt};
+  margin-bottom: ${props => props.mb};
 
   padding: ${props => props.p};
   letter-spacing: -0.02em;
 
-
   ${props => {
     if (!props.aling) {
-      `@media (min-width: 600px){
+      ;`@media (min-width: 600px){
       text-align: center;
     }`
     }
-  }
-  }
-  
-  `
+  }}
+`
