@@ -25,7 +25,8 @@ tags:
     description: CRUD of sex
   - name: Users
     description: CRUD of user
-  
+security:
+  - bearerAuth: []
 paths:
   /races:
     get:
@@ -39,12 +40,14 @@ paths:
           required: false
           schema:
             type: number
+            example: 1
         - name: size
           description: "Max-size of race list"
           in: query
           required: false
           schema:
             type: number
+            example: 10
       responses:
         '200':
           description: "Races list or empty list"
@@ -75,8 +78,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        '409':
-          description: "Race already exists"
+        '401':
+          description: "Not authorized to manipulate a resource"
       requestBody:
         required: true
         content:
@@ -95,6 +98,7 @@ paths:
           required: true
           schema:
             type: number
+            example: 1
       responses:
         '200':
           description: "Return a race"
@@ -115,6 +119,7 @@ paths:
           required: true
           schema:
             type: number
+            example: 1
       responses:
         '200':
           description: "Race has been modified"
@@ -128,6 +133,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+        '401':
+          description: "Not authorized to manipulate a resource"
         '404':
           description: "Race not found"
       requestBody:
@@ -147,12 +154,15 @@ paths:
           required: true
           schema:
             type: number
+            example: 1
       responses:
         '200':
           description: "Race has been deleted"
+        '401':
+          description: "Not authorized to manipulate a resource"
         '404':
           description: "Race not found"
-  
+
   /types:
     get:
       summary: "Search types"
@@ -165,12 +175,14 @@ paths:
           required: false
           schema:
             type: number
+            example: 1
         - name: size
           description: "Max-size of type list"
           in: query
           required: false
           schema:
             type: number
+            example: 10
       responses:
         '200':
           description: "Types list or empty list"
@@ -201,8 +213,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        '409':
-          description: "Type already exists"
+        '401':
+          description: "Not authorized to manipulate a resource"
       requestBody:
         required: true
         content:
@@ -221,6 +233,7 @@ paths:
           required: true
           schema:
             type: number
+            example: 1
       responses:
         '200':
           description: "Return a type"
@@ -241,6 +254,7 @@ paths:
           required: true
           schema:
             type: number
+            example: 1
       responses:
         '200':
           description: "Type has been modified"
@@ -254,6 +268,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+        '401':
+          description: "Not authorized to manipulate a resource"
         '404':
           description: "Type not found"
       requestBody:
@@ -261,7 +277,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/QueryRace"
+              $ref: "#/components/schemas/QueryType"
     delete:
       summary: "Delete an existent type"
       tags:
@@ -273,12 +289,15 @@ paths:
           required: true
           schema:
             type: number
+            example: 1
       responses:
         '200':
           description: "Type has been deleted"
+        '401':
+          description: "Not authorized to manipulate a resource"
         '404':
           description: "Type not found"
-  
+
   /sexes:
     get:
       summary: "Search sexes"
@@ -291,12 +310,14 @@ paths:
           required: false
           schema:
             type: number
+            example: 1
         - name: size
           description: "Max-size of sexes list"
           in: query
           required: false
           schema:
             type: number
+            example: 10
       responses:
         '200':
           description: "Sexes list or empty list"
@@ -327,8 +348,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        '409':
-          description: "Sex already exists"
+        '401':
+          description: "Not authorized to manipulate a resource"
       requestBody:
         required: true
         content:
@@ -347,6 +368,7 @@ paths:
           required: true
           schema:
             type: number
+            example: 1
       responses:
         '200':
           description: "Return a sex"
@@ -367,6 +389,7 @@ paths:
           required: true
           schema:
             type: number
+            example: 1
       responses:
         '200':
           description: "Sex has been modified"
@@ -380,6 +403,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+        '401':
+          description: "Not authorized to manipulate a resource"
         '404':
           description: "Sex not found"
       requestBody:
@@ -399,12 +424,15 @@ paths:
           required: true
           schema:
             type: number
+            example: 1
       responses:
         '200':
           description: "Sex has been deleted"
+        '401':
+          description: "Not authorized to manipulate a resource"
         '404':
           description: "Sex not found"
-  
+
   /animals:
     get:
       summary: "Search animals"
@@ -417,12 +445,14 @@ paths:
           required: false
           schema:
             type: number
+            example: 1
         - name: size
           description: "Max-size of animals list"
           in: query
           required: false
           schema:
             type: number
+            example: 10
       responses:
         '200':
           description: "Animals list or empty list"
@@ -453,8 +483,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        '409':
-          description: "Animal already exists"
+        '401':
+          description: "Not authorized to manipulatea resource"
       requestBody:
         required: true
         content:
@@ -473,6 +503,7 @@ paths:
           required: true
           schema:
             type: number
+            example: 1
       responses:
         '200':
           description: "Return an animal"
@@ -493,6 +524,7 @@ paths:
           required: true
           schema:
             type: number
+            example: 1
       responses:
         '200':
           description: "Animal has been modified"
@@ -506,6 +538,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+        '401':
+          description: "Not authorized to manipulate a resource"
         '404':
           description: "Animal not found"
       requestBody:
@@ -525,15 +559,170 @@ paths:
           required: true
           schema:
             type: number
+            example: 1
       responses:
         '200':
           description: "Animal has been deleted"
+        '401':
+          description: "Not authorized to manipulate a resource"
         '404':
           description: "Animal not found"
-  
+  /animals/{animalId}/images:
+    get:
+      summary: "Search animal images"
+      tags:
+        - Animals
+      parameters:
+        - name: animalId
+          description: "Animal id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+            example: 1
+        - name: page
+          description: "Page of results"
+          in: query
+          required: false
+          schema:
+            type: number
+            example: 1
+        - name: size
+          description: "Max-size of animals list"
+          in: query
+          required: false
+          schema:
+            type: number
+            example: 10
+      responses:
+        '200':
+          description: "Animal images list or empty list"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetAnimalImages"
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: "Upload new animal image"
+      tags:
+        - Animals
+      parameters:
+        - name: animalId
+          description: "Animal id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+            example: 1
+      responses:
+        '201':
+          description: "New animal image has been saved"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                    example: 1
+                  animalId:
+                    type: number
+                    example: 1
+                  picture:
+                    $ref: "#/components/schemas/Image"
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '401':
+          description: "Not authorized to manipulate a resource"
+      requestBody:
+        required: true
+        description: "The `picture` field can be any amount of files with the same field name"
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                picture:
+                  type: string
+                  format: binary
+                  example: imageName.png
+  /animals/{animalId}/images/{id}:
+    get:
+      summary: "Search an animal image"
+      tags:
+        - Animals
+      parameters:
+        - name: animalId
+          description: "Animal id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+            example: 1
+        - name: id
+          description: "Animal image id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+            example: 1
+      responses:
+        '200':
+          description: "Return an animal image"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                    example: 1
+                  animalId:
+                    type: number
+                    example: 1
+                  picture:
+                    $ref: "#/components/schemas/Image"
+        '404':
+          description: "Animal image not found"
+    delete:
+      summary: "Delete an existent animal image"
+      tags:
+        - Animals
+      parameters:
+        - name: animalId
+          description: "Animal id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+            example: 1
+        - name: id
+          description: "Animal image id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+            example: 1
+      responses:
+        '200':
+          description: "Animal image has been deleted"
+        '401':
+          description: "Not authorized to manipulate a resource"
+        '404':
+          description: "Animal image not found"
+
   /protectors:
     get:
-      summary: "Search protectors"
+      summary: "All protectors"
       tags:
         - Protectors
       parameters:
@@ -543,12 +732,14 @@ paths:
           required: false
           schema:
             type: number
+            example: 1
         - name: size
           description: "Max-size of protectors list"
           in: query
           required: false
           schema:
             type: number
+            example: 10
       responses:
         '200':
           description: "Protectors list or empty list"
@@ -579,10 +770,11 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        '409':
-          description: "Protector already exists"
+        '401':
+          description: "Not authorized to manipulate a resource"
       requestBody:
         required: true
+        description: "The `contact` field can have any attribute, it is saved dynamically"
         content:
           application/json:
             schema:
@@ -599,6 +791,7 @@ paths:
           required: true
           schema:
             type: number
+            example: 1
       responses:
         '200':
           description: "Return a protector"
@@ -619,6 +812,7 @@ paths:
           required: true
           schema:
             type: number
+            example: 1
       responses:
         '200':
           description: "Protector has been modified"
@@ -632,6 +826,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+        '401':
+          description: "Not authorized to manipulate a resource"
         '404':
           description: "Protector not found"
       requestBody:
@@ -651,12 +847,15 @@ paths:
           required: true
           schema:
             type: number
+            example: 1
       responses:
         '200':
           description: "Protector has been deleted"
+        '401':
+          description: "Not authorized to manipulate a resource"
         '404':
           description: "Protector not found"
-  
+
   /centers:
     get:
       summary: "Search centers"
@@ -669,12 +868,14 @@ paths:
           required: false
           schema:
             type: number
+            example: 1
         - name: size
           description: "Max-size of centers list"
           in: query
           required: false
           schema:
             type: number
+            example: 10
       responses:
         '200':
           description: "Centers list or empty list"
@@ -705,14 +906,26 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        '409':
-          description: "Center already exists"
+        '401':
+          description: "Not authorized to manipulate a resource"
       requestBody:
         required: true
+        description: "The `contact` field can have any attribute, it is saved dynamically.<br> For upload the optional `picture` field with an image file, you need to change to multipart/form-data"
         content:
           application/json:
             schema:
               $ref: "#/components/schemas/QueryCenter"
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/QueryCenter"
+                - type: object
+                  properties:
+                    picture:
+                      type: string
+                      format: binary
+                      example: imageName.png
+
   /centers/{id}:
     get:
       summary: "Search a center"
@@ -725,6 +938,7 @@ paths:
           required: true
           schema:
             type: number
+            example: 1
       responses:
         '200':
           description: "Return a center"
@@ -745,6 +959,7 @@ paths:
           required: true
           schema:
             type: number
+            example: 1
       responses:
         '200':
           description: "Center has been modified"
@@ -758,6 +973,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+        '401':
+          description: "Not authorized to manipulate a resource"
         '404':
           description: "Center not found"
       requestBody:
@@ -765,7 +982,26 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/QueryCenter"
+              allOf:
+                - $ref: "#/components/schemas/QueryCenter"
+                - type: object
+                  properties:
+                    deleteImage:
+                      type: boolean
+                      example: true
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/QueryCenter"
+                - type: object
+                  properties:
+                    picture:
+                      type: string
+                      format: binary
+                      example: imageName.png
+                    deleteImage:
+                      type: boolean
+                      example: true
     delete:
       summary: "Delete an existent center"
       tags:
@@ -777,9 +1013,12 @@ paths:
           required: true
           schema:
             type: number
+            example: 1
       responses:
         '200':
           description: "Center has been deleted"
+        '401':
+          description: "Not authorized to manipulate a resource"
         '404':
           description: "Center not found"
   
@@ -795,12 +1034,14 @@ paths:
           required: false
           schema:
             type: number
+            example: 1
         - name: size
           description: "Max-size of users list"
           in: query
           required: false
           schema:
             type: number
+            example: 10
       responses:
         '200':
           description: "Users list or empty list"
@@ -831,14 +1072,25 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-        '409':
-          description: "User already exists"
+        '401':
+          description: "Not authorized to manipulate a resource"
       requestBody:
         required: true
+        description: "For upload the optional `picture` field with an image file, you need to change to multipart/form-data"
         content:
           application/json:
             schema:
               $ref: "#/components/schemas/QueryUser"
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/QueryUser"
+                - type: object
+                  properties:
+                    picture:
+                      type: string
+                      format: binary
+                      example: imageName.png
   /users/{id}:
     get:
       summary: "Search a user"
@@ -851,6 +1103,7 @@ paths:
           required: true
           schema:
             type: number
+            example: 1
       responses:
         '200':
           description: "Return a user"
@@ -871,6 +1124,7 @@ paths:
           required: true
           schema:
             type: number
+            example: 1
       responses:
         '200':
           description: "User has been modified"
@@ -884,6 +1138,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
+        '401':
+          description: "Not authorized to manipulate a resource"
         '404':
           description: "User not found"
       requestBody:
@@ -891,7 +1147,26 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/QueryUser"
+              allOf:
+                - $ref: "#/components/schemas/QueryUser"
+                - type: object
+                  properties:
+                    deleteImage:
+                      type: boolean
+                      example: true
+          multipart/form-data:
+            schema:
+              allOf:
+                - $ref: "#/components/schemas/QueryUser"
+                - type: object
+                  properties:
+                    picture:
+                      type: string
+                      format: binary
+                      example: imageName.png
+                    deleteImage:
+                      type: boolean
+                      example: true
     delete:
       summary: "Delete an existent user"
       tags:
@@ -903,29 +1178,34 @@ paths:
           required: true
           schema:
             type: number
+            example: 1
       responses:
         '200':
           description: "User has been deleted"
+        '401':
+          description: "Not authorized to manipulate a resource"
         '404':
           description: "User not found"
-
+  
+  
+  
   /animals/filterBy:
     get:
-      summary: "Animals filter"
+      summary: "filter of animals"
       tags:
         - Animals Filter
       parameters:
         - name: coordinates
           description: "User coordinates"
           in: query
-          required: true
+          required: false
           schema:
             type: string
             example: "-122.39636,37.79129"
         - name: radius
           description: "Search radius in meters"
           in: query
-          required: true
+          required: false
           schema:
             type: number
             example: 2000
@@ -943,13 +1223,13 @@ paths:
           schema:
             type: number
             example: 10
-        - name: protector
-          description: "Protector name"
+        - name: name
+          description: "Animal name"
           in: query
           required: false
           schema:
             type: string
-            example: "Rabitos Felices"
+            example: "Firulais"
         - name: race
           description: "Race id"
           in: query
@@ -971,21 +1251,43 @@ paths:
           schema:
             type: number
             example: 1
-        - name: age
-          description: "Approximate age of animal"
+        - name: centerId
+          description: "center filter"
           in: query
           schema:
             type: number
-            example: 6
+            example: 1
+        - name: friendly
+          description: "Animal is friendly"
+          in: query
+          schema:
+            type: boolean
+            example: true
+        - name: canTravel
+          description: "Animal can travel"
+          in: query
+          schema:
+            type: boolean
+            example: true
+        - name: isElder
+          description: "Animal is elder"
+          in: query
+          schema:
+            type: boolean
+            example: true
+        - name: hasEspecialCondition
+          description: "Animal has especial condition"
+          in: query
+          schema:
+            type: boolean
+            example: true
       responses:
         '200':
           description: "Return animals list or empty list"
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/GetAnimal'
+                $ref: '#/components/schemas/GetAnimal'
         '400':
           description: "Return all errors"
           content:
@@ -994,7 +1296,7 @@ paths:
                 $ref: "#/components/schemas/Error"
   /centers/filterBy:
     get:
-      summary: "Order of protectors"
+      summary: "filter of centers"
       tags:
         - Centers Filter
       parameters:
@@ -1006,12 +1308,12 @@ paths:
             type: string
             example: "-122.39636,37.79129"
         - name: radius
-          description: "Search radius in meters"
+          description: "Search radius"
           in: query
           required: false
           schema:
             type: number
-            example: 2000
+            example: 500
         - name: page
           description: "Page of results"
           in: query
@@ -1034,7 +1336,7 @@ paths:
             type: string
             example: "Rabitos Felices"
         - name: centerName
-          description: "Name of protector"
+          description: "Name of center"
           in: query
           required: false
           schema:
@@ -1047,23 +1349,20 @@ paths:
           schema:
             type: string
             example: "Valencia"
-        
       responses:
         '200':
           description: "Return centers list or empty list"
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/GetCenter'
+                $ref: '#/components/schemas/GetCenter'
         '400':
           description: "Return all errors"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-  
+
 components:
   schemas:
     FieldError:
@@ -1129,9 +1428,6 @@ components:
         name:
           type: string
           example: "chiguagua"
-        status:
-          type: boolean
-          example: false
     
     Type:
       type: object
@@ -1170,9 +1466,6 @@ components:
         name:
           type: string
           example: "perro"
-        status:
-          type: boolean
-          example: true
     
     Sex:
       type: object
@@ -1211,9 +1504,6 @@ components:
         name:
           type: string
           example: "femenino"
-        status:
-          type: boolean
-          example: true
     
     Animal:
       type: object
@@ -1226,8 +1516,8 @@ components:
         - adultSize
         - birthDate
         - centerId
-        - picture
         - extraDetails
+        - observation
         - adopterId
         - adopted
         - friendly
@@ -1241,7 +1531,7 @@ components:
           example: 1
         name:
           type: string
-          example: "Coco"
+          example: "Firulais"
         raceId:
           type: number
           example: 1
@@ -1251,18 +1541,12 @@ components:
         sexId:
           type: number
           example: 1
-        adultSize:
-          type: string
-          example: "cahorro"
         birthDate:
           type: string
           example: "2020-06-23"
         centerId:
           type: number
           example: 1
-        picture:
-          type: string
-          example: "http://domino.algo/image.png"
         extraDetails:
           type: string
           example: "no le agradan los gatos"
@@ -1279,6 +1563,15 @@ components:
           type: boolean
           example: false
         hasEspecialCondition:
+          type: boolean
+          example: false
+        adultSize:
+          type: string
+          example: "1"
+        observation:
+          type: string
+          example: "alguna observacion"
+        adopted:
           type: boolean
           example: false
         status:
@@ -1308,14 +1601,10 @@ components:
         - birthDate
         - centerId
         - extraDetails
-        - friendly
-        - canTravel
-        - isElder
-        - hasEspecialCondition
       properties:
         name:
           type: string
-          example: "Coco"
+          example: "Firulais"
         raceId:
           type: number
           example: 1
@@ -1326,23 +1615,24 @@ components:
           type: number
           example: 1
         adultSize:
-          type: string
-          example: "cahorro"
+          type: number
+          example: 1
+          description: "0-none<br>1-small<br>2-medium<br>3-large"
         birthDate:
           type: string
           example: "2020-06-23"
         centerId:
           type: number
           example: 1
-        picture:
-          type: string
-          example: "http://domino.algo/image.png"
         extraDetails:
           type: string
           example: "no le agradan los gatos"
         adopterId:
           type: number
           example: 1
+        adopted:
+          type: boolean
+          example: false
         friendly:
           type: boolean
           example: false
@@ -1355,17 +1645,41 @@ components:
         hasEspecialCondition:
           type: boolean
           example: false
-        status:
-          type: boolean
-          example: true
+        observation:
+          type: string
+          example: "alguna observacion"
+    GetAnimalImages:
+      type: object
+      required:
+        - totalResults
+        - results
+      properties:
+        totalResults:
+          type: number
+          example: 100
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: number
+                example: 1
+              animalId:
+                type: number
+                example: 1
+              picture:
+                $ref: "#/components/schemas/Image"
     
     Protector:
       type: object
       required:
         - id
         - name
+        - description
         - location
         - coordinates
+        - contact
         - status
       properties:
         id:
@@ -1374,12 +1688,20 @@ components:
         name:
           type: string
           example: "Asociacion Civil Rabitos Felices"
+        description:
+          type: string
+          example: "alguna descripcion"
         location:
           type: string
           example: "Reiseñor 86, Valencia"
         coordinates:
           type: string
           example: "-122.39636,37.79129"
+        contact:
+          type: object
+          example: {
+            telefono: "3020122203"
+          }
         status:
           type: boolean
           example: true
@@ -1406,21 +1728,27 @@ components:
         name:
           type: string
           example: "Asociacion Civil Rabitos Felices"
+        description:
+          type: string
+          example: "alguna descripcion"
+        contact:
+          type: object
+          example: {
+            telefono: 3020122203
+          }
         location:
           type: string
           example: "Reiseñor 86, Valencia"
         coordinates:
           type: string
           example: "-122.39636,37.79129"
-        status:
-          type: boolean
-          example: true
-    
     Center:
       type: object
       required:
         - id
         - name
+        - description
+        - contact
         - location
         - coordinates
         - protectorId
@@ -1433,6 +1761,16 @@ components:
         name:
           type: string
           example: "Centro de Acogida de Animales Abandonados"
+        description:
+          type: string
+          example: "alguna descripcion"
+        contact:
+          type: object
+          example: {
+            telefono: 3020122203,
+            CBU/CVU: 30201222033020122203,
+            paypal: "http://dominio.com/algo"
+          }
         location:
           type: string
           example: "Reiseñor 86, Valencia"
@@ -1443,8 +1781,7 @@ components:
           type: number
           example: 1
         picture:
-          type: string
-          example: "http://domino.algo/image.png"
+          $ref: "#/components/schemas/Image"
         status:
           type: boolean
           example: true
@@ -1472,6 +1809,14 @@ components:
         name:
           type: string
           example: "Centro de Acogida de Animales Abandonados"
+        description:
+          type: string
+          example: "alguna descripcion"
+        contact:
+          type: object
+          example: {
+            telefono: 3020122203
+          }
         location:
           type: string
           example: "Reiseñor 86, Valencia"
@@ -1481,13 +1826,7 @@ components:
         protectorId:
           type: number
           example: 1
-        picture:
-          type: string
-          example: "http://domino.algo/image.png"
-        status:
-          type: boolean
-          example: true
-    
+
     User:
       type: object
       required:
@@ -1497,6 +1836,7 @@ components:
         - email
         - picture
         - userLevel
+        - centerId
         - status
       properties:
         id:
@@ -1511,12 +1851,11 @@ components:
         email:
           type: string
           example: "SabrinaConstance@email.com"
-        picture:
-          type: string
-          example: "http://domino.algo/image.png"
         userLevel:
           type: string
-          example: "admin"
+          example: "1"
+        picture:
+          $ref: "#/components/schemas/Image"
         centerId:
           type: number
           example: 1
@@ -1541,17 +1880,18 @@ components:
       required: 
         - username
         - password
+        - password_confirmation
         - fullName
         - email
-        - picture
         - userLevel
-        - centerId
-        - status
       properties:
         username:
           type: string
           example: "Daisy"
         password:
+          type: string
+          example: "Daisy1234"
+        password_confirmation:
           type: string
           example: "Daisy1234"
         fullName:
@@ -1560,20 +1900,24 @@ components:
         email:
           type: string
           example: "SabrinaConstance@email.com"
-        picture:
-          type: string
-          example: "http://domino.algo/image.png"
         userLevel:
-          type: string
-          example: "admin"
+          type: number
+          example: 1
+          description: "0-none<br>1-center<br>2-adopter"
         centerId:
           type: number
           example: 1
-        status:
-          type: boolean
-          example: true
+    
+    Image:
+      type: object
+      example:
+        url: "/upload/{model}/{name}.png"
+        name: "{model}/{name}.png"
+        extname: "jpg"
+        size: 5496
+        mimeType: "image/jpeg"
   securitySchemes:
-    ApiKeyAuth:
-      type: apiKey
-      in: header
-      name: Token
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
