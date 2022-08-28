@@ -26,6 +26,7 @@
     "react-icons": "^4.4.0",
     "react-leaflet": "^4.0.1",
     "react-multi-carousel": "^2.8.2",
+    "react-spinners": "^0.13.4",
     "react-use-pagination": "^2.0.1",
     "styled-components": "^5.3.5",
     "yarn": "^1.22.19",
