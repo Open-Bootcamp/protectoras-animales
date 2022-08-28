@@ -18,7 +18,7 @@ export default function MainProvider({ children }) {
                     headers: { 'Content-Type': 'application/json' }
                 });
                 const data = await rs.json();
-                // setData(data);
+                setData(data);
                 setIsLoading(false);
               } catch (e) {
                   console.log(e);
