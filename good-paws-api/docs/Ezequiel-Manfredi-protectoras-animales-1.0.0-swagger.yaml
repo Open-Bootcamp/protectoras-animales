@@ -7,6 +7,8 @@ info:
 tags:
   - name: default
     description: endpoints
+  - name: Authentication
+    description: token operations
   - name: Centers Filter
     description: features and funcionality for centers
   - name: Animals Filter
@@ -1355,14 +1357,113 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetCenter'
+                $ref: "#/components/schemas/GetCenter"
         '400':
           description: "Return all errors"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/Error"
-
+  
+  /login:
+    post:
+      summary: "login"
+      tags:
+        - Authentication
+      responses:
+        '200':
+          description: "Successful login"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: "bearer"
+                  token:
+                    type: string
+                    example: "Nw.Vl4BCSVLVyGXFfS3NfuT85S6PoiIMV8B2bwNBHCsFOI1OVxUUlSpZYVaH-jC"
+                  expires_at:
+                    type: string
+                    example: "2022-08-28T18:14:13.100-03:00"
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: "example@algo.com"
+                password:
+                  type: string
+                  example: "12345678"
+  /logout:
+    post:
+      summary: "logout"
+      tags:
+        - Authentication
+      responses:
+        '200':
+          description: "Successful logout"
+        '401':
+          description: "Not authorized to manipulate a resource"
+  /forgot:
+    post:
+      summary: "init password reset process"
+      tags:
+        - Authentication
+      responses:
+        '200':
+          description: "Successful email sending"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: "example@algo.com"
+  /reset:
+    post:
+      summary: "password reset completed"
+      tags:
+        - Authentication
+      responses:
+        '200':
+          description: "Successful password change"
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '401':
+          description: "Not authorized to manipulate a resource"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                  example: "12345678"
+                password_comfirmation:
+                  type: string
+                  example: "12345678"
+  
 components:
   schemas:
     FieldError:
