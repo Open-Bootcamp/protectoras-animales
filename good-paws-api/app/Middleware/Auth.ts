@@ -74,7 +74,7 @@ export default class AuthMiddleware {
       await this.authenticate(auth, guards)
     }
 
-    if (request.matchesRoute('/messages') && request.method() !== 'GET') {
+    if (request.matchesRoute('/messages') && request.method() === 'GET') {
       const guards = customGuards.length ? customGuards : [auth.name]
       await this.authenticate(auth, guards)
     }

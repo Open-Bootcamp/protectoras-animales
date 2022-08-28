@@ -11,10 +11,10 @@ export default class Message extends BaseModel {
   @column()
   public date: DateTime
 
-  @column()
+  @column({ serializeAs: 'authorId' })
   public authorId: Number
 
-  @column()
+  @column({ serializeAs: 'receiverId' })
   public receiverId: Number
 
   @column()
