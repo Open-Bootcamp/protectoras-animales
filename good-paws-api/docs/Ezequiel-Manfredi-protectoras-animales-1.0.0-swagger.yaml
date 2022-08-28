@@ -927,7 +927,6 @@ paths:
                       type: string
                       format: binary
                       example: imageName.png
-
   /centers/{id}:
     get:
       summary: "Search a center"
@@ -1189,8 +1188,141 @@ paths:
         '404':
           description: "User not found"
   
-  
-  
+  /calendars:
+    get:
+      summary: "Search calendar"
+      tags:
+        - Calendars
+      parameters:
+        - name: page
+          description: "Page of results"
+          in: query
+          required: false
+          schema:
+            type: number
+            example: 1
+        - name: size
+          description: "Max-size of users list"
+          in: query
+          required: false
+          schema:
+            type: number
+            example: 10
+      responses:
+        '200':
+          description: "Calendar list or empty list"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetCalendar"
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: "Create a new calendar"
+      tags:
+        - Calendars
+      responses:
+        '201':
+          description: "New calendar has been created"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Calendar"
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '401':
+          description: "Not authorized to manipulate a resource"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QueryCalendar"
+  /calendars/{id}:
+    get:
+      summary: "Search a calendar"
+      tags:
+        - Calendars
+      parameters:
+        - name: id
+          description: "Calendar id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+            example: 1
+      responses:
+        '200':
+          description: "Return a calendar"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Calendar"
+        '404':
+          description: "Calendar not found"
+    put:
+      summary: "Modify an existent calendar"
+      tags:
+        - Calendars
+      parameters:
+        - name: id
+          description: "Calendar id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+            example: 1
+      responses:
+        '200':
+          description: "Calendar has been modified"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Calendar"
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '401':
+          description: "Not authorized to manipulate a resource"
+        '404':
+          description: "Calendar not found"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QueryCalendar"
+    delete:
+      summary: "Delete an existent calendar"
+      tags:
+        - Calendars
+      parameters:
+        - name: id
+          description: "Calendar id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+            example: 1
+      responses:
+        '200':
+          description: "Calendar has been deleted"
+        '401':
+          description: "Not authorized to manipulate a resource"
+        '404':
+          description: "Calendar not found"
+
   /animals/filterBy:
     get:
       summary: "filter of animals"
@@ -1977,6 +2109,87 @@ components:
           items:
             $ref: "#/components/schemas/User"
     QueryUser:
+      type: object
+      required: 
+        - username
+        - password
+        - password_confirmation
+        - fullName
+        - email
+        - userLevel
+      properties:
+        username:
+          type: string
+          example: "Daisy"
+        password:
+          type: string
+          example: "Daisy1234"
+        password_confirmation:
+          type: string
+          example: "Daisy1234"
+        fullName:
+          type: string
+          example: "Sabrina Constance"
+        email:
+          type: string
+          example: "SabrinaConstance@email.com"
+        userLevel:
+          type: number
+          example: 1
+          description: "0-none<br>1-center<br>2-adopter"
+        centerId:
+          type: number
+          example: 1
+    
+    Calendar:
+      type: object
+      required:
+        - id
+        - username
+        - fullName
+        - email
+        - picture
+        - userLevel
+        - centerId
+        - status
+      properties:
+        id:
+          type: number
+          example: 1
+        username:
+          type: string
+          example: "Daisy"
+        fullName:
+          type: string
+          example: "Sabrina Constance"
+        email:
+          type: string
+          example: "SabrinaConstance@email.com"
+        userLevel:
+          type: string
+          example: "1"
+        picture:
+          $ref: "#/components/schemas/Image"
+        centerId:
+          type: number
+          example: 1
+        status:
+          type: boolean
+          example: true
+    GetCalendar:
+      type: object
+      required:
+        - totalResults
+        - results
+      properties:
+        totalResults:
+          type: number
+          example: 100
+        results:
+          type: array
+          items:
+            $ref: "#/components/schemas/User"
+    QueryCalendar:
       type: object
       required: 
         - username
