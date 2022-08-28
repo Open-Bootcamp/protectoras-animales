@@ -8,10 +8,11 @@ import { MainContext } from "../../context/maincontext";
 
 const CardsContainer = () => {
   const { data, isLoading } = useContext(MainContext);
+  
   return (
     <Flex mb={10} alignItems={'center'} justifyContent={'center'} h={'full'}>
       { isLoading ? <MoonLoader size={100} color="#578887" /> :
-        data.length === 0 ? 
+        data.length === 0 && isLoading ? 
         <Flex direction={'column'} alignItems={'center'}>
           <Heading mb={5}>No existe data para mostrar</Heading>
           <NextLink href="/">
@@ -19,7 +20,7 @@ const CardsContainer = () => {
           </NextLink>
         </Flex> :
           <Grid h={'full'} w="full" gridGap="1" gridTemplateColumns="repeat( auto-fit, minmax(245px, 1fr) )">
-            {data.map((p) => ( <Card key={p.id} {...p} /> ))}
+            {data.results.map((p) => ( <Card key={p.id} {...p} /> ))}
           </Grid>
       }
     </Flex>
