@@ -25,6 +25,20 @@ const theme = extendTheme({
     failure: "#f1554b",
     error: "#667085",
   },
+  components: {
+    Tabs: {
+      variants: {
+        line: {
+          tab: {
+            color: "gray4",
+            _selected: {
+              color: "primary",
+            },
+          },
+        },
+      },
+    },
+  },
 });
 
 export default theme;
