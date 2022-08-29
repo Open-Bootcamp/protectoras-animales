@@ -9,6 +9,7 @@ import {
 } from "@chakra-ui/react";
 
 import { useFormik } from "formik";
+import { Chat } from "../../components/Chat";
 import DesktopProfile from "./DesktopProfile";
 import MobileProfile from "./MobileProfile";
 
@@ -41,7 +42,7 @@ export default function index() {
             <DesktopProfile formik={formik} />
           </TabPanel>
           <TabPanel>
-            <p>Mensajes!</p>
+            <Chat />
           </TabPanel>
           <TabPanel>
             <p>Adopciones!</p>

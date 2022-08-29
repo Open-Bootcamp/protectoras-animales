@@ -67,8 +67,15 @@ const ballUp = keyframes`
   0% {
     transform: translateY(0px);
   }
+  25%{
+    transform: translateY(-1px);
+  }
+
   50%{
     transform: translateY(-2px);
+  }
+  75%{
+    transform: translateY(-1px);
   }
   100% {
     transform: translateY(0px);
@@ -80,6 +87,10 @@ export const TypingItem = styled.div`
   height: 0.25rem;
   background-color: #697172;
   border-radius: 0.625rem;
-  animation: ease-in-out ${(props) => props.animationLength} ${ballUp};
+  animation-name: ${ballUp};
+  animation-duration: 1s;
   animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-delay: ${(props) => props.animationLength};
+
 `;
