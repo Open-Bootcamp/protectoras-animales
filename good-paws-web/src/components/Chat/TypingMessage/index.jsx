@@ -15,8 +15,8 @@ export const TypingMessage = () => {
                     </MessageInfo>
                     <Typing>
                         <TypingItem animationLength="1s" />
-                        <TypingItem animationLength="1.01s" />
-                        <TypingItem animationLength="1.02s" />
+                        <TypingItem animationLength="1.1s" />
+                        <TypingItem animationLength="1.2s" />
                     </Typing>
                 </MessageGridItem>
             </Message>
