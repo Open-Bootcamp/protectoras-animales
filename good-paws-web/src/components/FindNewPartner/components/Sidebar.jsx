@@ -41,37 +41,7 @@ export default function Sidebar({ children }) {
 }
 
 const SidebarContent = ({ onClose, ...rest }) => {
-  const { setIsLoading, setData } = useContext(MainContext);
-  const initState = { name: "" };
-  const [filters, setFilters] = useState(initState);
-
-  const handleChange = (e) => {
-    setFilters({
-      ...filters,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  useEffect(() => {
-    if (filters.name !== '' && filters.name !== undefined && filter.name !== null) {
-      setIsLoading(true);
-      (async () => {
-            try {
-              const rs = await fetch(`${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_FILTER_PETS_URL}name=${filters.name}`, {
-                  method: 'GET',
-                  headers: { 'Content-Type': 'application/json' }
-              });
-              const data = await rs.json();
-              console.log(data);
-              setData(data);
-              setIsLoading(false);
-            } catch (e) {
-                console.log(e);
-            }
-        })();
-    }
-  }, [filters])
-  
+  const { filters, handleChange } = useContext(MainContext);
 
   return (
     <Box mt={{ md: 0, lg: 6}} p={{ sm: 10, lg: 0}} w={'100%'} h="full" {...rest}>
