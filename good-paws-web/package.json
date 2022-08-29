@@ -28,7 +28,6 @@
     "react-multi-carousel": "^2.8.2",
     "react-use-pagination": "^2.0.1",
     "styled-components": "^5.3.5",
-    "yarn": "^1.22.19",
     "yup": "^0.32.11"
   },
   "devDependencies": {
