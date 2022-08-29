@@ -31,7 +31,7 @@ const FindNewPartner = () => {
                 <Container as={Stack} maxW={"6xl"} py={4} direction={{ base: "column", md: "row" }} spacing={4} justify={{ base: "center", md: "space-between" }} align={{ base: "center", md: "center" }}>
                   <Flex w={"100%"} justifyContent={"space-between"} direction={"row"} spacing={6} alignItems={'center'}>
                     <Clickable as="button" onClick={setPreviousPage} _active={{ bg: 'primarylight', color: 'white' }} _disabled={!previousEnabled}><FaArrowLeft /></Clickable>
-                    <Text>Página {currentPage + 1} de {totalPages}</Text>
+                    <Text>Página {totalPages > 0 ? currentPage + 1 : currentPage} de {totalPages}</Text>
                     <Clickable as="button" onClick={setNextPage}_active={{ bg: 'primarylight', color: 'white' }} _disabled={!nextEnabled}><FaArrowRight /></Clickable>
                   </Flex>
                 </Container>
