@@ -27,7 +27,7 @@ export default function MainProvider({ children }) {
       }, [currentPage, initRegs]);
 
     return (
-        <MainContext.Provider value={ { data, currentPage, totalPages, setNextPage, setPreviousPage, nextEnabled, previousEnabled, startIndex, endIndex, setInitRegs, isLoading } }>
+        <MainContext.Provider value={ { data, setData, currentPage, totalPages, setNextPage, setPreviousPage, nextEnabled, previousEnabled, startIndex, endIndex, setInitRegs, isLoading, setIsLoading } }>
           {children}
         </MainContext.Provider>
     );

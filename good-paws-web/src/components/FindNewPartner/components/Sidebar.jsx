@@ -1,10 +1,10 @@
-import React from 'react';
-import { Hide, Text, CheckboxGroup, Checkbox, IconButton, Box, CloseButton, Flex, Image, useColorModeValue, Drawer, DrawerContent, FormControl, useDisclosure, FormLabel, InputGroup, InputLeftElement, Input } from '@chakra-ui/react';
+import React, { useEffect, useContext, useState } from 'react';
+import { Hide, Text, CheckboxGroup, Checkbox, IconButton, Box, CloseButton, Flex, Image, useColorModeValue, Drawer, DrawerContent, FormControl, useDisclosure, FormLabel, InputGroup, InputLeftElement, Input, filter } from '@chakra-ui/react';
 import { BsPerson } from 'react-icons/bs';
 import { SearchIcon } from '@chakra-ui/icons';
 import { Select } from "chakra-react-select";
 import SliderInp from './Slider';
-import { colors } from '../../ui/colors';
+import { MainContext } from '../../../context/maincontext';
 
 const groupedOptions = [
     {
@@ -41,6 +41,38 @@ export default function Sidebar({ children }) {
 }
 
 const SidebarContent = ({ onClose, ...rest }) => {
+  const { setIsLoading, setData } = useContext(MainContext);
+  const initState = { name: "" };
+  const [filters, setFilters] = useState(initState);
+
+  const handleChange = (e) => {
+    setFilters({
+      ...filters,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  useEffect(() => {
+    if (filters.name !== '' && filters.name !== undefined && filter.name !== null) {
+      setIsLoading(true);
+      (async () => {
+            try {
+              const rs = await fetch(`${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_FILTER_PETS_URL}name=${filters.name}`, {
+                  method: 'GET',
+                  headers: { 'Content-Type': 'application/json' }
+              });
+              const data = await rs.json();
+              console.log(data);
+              setData(data);
+              setIsLoading(false);
+            } catch (e) {
+                console.log(e);
+            }
+        })();
+    }
+  }, [filters])
+  
+
   return (
     <Box mt={{ md: 0, lg: 6}} p={{ sm: 10, lg: 0}} w={'100%'} h="full" {...rest}>
         <Hide above='md'>
@@ -54,7 +86,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                 <FormLabel>Buscar por nombre</FormLabel>
                 <InputGroup>
                     <InputLeftElement children={<SearchIcon />} />
-                    <Input type="text" name="name" placeholder="Texto de búsqueda @hola" />
+                    <Input type="text" onChange={handleChange} value={filters.name} name="name" placeholder="Texto de búsqueda @hola" />
                 </InputGroup>
             </FormControl>
             <FormControl>
@@ -77,7 +109,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                 <Select useBasicStyles name="ages" options={groupedOptions} selectedOptionStyle="check" placeholder="Selecciona una opción" closeMenuOnSelect={true}/>
             </FormControl>
             <FormControl display={'flex'} flexDirection={'column'}>
-                <CheckboxGroup variantColor={colors.primarylight}>
+                <CheckboxGroup variantColor={'primarylight'}>
                     <Checkbox mt={3} value="shelter">Casa de acogida</Checkbox>
                     <Checkbox mt={3} value="urgent">Caso urgente</Checkbox>
                 </CheckboxGroup>
@@ -92,7 +124,7 @@ const MenuIcon = () => <Image width={'25px'} src="./button_icon.svg" alt="button
 const MobileNav = ({ onOpen, ...rest }) => {
   return (
     <Flex ml={{ base: 0, md: 60 }} px={{ base: 4, md: 24 }} height="20" alignItems="center" bg={useColorModeValue('white', 'gray.900')} justifyContent="flex-end" {...rest}>
-      <IconButton colorScheme={colors.gray3} w={'17%'} h={'3rem'} variant="outline" onClick={onOpen} aria-label="open menu" icon={<MenuIcon />} />
+      <IconButton colorScheme={'gray3'} w={'17%'} h={'3rem'} variant="outline" onClick={onOpen} aria-label="open menu" icon={<MenuIcon />} />
     </Flex>
   );
 };
