@@ -26,7 +26,7 @@ export const InputMessage = styled.input`
     line-height: 1.5rem;
   }
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 768px) {
     width: 100%;
   }
 `;

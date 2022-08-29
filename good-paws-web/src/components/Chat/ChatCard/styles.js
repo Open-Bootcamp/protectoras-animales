@@ -8,6 +8,9 @@ export const CardGrid = styled.div`
   justify-content: space-around;
   border-bottom: 1px solid #eaecf0;
   cursor: pointer;
+  @media screen and (max-width: 1200px) {
+    padding: 1rem 0;
+  }
 `;
 
 export const CardGridItem = styled.div`
