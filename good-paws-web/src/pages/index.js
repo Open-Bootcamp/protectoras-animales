@@ -6,7 +6,6 @@ import HappyFamilies from '../components/HappyFamilies';
 import ShelterMap from '../components/ShelterMap';
 import HomeNewPartner from '../components/HomeNewPartner';
 import Shelter from '../components/Shelters';
-import { Chat } from '../components/Chat';
 
 const images = [
 	{
@@ -49,7 +48,6 @@ export default function Home() {
 			<About_us />
 			<ShelterMap />
 			<HappyFamilies images={images} />
-			<Chat />
 
 			<main className={styles.main}></main>
 		</div>
