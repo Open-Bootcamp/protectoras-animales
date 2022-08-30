@@ -14,10 +14,10 @@ export default class Review extends BaseModel {
   @column()
   public rate: number
 
-  @column()
+  @column({ serializeAs: 'authorId' })
   public authorId: number
 
-  @column()
+  @column({ serializeAs: 'reviewedId' })
   public reviewedId: number
 
   @column()
