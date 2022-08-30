@@ -1,24 +1,8 @@
-import React, { useEffect, useContext, useState } from 'react';
-import { Hide, Text, CheckboxGroup, Checkbox, IconButton, Box, CloseButton, Flex, Image, useColorModeValue, Drawer, DrawerContent, FormControl, useDisclosure, FormLabel, InputGroup, InputLeftElement, Input, filter } from '@chakra-ui/react';
-import { BsPerson } from 'react-icons/bs';
+import React, { useContext } from 'react';
+import { Select, Hide, Text, CheckboxGroup, Checkbox, IconButton, Box, CloseButton, Flex, Image, useColorModeValue, Drawer, DrawerContent, FormControl, useDisclosure, FormLabel, InputGroup, InputLeftElement, Input } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
-import { Select } from "chakra-react-select";
 import SliderInp from './Slider';
 import { MainContext } from '../../../context/maincontext';
-
-const groupedOptions = [
-    {
-      label: "",
-      options: [
-        { value: "blue", label: "Blue", color: "#0052CC" },
-        { value: "purple", label: "Purple", color: "#5243AA" },
-        { value: "red", label: "Red", color: "#FF5630" },
-        { value: "orange", label: "Orange", color: "#FF8B00" },
-        { value: "yellow", label: "Yellow", color: "#FFC400" },
-        { value: "green", label: "Green", color: "#36B37E" }
-      ]
-    }
-  ];
 
 export default function Sidebar({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -41,7 +25,7 @@ export default function Sidebar({ children }) {
 }
 
 const SidebarContent = ({ onClose, ...rest }) => {
-  const { filters, handleChange } = useContext(MainContext);
+  const { filters, handleChange, centers, races } = useContext(MainContext);
 
   return (
     <Box mt={{ md: 0, lg: 6}} p={{ sm: 10, lg: 0}} w={'100%'} h="full" {...rest}>
@@ -56,14 +40,19 @@ const SidebarContent = ({ onClose, ...rest }) => {
                 <FormLabel>Buscar por nombre</FormLabel>
                 <InputGroup>
                     <InputLeftElement children={<SearchIcon />} />
-                    <Input type="text" onChange={handleChange} value={filters.name} name="name" placeholder="Texto de búsqueda @hola" />
+                    <Input focusBorderColor={'primarylight'} type="text" onChange={handleChange} value={filters.name} name="name" placeholder="Texto de búsqueda @hola" />
                 </InputGroup>
             </FormControl>
             <FormControl>
                 <FormLabel>Buscar por protectora</FormLabel>
                 <InputGroup>
-                    <InputLeftElement children={<BsPerson />} />
-                    <Input type="text" name="shelter" placeholder="Escribe para buscar" />
+                    <Select focusBorderColor={'primarylight'} value={filters.centerId} onChange={handleChange} name="centerId" placeholder='Selecciona una opción'>
+                      {centers.length > 0 && centers.map((center) => { 
+                        return (
+                          <option key={center.id} value={center.id}>{center.name}</option>
+                        );
+                      })}
+                    </Select>
                 </InputGroup>
             </FormControl>
             <FormControl w={'100%'} >
@@ -72,16 +61,27 @@ const SidebarContent = ({ onClose, ...rest }) => {
             </FormControl>
             <FormControl>
                 <FormLabel>Especie</FormLabel>
-                <Select useBasicStyles name="species" options={groupedOptions} placeholder="Escribe para buscar" closeMenuOnSelect={true}/>
+                <Select focusBorderColor={'primarylight'} value={filters.raceId} onChange={handleChange} name="raceId" placeholder='Selecciona una opción'>
+                  {races.length > 0 && races.map((race) => { 
+                    return (
+                      <option key={race.id} value={race.id}>{race.name}</option>
+                    );
+                  })}
+                </Select>
             </FormControl>
             <FormControl>
                 <FormLabel>Edad</FormLabel>
-                <Select useBasicStyles name="ages" options={groupedOptions} selectedOptionStyle="check" placeholder="Selecciona una opción" closeMenuOnSelect={true}/>
+                <Select focusBorderColor={'primarylight'} value={filters.adultSize} onChange={handleChange} name="adultSize" placeholder='Selecciona una opción'>
+                  <option value="1">0 a 1 año</option>
+                  <option value="2">1 a 2 años</option>
+                  <option value="3">2 a 3 años</option>
+                  <option value="4">3 años o más</option>
+                </Select>
             </FormControl>
             <FormControl display={'flex'} flexDirection={'column'}>
                 <CheckboxGroup variantColor={'primarylight'}>
-                    <Checkbox mt={3} value="shelter">Casa de acogida</Checkbox>
-                    <Checkbox mt={3} value="urgent">Caso urgente</Checkbox>
+                    <Checkbox colorScheme='teal' mt={3} value="shelter">Casa de acogida</Checkbox>
+                    <Checkbox colorScheme='teal' mt={3} value="urgent">Caso urgente</Checkbox>
                 </CheckboxGroup>
             </FormControl>
         </Flex>
