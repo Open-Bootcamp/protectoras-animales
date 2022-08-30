@@ -7,7 +7,7 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.h2`
-  font-size: 1.25rem;
+  font-size: ${props => props.sizeName || "1.25rem"} ;
   font-weight: 600;
   line-height: 1.513rem;
   margin-bottom: 0.709rem;

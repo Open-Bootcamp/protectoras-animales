@@ -4,16 +4,14 @@ import { Card, CardPhoto, CardTitle, CardSubTitle, CardLocation, CardContainer, 
 export const ProtectorCard = () => {
     return (
         <Card>
-            <CardPhoto>
-
-            </CardPhoto>
+            <CardPhoto />
             <CardContainer>
                 <CardBlock1>
                     <CardTitle>Amigos de los gatos</CardTitle>
                     <CardSubTitle>Amigos de los animales</CardSubTitle>
                 </CardBlock1>
                 <CardBlock2>
-                    <Tag text="23 animales" />
+                    <Tag text="23 animales" color="primary" />
                     <CardLocation>
                         <img src="/map-pin.svg" alt="" />
                         <p>Valencia</p>
