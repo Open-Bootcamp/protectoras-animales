@@ -1,10 +1,9 @@
-import RegisterAdmin from '../pages/RegisterAdmin/RegisterAdmin'
+import HomeLogin from '../pages/Home/HomeLogin'
 import '../styles/App.css'
-import HomeLogin from './Home/HomeLogin'
 
 function App() {
   return (
-    <div className='App'>
+    <div className="App">
       <HomeLogin />
       {/* <RegisterAdmin /> */}
     </div>
