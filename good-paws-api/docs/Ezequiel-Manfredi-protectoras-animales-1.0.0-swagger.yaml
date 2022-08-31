@@ -27,6 +27,8 @@ tags:
     description: CRUD of sex
   - name: Users
     description: CRUD of user
+  - name: Calendars
+    description: CRUD of calendar
 security:
   - bearerAuth: []
 paths:
@@ -164,7 +166,7 @@ paths:
           description: "Not authorized to manipulate a resource"
         '404':
           description: "Race not found"
-
+  
   /types:
     get:
       summary: "Search types"
@@ -299,7 +301,7 @@ paths:
           description: "Not authorized to manipulate a resource"
         '404':
           description: "Type not found"
-
+  
   /sexes:
     get:
       summary: "Search sexes"
@@ -434,7 +436,7 @@ paths:
           description: "Not authorized to manipulate a resource"
         '404':
           description: "Sex not found"
-
+  
   /animals:
     get:
       summary: "Search animals"
@@ -721,7 +723,7 @@ paths:
           description: "Not authorized to manipulate a resource"
         '404':
           description: "Animal image not found"
-
+  
   /protectors:
     get:
       summary: "All protectors"
@@ -857,7 +859,7 @@ paths:
           description: "Not authorized to manipulate a resource"
         '404':
           description: "Protector not found"
-
+  
   /centers:
     get:
       summary: "Search centers"
@@ -1022,6 +1024,134 @@ paths:
           description: "Not authorized to manipulate a resource"
         '404':
           description: "Center not found"
+  /centers/{centerId}/reviews:
+    get:
+      summary: "Search reviews"
+      tags:
+        - Centers
+      parameters:
+        - name: centerId
+          description: "Center id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+            example: 1
+        - name: page
+          description: "Page of results"
+          in: query
+          required: false
+          schema:
+            type: number
+            example: 1
+        - name: size
+          description: "Max-size of type list"
+          in: query
+          required: false
+          schema:
+            type: number
+            example: 10
+      responses:
+        '200':
+          description: "Review list or empty list"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetReview"
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: "Create a new review"
+      tags:
+        - Types
+      parameters:
+        - name: centerId
+          description: "Center id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+            example: 1
+      responses:
+        '201':
+          description: "New review has been created"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Review"
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '401':
+          description: "Not authorized to manipulate a resource"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QueryReview"
+  /centers/{centerId}/reviews/{id}:
+    get:
+      summary: "Search a type"
+      tags:
+        - Centers
+      parameters:
+        - name: centerId
+          description: "Center id for search"
+          in: path
+          required: false
+          schema:
+            type: number
+            example: 1
+        - name: id
+          description: "Type id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+            example: 1
+      responses:
+        '200':
+          description: "Return a review"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Review"
+        '404':
+          description: "Review not found"
+    delete:
+      summary: "Delete an existent review"
+      tags:
+        - Centers
+      parameters:
+        - name: centerId
+          description: "Center id for search"
+          in: path
+          required: false
+          schema:
+            type: number
+            example: 1
+        - name: id
+          description: "Review id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+            example: 1
+      responses:
+        '200':
+          description: "Review has been deleted"
+        '401':
+          description: "Not authorized to manipulate a resource"
+        '404':
+          description: "Review not found"
   
   /users:
     get:
@@ -1322,7 +1452,7 @@ paths:
           description: "Not authorized to manipulate a resource"
         '404':
           description: "Calendar not found"
-
+  
   /animals/filterBy:
     get:
       summary: "filter of animals"
@@ -1986,6 +2116,7 @@ components:
         - coordinates
         - protectorId
         - picture
+        - averageRate
         - status
       properties:
         id:
@@ -2015,6 +2146,10 @@ components:
           example: 1
         picture:
           $ref: "#/components/schemas/Image"
+        averageRate:
+          type: number
+          example: 3.6
+          description: "from 0 to 5"
         status:
           type: boolean
           example: true
@@ -2059,7 +2194,73 @@ components:
         protectorId:
           type: number
           example: 1
-
+    Review:
+      type: object
+      required:
+        - id
+        - title
+        - text
+        - rate
+        - authorId
+        - reviewedId
+        - status
+        - createdAt
+      properties:
+        id:
+          type: number
+          example: 1
+        title:
+          type: string
+          example: "un titulo"
+        text:
+          type: string
+          example: "una descripcion"
+        rate: 
+          type: number
+          example: 3.45
+          description: "from 0 to 5"
+        authorId:
+          type: number
+          example: 1
+        reviewedId:
+          type: number
+          example: 1
+        status:
+          type: boolean
+          example: true
+        createdAt:
+          type: string
+          example: "2020-06-23"
+    GetReview:
+      type: object
+      required:
+        - totalResults
+        - results
+      properties:
+        totalResults:
+          type: number
+          example: 100
+        results:
+          type: array
+          items:
+            $ref: "#/components/schemas/Review"
+    QueryReview:
+      type: object
+      required: 
+        - title
+        - text
+        - rate
+      properties:
+        title:
+          type: string
+          example: "un titulo"
+        text:
+          type: string
+          example: "alguna descripcion"
+        rate:
+          type: number
+          example: 2.3
+    
     User:
       type: object
       required:
