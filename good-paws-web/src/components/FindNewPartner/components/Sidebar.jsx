@@ -26,7 +26,7 @@ export default function Sidebar({ children }) {
 }
 
 const SidebarContent = ({ onClose, ...rest }) => {
-  const { filters, handleChange, centers, races, userLocation } = useContext(MainContext);
+  const { filters, handleChange, centers, races } = useContext(MainContext);
   const [isShelter, setIsShelter] = useState(true);
   const [isUrgent, setIsUrgent] = useState(true);
 
