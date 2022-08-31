@@ -23,7 +23,11 @@ export default class Review extends BaseModel {
   @column()
   public status: boolean
 
-  @column.dateTime({ autoCreate: true, serialize: (value) => value.toFormat('yyyy-LL-dd') })
+  @column.dateTime({
+    autoCreate: true,
+    serializeAs: 'createdAt',
+    serialize: (value) => value.toFormat('yyyy-LL-dd'),
+  })
   public createdAt: DateTime
 
   @column.dateTime({ autoCreate: true, autoUpdate: true, serializeAs: null })
