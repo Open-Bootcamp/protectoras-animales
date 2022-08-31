@@ -33,6 +33,9 @@ export default class Center extends BaseModel {
   @column({ serializeAs: 'protectorId' })
   public protectorId: number
 
+  @column({ serializeAs: 'averageRate', serialize: (value) => parseFloat(value.toFixed(2)) })
+  public averageRate: number
+
   @column()
   public status: boolean
 
