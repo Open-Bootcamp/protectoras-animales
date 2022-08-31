@@ -1,6 +1,7 @@
 import { PetInfoSheet } from "../PetInfoSheet"
 import { ProtectorCard } from "../ProtectorCard";
 import { CardPet } from "./CardPet"
+import { MedicalHistory } from "./MedicalHistory";
 import { NameDate } from "./NameDate";
 import { ProtectorInfo } from "./ProtectorInfo";
 import { GridContainer, GridItem1, GridItem2, GridItem3 } from "./styles"
@@ -21,6 +22,7 @@ export const Adoptions = () => {
             <ProtectorInfo />
         </GridItem2>
         <GridItem3>
+          <MedicalHistory />
           
         </GridItem3>
     </GridContainer>
