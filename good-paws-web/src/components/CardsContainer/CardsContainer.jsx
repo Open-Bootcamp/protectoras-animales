@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import NextLink from 'next/link';
-import { Button, Grid, Flex, Heading } from "@chakra-ui/react";
+import { Button, Flex, Heading } from "@chakra-ui/react";
 import Card from "../Card/Card";
 import MoonLoader from 'react-spinners/MoonLoader';
 import { MainContext } from "../../context/maincontext";
@@ -17,13 +17,14 @@ const NoData = () => {
 }
 
 const CardsContainer = () => {
-  const { data, isLoading, setFilters } = useContext(MainContext);
+  const { data, isLoading } = useContext(MainContext);
   
   return (
     <Flex p={5} mb={10} alignItems={'center'} justifyContent={'center'} h={'full'}>
       { isLoading ? <MoonLoader size={100} color="#578887" /> :
         <Flex h={'full'} w={'100%'} flexWrap={'wrap'} flexDirection={'row'}>
-          {data.totalResults > 0 ? data.results.map((p) => ( <Card key={p.id} {...p} /> )) : <NoData />}
+          {data.totalResults > 0 && data.results.map((p) => ( <Card key={p.id} {...p} /> ))}
+          {data.totalResults === 0 && <NoData />}
         </Flex>
       }
     </Flex>

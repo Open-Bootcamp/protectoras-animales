@@ -3,6 +3,7 @@ import { Select, Hide, Text, CheckboxGroup, Checkbox, IconButton, Box, CloseButt
 import { SearchIcon } from '@chakra-ui/icons';
 import SliderInp from './Slider';
 import { MainContext } from '../../../context/maincontext';
+import { useState } from 'react';
 
 export default function Sidebar({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -26,6 +27,22 @@ export default function Sidebar({ children }) {
 
 const SidebarContent = ({ onClose, ...rest }) => {
   const { filters, handleChange, centers, races } = useContext(MainContext);
+  const [isShelter, setIsShelter] = useState(true);
+  const [isUrgent, setIsUrgent] = useState(true);
+
+  const handleCheckShelter = (e) => {
+    setIsShelter(!isShelter);
+    e.target.value = isShelter;
+    e.target.name = e.target.name;
+    handleChange(e);
+  }
+
+  const handleCheckUrgent = (e) => {
+    setIsUrgent(!isUrgent);
+    e.target.value = isUrgent;
+    e.target.name = e.target.name;
+    handleChange(e);
+  }
 
   return (
     <Box mt={{ md: 0, lg: 6}} p={{ sm: 10, lg: 0}} w={'100%'} h="full" {...rest}>
@@ -79,10 +96,8 @@ const SidebarContent = ({ onClose, ...rest }) => {
                 </Select>
             </FormControl>
             <FormControl display={'flex'} flexDirection={'column'}>
-                <CheckboxGroup variantColor={'primarylight'}>
-                    <Checkbox colorScheme='teal' mt={3} value="shelter">Casa de acogida</Checkbox>
-                    <Checkbox colorScheme='teal' mt={3} value="urgent">Caso urgente</Checkbox>
-                </CheckboxGroup>
+              <Checkbox colorScheme='teal' value={filters.isShelter} onChange={handleCheckShelter} mt={3} name="isShelter">Casa de acogida</Checkbox>
+              <Checkbox colorScheme='teal' value={filters.isUrgent} onChange={handleCheckUrgent} mt={3} name="isUrgent">Caso urgente</Checkbox>
             </FormControl>
         </Flex>
     </Box>
