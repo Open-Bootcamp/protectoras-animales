@@ -31,7 +31,17 @@ export default class ReviewsController {
       schema: reviewSchema,
       reporter: ErrorReporter,
     })
-    await Center.findOrFail(id)
+
+    const center = await Center.findOrFail(id)
+    const query = (
+      await Review.query()
+        .where('reviewed_id', id)
+        .where('status', true)
+        .sum('rate', 'acc')
+        .count('*', 'tot')
+    )[0].$extras
+    const averageRate = (query.acc + body.rate) / (query.tot + 1)
+    await center.merge({ averageRate: averageRate }).save()
 
     const review = await Review.create({ authorId: auth.user!.id, reviewedId: id, ...body })
 
