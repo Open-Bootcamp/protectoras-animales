@@ -1,7 +1,7 @@
 import { getData } from "../../utils/getData";
 import { Container, InfoLi, Title } from "./styles"
 
-export const PetInfoSheet = ({ data }) => {
+export const PetInfoSheet = ({ data, sizeName }) => {
 
     const { name, sexId, typeId, centerId } = data;
 
@@ -11,7 +11,7 @@ export const PetInfoSheet = ({ data }) => {
 
     return (
         <Container>
-            <Title>{`Sobre ${name}`}</Title>
+            <Title size={sizeName}>{`Sobre ${name}`}</Title>
             <ul>
                 <InfoLi>
                     <img src="/bxs-cat.svg" alt="" />
@@ -27,7 +27,7 @@ export const PetInfoSheet = ({ data }) => {
                 </InfoLi>
                 <InfoLi>
                     <img src="/bxs-message.svg" alt="" />
-                    <p><b> Edad:</b> 2 años</p>
+                    <p><b> Edad:</b> 1 años</p>
                 </InfoLi>
                 <InfoLi>
                     <img src="/bxs-pin.svg" alt="" />
