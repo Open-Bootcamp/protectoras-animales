@@ -7,15 +7,18 @@ import {
     Box
 } from '@chakra-ui/react'
 import { Tag } from '../../Tag'
-import { DateEntry, NameClinic } from './styles'
+import { DateEntry, InfoEntry, NameClinic } from './styles'
 
-export const MedicalEntry = () => {
+export const MedicalEntry = ({entry}) => {
+
+    const {title, clinic, observations, dateEntry} = entry;
+    const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+
     return (
         <Accordion 
             border='1px'
             borderColor="#EAECF0"
-            borderRadius="8px" 
-            defaultIndex={[0]} 
+            borderRadius="8px"   
             allowMultiple
         >
             <AccordionItem>
@@ -25,12 +28,12 @@ export const MedicalEntry = () => {
                             display="flex" 
                             flex={1} justifyContent="space-between" alignItems="center"
                         >
-                            <NameClinic>Castración - Clínica Duff</NameClinic>
+                            <InfoEntry>{title} - {clinic}</InfoEntry>
                             <Box 
                                 display="flex" 
                                 gap="8px" alignItems="center" marginRight="13px"
                             >
-                                <DateEntry>15/08/2022</DateEntry>
+                                <DateEntry>{dateEntry.toLocaleDateString("es-ES", options)}</DateEntry>
                                 <Tag 
                                     text="Realizada" color="success" 
                                 />
@@ -44,10 +47,7 @@ export const MedicalEntry = () => {
                     borderColor="#EAECF0"
                     pb={4}
                 >
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                    commodo consequat.
+                   {observations}
                 </AccordionPanel>
             </AccordionItem>
         </Accordion>

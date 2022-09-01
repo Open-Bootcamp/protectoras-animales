@@ -43,3 +43,10 @@ export const Button = styled.button`
     background-color: #ffffff;
   }
 `;
+
+export const MedicalEntries = styled.div`
+  margin-top: 2.0625rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+`;

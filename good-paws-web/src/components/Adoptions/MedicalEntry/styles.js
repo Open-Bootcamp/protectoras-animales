@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const NameClinic = styled.h2`
+export const InfoEntry = styled.h2`
      font-size: 1.125rem;
      font-weight: 500;
      line-height: 1.75rem;

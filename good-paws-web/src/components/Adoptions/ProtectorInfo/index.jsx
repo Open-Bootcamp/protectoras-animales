@@ -4,6 +4,7 @@ import { ProtectorCard } from '../../ProtectorCard'
 import { ButtonChat, Container, ContainerFiles, Title } from './styles'
 
 export const ProtectorInfo = () => {
+
   return (
     <Container>
         <Title>Protectora y documentos</Title>
