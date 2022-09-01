@@ -13,8 +13,8 @@ const HeadBox = () => {
         <Tabs variant="unstyled" colorScheme={'primary'}>
           <TabList>
             <Tab m={2} rounded={'md'} border='1px solid' _selected={{ color: 'white', bg: 'primary' }}>Adopta un senior</Tab>
-            <Tab m={2} rounded={'md'} border='1px solid' _selected={{ color: 'white', bg: 'primary' }}>Casos especiales</Tab>
-            <Tab m={2} rounded={'md'} border='1px solid' _selected={{ color: 'white', bg: 'primary' }}>Casa de acogida</Tab>
+            <Tab m={2} rounded={'md'} border='1px solid' _selected={{ color: 'white', bg: 'primary' }}>Condición especial</Tab>
+            <Tab m={2} rounded={'md'} border='1px solid' _selected={{ color: 'white', bg: 'primary' }}>Puede ir de viaje</Tab>
           </TabList>
         </Tabs>
       </Stack>
