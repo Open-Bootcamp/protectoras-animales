@@ -1,6 +1,26 @@
-import { ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader } from '@chakra-ui/react'
+import {
+    ModalBody,
+    ModalCloseButton,
+    ModalContent,
+    ModalFooter,
+    ModalHeader
+} from '@chakra-ui/react';
 
-import { ButtonCancel, ButtonSend, FormEntry, GridEntry, GridEntryItem1, GridEntryItem2, GridEntryItem3, InputContainer, InputEntry, LabelEntry, SubTitleModal, TextAreaEntry, TitleModal } from './styles'
+import {
+    ButtonCancel,
+    ButtonSend,
+    FormEntry,
+    GridEntry,
+    GridEntryItem1,
+    GridEntryItem2,
+    GridEntryItem3,
+    InputContainer,
+    InputEntry,
+    LabelEntry,
+    SubTitleModal,
+    TextAreaEntry,
+    TitleModal
+} from './styles';
 
 import { useForm } from '../../../hooks/useForm';
 
@@ -76,7 +96,7 @@ export const ModalEntries = ({ onClose, enterMedicalEntries }) => {
                                 enterMedicalEntries(values);
                                 reset();
                                 onClose();
-                                }}
+                            }}
                             >
                                 Enviar</ButtonSend>
                         </GridEntryItem3>

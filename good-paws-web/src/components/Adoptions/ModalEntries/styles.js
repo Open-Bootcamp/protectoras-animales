@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-
 export const TitleModal = styled.h2`
   font-size: 1.125rem;
   font-weight: 500;
@@ -28,11 +27,11 @@ export const GridEntryItem1 = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom:1.25rem;
+  margin-bottom: 1.25rem;
   gap: 1.25rem;
 `;
 export const GridEntryItem2 = styled.div`
-    margin-bottom: 2rem;
+  margin-bottom: 2rem;
 `;
 export const GridEntryItem3 = styled.div`
   display: flex;
@@ -53,11 +52,11 @@ export const InputEntry = styled.input`
   height: 44px;
   width: 100%;
 
-  &::placeholder{
+  &::placeholder {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5rem;
-    color: #3C3F41;
+    color: #3c3f41;
   }
 `;
 
@@ -66,17 +65,17 @@ export const InputContainer = styled.div`
 `;
 
 export const TextAreaEntry = styled.textarea`
-  border: 1px solid #C3C6C8;
+  border: 1px solid #c3c6c8;
   border-radius: 0.5rem;
   width: 100%;
   padding: 0.625rem 0.875rem;
   height: 9.625rem;
 
-  &::placeholder{
+  &::placeholder {
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5rem;
-    color: #3C3F41;
+    color: #3c3f41;
   }
 `;
 

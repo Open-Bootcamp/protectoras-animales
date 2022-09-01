@@ -1,10 +1,20 @@
-import { useState } from "react";
-import { Modal, ModalOverlay, useDisclosure } from "@chakra-ui/react";
-import { MedicalEntry } from "../MedicalEntry"
-import { ModalEntries } from "../ModalEntries";
-import { Button,  Container, MedicalEntries, MedicalHeader, MedicalInfo,  Text,  Title} from "./styles"
+import { useState } from 'react';
+import { Modal, ModalOverlay, useDisclosure } from '@chakra-ui/react';
+import { MedicalEntry } from '../MedicalEntry';
+import { ModalEntries } from '../ModalEntries';
+import {
+  Button,
+  Container,
+  MedicalEntries,
+  MedicalHeader,
+  MedicalInfo,
+  Text,
+  Title
+} from './styles';
 
 export const MedicalHistory = () => {
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [entries, setEntries] = useState([
     {
       id: 3123,
@@ -14,16 +24,15 @@ export const MedicalHistory = () => {
       dateEntry: new Date(),
     }
   ]);
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const enterMedicalEntries = (values) => {
-    
+
     setEntries([
       ...entries,
       values
     ])
   }
- 
+
   return (
     <>
       <Container>
@@ -36,12 +45,12 @@ export const MedicalHistory = () => {
         </MedicalInfo>
 
         <MedicalEntries>
-        {
-          entries.map((entry) => (<MedicalEntry entry={entry} />))
-        }
-          
-          
-          
+          {
+            entries.map((entry) => (<MedicalEntry entry={entry} />))
+          }
+
+
+
         </MedicalEntries>
       </Container>
 

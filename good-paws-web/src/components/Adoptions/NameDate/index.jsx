@@ -1,5 +1,5 @@
-import React from 'react'
-import { Container, InfoPet, NamePet } from './styles'
+import React from 'react';
+import { Container, InfoPet, NamePet } from './styles';
 
 export const NameDate = () => {
   return (

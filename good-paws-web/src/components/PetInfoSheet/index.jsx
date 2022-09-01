@@ -27,7 +27,7 @@ export const PetInfoSheet = ({ data, sizeName }) => {
                 </InfoLi>
                 <InfoLi>
                     <img src="/bxs-message.svg" alt="" />
-                    <p><b> Edad:</b> 2 años</p>
+                    <p><b> Edad:</b> 1 años</p>
                 </InfoLi>
                 <InfoLi>
                     <img src="/bxs-pin.svg" alt="" />
