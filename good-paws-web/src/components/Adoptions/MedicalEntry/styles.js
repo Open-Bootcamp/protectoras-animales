@@ -4,6 +4,8 @@ export const InfoEntry = styled.h2`
   font-size: 1.125rem;
   font-weight: 500;
   line-height: 1.75rem;
+  width: fit-content;
+  text-align: left;
 `;
 
 export const DateEntry = styled.p`

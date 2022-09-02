@@ -8,6 +8,11 @@ export const MedicalHeader = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 0.5rem;
+  text-align: justify;
+  @media screen and (max-width: 1024px) {
+    flex-direction: column;
+    margin-top: 1.375rem;
+  }
 `;
 
 export const Title = styled.h2`
@@ -22,6 +27,9 @@ export const Text = styled.p`
   font-weight: 400;
   line-height: 1.375rem;
   color: #697172;
+  @media screen and (max-width: 1024px) {
+    margin-top: 1.0625rem;
+  }
 `;
 
 export const Button = styled.button`
@@ -41,6 +49,10 @@ export const Button = styled.button`
       0px 0px 0px 4px rgba(87, 136, 135, 0.15);
     transition: 300ms ease-out;
     background-color: #ffffff;
+  }
+
+  @media screen and (max-width: 1024px) {
+    align-self: flex-end;
   }
 `;
 
