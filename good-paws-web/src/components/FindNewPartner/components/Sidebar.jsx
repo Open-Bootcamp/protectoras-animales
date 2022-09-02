@@ -1,9 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Select, Hide, Text, CheckboxGroup, Checkbox, IconButton, Box, CloseButton, Flex, Image, useColorModeValue, Drawer, DrawerContent, FormControl, useDisclosure, FormLabel, InputGroup, InputLeftElement, Input } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
 import SliderInp from './Slider';
 import { MainContext } from '../../../context/maincontext';
-import { useState } from 'react';
 
 export default function Sidebar({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
