@@ -11,8 +11,8 @@ import {
 import { useFormik } from "formik";
 import { Adoptions } from "../../components/Adoptions";
 import { Chat } from "../../components/Chat";
-import DesktopProfile from "./DesktopProfile";
-import MobileProfile from "./MobileProfile";
+import MobileVersion from "./MobileVersion";
+import DesktopVersion from "./DesktopVersion";
 
 export default function index() {
   const formik = useFormik({
@@ -39,8 +39,8 @@ export default function index() {
 
         <TabPanels>
           <TabPanel>
-            <MobileProfile formik={formik} />
-            <DesktopProfile formik={formik} />
+            <MobileVersion formik={formik} />
+            <DesktopVersion formik={formik} />
           </TabPanel>
           <TabPanel>
             <Chat />
