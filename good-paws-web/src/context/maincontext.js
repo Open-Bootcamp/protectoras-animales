@@ -13,7 +13,7 @@ export default function MainProvider({ children }) {
     const [userLocation, setUserLocation] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const { currentPage, totalPages, setNextPage, setPreviousPage, nextEnabled, previousEnabled, startIndex, endIndex } = usePagination({ totalItems: data.totalResults, initialPageSize: initRegs });
-    const initState = { name: "", centerId: "", raceId: "", adultSize: "", isShelter: false, isUrgent: false, radius: 0, isElder: false };
+    const initState = { name: "", centerId: "", raceId: "", adultSize: "", isShelter: false, isUrgent: false, radius: 0, isElder: false, hasEspecialCondition: false, canTravel: false };
     const [filters, setFilters] = useState(initState);
 
     const handleChange = (e) => {
@@ -22,8 +22,6 @@ export default function MainProvider({ children }) {
             [e.target.name]: e.target.value
         });
     };
-    
-    console.log(filters);
 
     useEffect(() => {
         setFilters({
@@ -40,7 +38,7 @@ export default function MainProvider({ children }) {
         setIsLoading(true);
         (async () => {
             try {
-                const rs = await fetch(`${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_ALL_PETS_URL}${initRegs}${process.env.NEXT_PUBLIC_ALL_PETS_PAGE}${currentPage <= 0 ? 1 : currentPage + 1}${filters.name && `&name=${filters.name}`}${filters.centerId && `&centerId=${filters.centerId}`}${filters.raceId && `&raceId=${filters.raceId}`}${filters.adultSize && `&adultSize=${filters.adultSize}`}${filters.radius > 0 ? `&coordinates=${userLocation[1]},${userLocation[0]}&radius=${filters.radius}` : ''}`, {
+                const rs = await fetch(`${process.env.NEXT_PUBLIC_HOST}${process.env.NEXT_PUBLIC_ALL_PETS_URL}${initRegs}${process.env.NEXT_PUBLIC_ALL_PETS_PAGE}${currentPage <= 0 ? 1 : currentPage + 1}${filters.name && `&name=${filters.name}`}${filters.centerId && `&centerId=${filters.centerId}`}${filters.raceId && `&raceId=${filters.raceId}`}${filters.isShelter === "true" ? `&isShelter=${filters.isShelter}` : ''}${filters.isUrgent === "true" ? `&isUrgent=${filters.isUrgent}` : ''}${filters.isElder === "true" ? `&isElder=${filters.isElder}` : ''}${filters.canTravel === "true" ? `&canTravel=${filters.canTravel}` : ''}${filters.hasEspecialCondition === "true" ? `&hasEspecialCondition=${filters.hasEspecialCondition}` : ''}${filters.adultSize && `&adultSize=${filters.adultSize}`}${filters.radius > 0 ? `&coordinates=${userLocation[1]},${userLocation[0]}&radius=${filters.radius}` : ''}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'
