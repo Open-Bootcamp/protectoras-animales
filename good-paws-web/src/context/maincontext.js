@@ -13,7 +13,7 @@ export default function MainProvider({ children }) {
     const [userLocation, setUserLocation] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const { currentPage, totalPages, setNextPage, setPreviousPage, nextEnabled, previousEnabled, startIndex, endIndex } = usePagination({ totalItems: data.totalResults, initialPageSize: initRegs });
-    const initState = { name: "", centerId: "", raceId: "", adultSize: "", isShelter: false, isUrgent: false, radius: 0 };
+    const initState = { name: "", centerId: "", raceId: "", adultSize: "", isShelter: false, isUrgent: false, radius: 0, isElder: false };
     const [filters, setFilters] = useState(initState);
 
     const handleChange = (e) => {
@@ -22,6 +22,8 @@ export default function MainProvider({ children }) {
             [e.target.name]: e.target.value
         });
     };
+    
+    console.log(filters);
 
     useEffect(() => {
         setFilters({
