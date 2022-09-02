@@ -9,6 +9,7 @@ import Race from 'App/Models/Race'
 import Type from 'App/Models/Type'
 import Center from 'App/Models/Center'
 import Sex from 'App/Models/Sex'
+import AnimalImage from 'App/Models/AnimalImage'
 
 export default class AnimalsController {
   public async index({ request, response }: HttpContextContract) {
@@ -83,12 +84,13 @@ export default class AnimalsController {
       hasEspecialCondition = '',
       radius = 500,
       coordinates = '',
+      adultSize = '',
     } = await request.validate({
       schema: animalFilterSchema,
       reporter: ErrorReporter,
     })
 
-    const animal: ModelPaginatorContract<Animal> = await Animal.query()
+    const animal: Animal[] = await Animal.query()
       .where('status', true)
       .if(coordinates, (query) => {
         const [latitude, longitude] = coordinates!.split(',').map((value) => parseFloat(value))
@@ -101,7 +103,11 @@ export default class AnimalsController {
         )
       })
       .if(name, (query) => {
-        query.whereILike('name', `%${name}%`)
+        // query.whereILike('name', `%${name}%`).andWhereIn('id', AnimalImage.query().select('picture').where('id', ))
+        query
+          .join('animal_images', 'animals.id', '=', 'animal_images.id')
+          .select('animals.*')
+          .select('animal_images.picture')
       })
       .if(friendly, (query) => {
         query.where('friendly', friendly)
@@ -127,11 +133,15 @@ export default class AnimalsController {
       .if(centerId, (query) => {
         query.whereIn('center_id', Center.query().select('centers.id').where('id', centerId))
       })
-      .paginate(page, size)
+      .if(adultSize, (query) => {
+        query.where('adultSize', adultSize)
+      })
+
+    const animalWithPic: ModelPaginatorContract<Animal> = await Animal.query().paginate(page, size)
 
     response.ok({
-      totalResults: animal.total,
-      results: animal.all(),
+      totalResults: animalWithPic.total,
+      results: animalWithPic.all(),
     })
   }
 }
