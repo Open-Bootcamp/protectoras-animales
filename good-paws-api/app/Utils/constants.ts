@@ -11,3 +11,8 @@ export enum UserLevelEnum {
   center,
   adopter,
 }
+export enum MedicalStateEnum {
+  none,
+  pending,
+  done,
+}
