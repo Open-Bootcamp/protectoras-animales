@@ -5,12 +5,35 @@ import { MainContext } from '../../../context/maincontext';
 const HeadBox = () => {
   const [tabIndex, setTabIndex] = React.useState(-1);   // assumes at least one of the options is active
   const { filters, handleChange } = useContext(MainContext);
+  const [isElder, setIsElder] = useState(false);
+  const [canTravel, setCanTravel] = useState(false);
+  const [hasEspecialCondition, setHasEspecialCondition] = useState(false);
+  
+  const handleIsElder = (e) => {
+    setIsElder(!isElder);
+    e.target.value = isElder;
+    e.target.name = e.target.name;
+    handleChange(e);
+  }
+
+  const handleHasEspecialCondition = (e) => {
+    setHasEspecialCondition(!hasEspecialCondition);
+    e.target.value = hasEspecialCondition;
+    e.target.name = e.target.name;
+    handleChange(e);
+  }
+
+  const handleCanTravel = (e) => {
+    setCanTravel(!canTravel);
+    e.target.value = canTravel;
+    e.target.name = e.target.name;
+    handleChange(e);
+  }
 
   const handleTabsChange = (index) => {
     setTabIndex(index);
   }
 
-  console.log(filters.isElder);
 
   return (
     <Stack mb={5} minH={"auto"} direction={{ base: "column", md: "column" }}>
@@ -22,9 +45,9 @@ const HeadBox = () => {
       <Stack direction={{ base: "column", md: "row" }} spacing={4}>
         <Tabs index={tabIndex} onChange={handleTabsChange} variant="unstyled" colorScheme={'primary'}>
           <TabList>
-            <Tab name={'isElder'} m={2} rounded={'md'} border='1px solid' _selected={{ color: 'white', bg: 'primary' }}>Adopta un senior</Tab>
-            <Tab name={'hasEspecialCondition'} m={2} rounded={'md'} border='1px solid' _selected={{ color: 'white', bg: 'primary' }}>Condición especial</Tab>
-            <Tab name={'canTravel'} m={2} rounded={'md'} border='1px solid' _selected={{ color: 'white', bg: 'primary' }}>Puede ir de viaje</Tab>
+            <Tab name={'isElder'} value={filters.isElder} onClick={handleIsElder} m={2} rounded={'md'} border='1px solid' bg={isElder ? 'none' : 'primary'} color={isElder ? 'black' : 'white'}>Adopta un senior</Tab>
+            <Tab name={'hasEspecialCondition'} value={filters.hasEspecialCondition} onClick={handleHasEspecialCondition} m={2} rounded={'md'} border='1px solid' bg={hasEspecialCondition ? 'none' : 'primary'} color={hasEspecialCondition ? 'black' : 'white'}>Condición especial</Tab>
+            <Tab name={'canTravel'} m={2} value={filters.canTravel} onClick={handleCanTravel} rounded={'md'} border='1px solid' bg={canTravel ? 'none' : 'primary'} color={canTravel ? 'black' : 'white'}>Puede ir de viaje</Tab>
           </TabList>
         </Tabs>
       </Stack>
