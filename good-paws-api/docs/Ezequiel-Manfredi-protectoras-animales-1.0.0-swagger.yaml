@@ -723,6 +723,134 @@ paths:
           description: "Not authorized to manipulate a resource"
         '404':
           description: "Animal image not found"
+  /animals/{animalId}/medical-history:
+    get:
+      summary: "Search animal medical history"
+      tags:
+        - Animals
+      parameters:
+        - name: animalId
+          description: "Animal id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+            example: 1
+        - name: page
+          description: "Page of results"
+          in: query
+          required: false
+          schema:
+            type: number
+            example: 1
+        - name: size
+          description: "Max-size of medical history list"
+          in: query
+          required: false
+          schema:
+            type: number
+            example: 10
+      responses:
+        '200':
+          description: "Medical history list or empty list"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetMedicalHistory"
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: "Create a new medical history"
+      tags:
+        - Animals
+      parameters:
+        - name: animalId
+          description: "Animal id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+            example: 1
+      responses:
+        '201':
+          description: "New medical history has been created"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MedicalHistory"
+        '400':
+          description: "Return all errors"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+        '401':
+          description: "Not authorized to manipulate a resource"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+                $ref: "#/components/schemas/QueryMedicalHistory"
+  /animals/{animalId}/medical-history/{id}:
+    get:
+      summary: "Search an medical history"
+      tags:
+        - Animals
+      parameters:
+        - name: animalId
+          description: "Animal id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+            example: 1
+        - name: id
+          description: "Medical history id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+            example: 1
+      responses:
+        '200':
+          description: "Return an medical history"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MedicalHistory"
+        '404':
+          description: "Medical history not found"
+    delete:
+      summary: "Delete an existent medical history"
+      tags:
+        - Animals
+      parameters:
+        - name: animalId
+          description: "Animal id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+            example: 1
+        - name: id
+          description: "Medical history id for search"
+          in: path
+          required: true
+          schema:
+            type: number
+            example: 1
+      responses:
+        '200':
+          description: "Medical history has been deleted"
+        '401':
+          description: "Not authorized to manipulate a resource"
+        '404':
+          description: "Medical history not found"
   
   /protectors:
     get:
@@ -1067,7 +1195,7 @@ paths:
     post:
       summary: "Create a new review"
       tags:
-        - Types
+        - Centers
       parameters:
         - name: centerId
           description: "Center id for search"
@@ -1106,7 +1234,7 @@ paths:
         - name: centerId
           description: "Center id for search"
           in: path
-          required: false
+          required: true
           schema:
             type: number
             example: 1
@@ -1134,7 +1262,7 @@ paths:
         - name: centerId
           description: "Center id for search"
           in: path
-          required: false
+          required: true
           schema:
             type: number
             example: 1
@@ -2033,6 +2161,80 @@ components:
                 example: 1
               picture:
                 $ref: "#/components/schemas/Image"
+    MedicalHistory:
+      type: object
+      required:
+        - id
+        - title
+        - observation
+        - clinic
+        - state
+        - animalId
+        - status
+        - createdAt
+      properties:
+        id:
+          type: number
+          example: 1
+        title:
+          type: string
+          example: "un titulo"
+        observation:
+          type: string
+          example: "una observacion"
+        clinic: 
+          type: string
+          example: "nombre de la clinica"
+        state:
+          type: string
+          example: "1"
+          description: "0-none<br>1-pending<br>2-done"
+        authorId:
+          type: number
+          example: 1
+        status:
+          type: boolean
+          example: true
+        createdAt:
+          type: string
+          example: "2020-06-23"
+    GetMedicalHistory:
+      type: object
+      required:
+        - totalResults
+        - results
+      properties:
+        totalResults:
+          type: number
+          example: 100
+        results:
+          type: array
+          items:
+            $ref: "#/components/schemas/MedicalHistory"
+    QueryMedicalHistory:
+      type: object
+      required: 
+        - title
+        - observation
+        - clinic
+        - state
+      properties:
+        title:
+          type: string
+          example: "un titulo"
+        observation:
+          type: string
+          example: "una observacion"
+        clinic: 
+          type: string
+          example: "nombre de la clinica"
+        state:
+          type: number
+          example: 1
+          description: "0-none<br>1-pending<br>2-done"
+        status:
+          type: boolean
+          example: true
     
     Protector:
       type: object
