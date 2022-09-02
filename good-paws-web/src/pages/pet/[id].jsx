@@ -15,7 +15,7 @@ const PetOverview = ({ data }) => {
   return (
     <Grid>
       <GridItem1>
-        {width >= 785 && <BackArrow text="Volver al listado" link="/newpartner" />}
+        {width >= 785 && <BackArrow text="Volver al listado" link="/petlist" />}
         {width >= 785 && <PetPictures data={data} />}
       </GridItem1>
       <GridItem2>

@@ -14,7 +14,6 @@
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
     "@fontsource/inter": "^4.5.12",
-    "chakra-react-select": "^4.1.4",
     "dotenv": "^16.0.1",
     "formik": "^2.2.9",
     "framer-motion": "^7.0.1",
@@ -26,9 +25,10 @@
     "react-icons": "^4.4.0",
     "react-leaflet": "^4.0.1",
     "react-multi-carousel": "^2.8.2",
+    "react-navigator-geolocation": "^1.0.8",
+    "react-spinners": "^0.13.4",
     "react-use-pagination": "^2.0.1",
     "styled-components": "^5.3.5",
-    "yarn": "^1.22.19",
     "yup": "^0.32.11"
   },
   "devDependencies": {
