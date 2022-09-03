@@ -17,7 +17,7 @@ export default function Navbar(props) {
 
       <MenuLinks isOpen={isOpen} onClose={onClose} />
       <Box display={{ base: "none", lg: "block" }}>
-        <MenuItem to="/soyprotectora" title="Soy protectora" color="primary" />
+        <MenuItem to="/imshelter" title="Soy protectora" color="primary" />
         <Button
           bg="primary"
           _hover={{ bg: "primary" }}
