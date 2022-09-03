@@ -1,8 +1,9 @@
 import React, { useContext, useState } from 'react';
-import { Select, Hide, Text, CheckboxGroup, Checkbox, IconButton, Box, CloseButton, Flex, Image, useColorModeValue, Drawer, DrawerContent, FormControl, useDisclosure, FormLabel, InputGroup, InputLeftElement, Input } from '@chakra-ui/react';
+import { Select, Hide, Text, Checkbox, IconButton, Box, CloseButton, Flex, Image, useColorModeValue, Drawer, DrawerContent, FormControl, useDisclosure, FormLabel, InputGroup, InputLeftElement, Input } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
 import SliderInp from './Slider';
 import { MainContext } from '../../../context/maincontext';
+import { ComboContext } from '../../../context/combocontext';
 
 export default function Sidebar({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -25,7 +26,8 @@ export default function Sidebar({ children }) {
 }
 
 const SidebarContent = ({ onClose, ...rest }) => {
-  const { filters, handleChange, centers, races } = useContext(MainContext);
+  const { filters, handleChange } = useContext(MainContext);
+  const { centers, races } = useContext(ComboContext);
   const [isShelter, setIsShelter] = useState(true);
   const [isUrgent, setIsUrgent] = useState(true);
 
