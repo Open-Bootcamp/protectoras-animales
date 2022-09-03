@@ -15,7 +15,7 @@ export default function Header() {
             han tenido tanta suerte.
           </Text>
           <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
-            <NextLink href='/newpartner' passHref>
+            <NextLink href='/petlist' passHref>
               <Button w={['max-content', '65%']} rounded={'md'} bg={'accent'} color={'white'} _hover={{ bg: 'primarylight', }}>Encuentra a tu mejor amigo</Button>
             </NextLink>
           </Stack>
