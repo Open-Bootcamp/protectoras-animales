@@ -7,8 +7,6 @@ export const MainContext = createContext();
 export default function MainProvider({ children }) {
     const [initRegs, setInitRegs] = useState(8);
     const [data, setData] = useState([]);
-    const [centers, setCenters] = useState([]);
-    const [races, setRaces] = useState([]);
     const [sliderValue, setSliderValue] = useState(0);
     const [userLocation, setUserLocation] = useState({});
     const [isLoading, setIsLoading] = useState(false);
@@ -53,44 +51,8 @@ export default function MainProvider({ children }) {
         })();
     }, [currentPage, initRegs, filters]);
 
-    //Centers combobox
-    useEffect(() => {
-        (async () => {
-            try {
-                const rs = await fetch(`${process.env.NEXT_PUBLIC_HOST}centers`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-                const data = await rs.json();
-                setCenters(data.results);
-            } catch (e) {
-                console.log(e);
-            }
-        })();
-    }, []);
-
-    //Centers combobox
-    useEffect(() => {
-        (async () => {
-            try {
-                const rs = await fetch(`${process.env.NEXT_PUBLIC_HOST}races`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-                const data = await rs.json();
-                setRaces(data.results);
-            } catch (e) {
-                console.log(e);
-            }
-        })();
-    }, []);
-
     return ( 
-        <MainContext.Provider value = {{ data, setData, currentPage, totalPages, setNextPage, setPreviousPage, nextEnabled, previousEnabled, startIndex, endIndex, setInitRegs, isLoading, setIsLoading, filters, setFilters, handleChange, centers, races, sliderValue, setSliderValue }}>
+        <MainContext.Provider value = {{ data, setData, currentPage, totalPages, setNextPage, setPreviousPage, nextEnabled, previousEnabled, startIndex, endIndex, setInitRegs, isLoading, setIsLoading, filters, setFilters, handleChange, sliderValue, setSliderValue }}>
             {children}
         </MainContext.Provider>
     );

@@ -4,6 +4,8 @@ import "../styles/globals.css";
 import theme from "../styles/ChakraTheme";
 import "@fontsource/inter";
 import MainProvider from "../context/maincontext";
+import { wrapper } from "../store/store";
+import { Provider } from "react-redux";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -17,4 +19,4 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
-export default MyApp;
+export default wrapper.withRedux(MyApp);
