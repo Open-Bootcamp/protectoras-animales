@@ -50,7 +50,7 @@ export default class CentersController {
 
   public async update({ request, response }: HttpContextContract) {
     const id: number = request.param('id')
-    const { picture, ...body } = await request.validate({
+    const { picture, deleteImage, ...body } = await request.validate({
       schema: centerSchema,
       reporter: ErrorReporter,
     })
@@ -64,7 +64,7 @@ export default class CentersController {
     })
     if (picture) {
       center.merge({ picture: Attachment.fromFile(picture) })
-    } else if (body.deleteImage) {
+    } else if (deleteImage) {
       center.merge({ picture: null })
     }
     center.save()
