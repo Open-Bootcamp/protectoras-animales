@@ -64,6 +64,8 @@ export default class CentersController {
     })
     if (picture) {
       center.merge({ picture: Attachment.fromFile(picture) })
+    } else if (body.deleteImage) {
+      center.merge({ picture: null })
     }
     center.save()
 

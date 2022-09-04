@@ -54,6 +54,8 @@ export default class UsersController {
     user.merge(body)
     if (picture) {
       user.merge({ picture: Attachment.fromFile(picture) })
+    } else if (body.deleteImage) {
+      user.merge({ picture: null })
     }
     user.save()
 
