@@ -1,5 +1,12 @@
 import { ViewIcon } from "@chakra-ui/icons";
-import { Box, Divider, Flex, FormControl, HStack } from "@chakra-ui/react";
+import {
+  Box,
+  Divider,
+  Flex,
+  FormControl,
+  FormErrorMessage,
+  HStack,
+} from "@chakra-ui/react";
 import envelope from "../../../public/assets/images/envelope-icon.svg";
 import AvatarComponent from "./AvatarComponent";
 import FormControlComponent from "./FormControlComponent";
@@ -21,7 +28,9 @@ export default function DesktopProfile({ formik }) {
           <UploadComponent pl={20} pr={20} formik={formik} />
         </HStack>
         <Divider mt={6} mb={6} />
-        <FormControl>
+        <FormControl
+          isInvalid={!!formik.errors.fullname && formik.touched.fullname}
+        >
           <HStack>
             <FormControlComponent
               label="Nombre y apellidos"
@@ -30,10 +39,11 @@ export default function DesktopProfile({ formik }) {
               placeholder="Marta García"
               formik={formik}
             />
+            <FormErrorMessage>{formik.errors.fullname}</FormErrorMessage>
           </HStack>
         </FormControl>
         <Divider mt={6} mb={6} />
-        <FormControl>
+        <FormControl isInvalid={!!formik.errors.email && formik.touched.email}>
           <HStack>
             <FormControlComponent
               label="Email"
@@ -43,10 +53,13 @@ export default function DesktopProfile({ formik }) {
               icon={envelope}
               formik={formik}
             />
+            <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
           </HStack>
         </FormControl>
         <Divider mt={6} mb={6} />
-        <FormControl>
+        <FormControl
+          isInvalid={!!formik.errors.password && formik.touched.password}
+        >
           <HStack>
             <FormControlComponent
               label="Contraseña"
@@ -56,6 +69,7 @@ export default function DesktopProfile({ formik }) {
               icon={<ViewIcon />}
               formik={formik}
             />
+            <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
           </HStack>
         </FormControl>
       </form>

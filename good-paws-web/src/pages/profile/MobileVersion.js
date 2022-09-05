@@ -3,6 +3,7 @@ import {
   Box,
   Divider,
   FormControl,
+  FormErrorMessage,
   StackDivider,
   VStack,
 } from "@chakra-ui/react";
@@ -25,7 +26,9 @@ export default function MobileProfile({ formik }) {
           spacing={4}
           align="stretch"
         >
-          <FormControl>
+          <FormControl
+            isInvalid={!!formik.errors.fullname && formik.touched.fullname}
+          >
             <FormControlComponent
               label="Nombre y apellidos"
               name="fullname"
@@ -33,8 +36,12 @@ export default function MobileProfile({ formik }) {
               placeholder="Marta García"
               formik={formik}
             />
+            <FormErrorMessage>{formik.errors.fullname}</FormErrorMessage>
           </FormControl>
-          <FormControl>
+
+          <FormControl
+            isInvalid={!!formik.errors.email && formik.touched.email}
+          >
             <FormControlComponent
               label="Email"
               name="email"
@@ -43,9 +50,12 @@ export default function MobileProfile({ formik }) {
               icon={envelope}
               formik={formik}
             />
+            <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
           </FormControl>
 
-          <FormControl>
+          <FormControl
+            isInvalid={!!formik.errors.password && formik.touched.password}
+          >
             <FormControlComponent
               label="Contraseña"
               name="password"
@@ -54,6 +64,7 @@ export default function MobileProfile({ formik }) {
               icon={<ViewIcon />}
               formik={formik}
             />
+            <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
           </FormControl>
         </VStack>
       </form>

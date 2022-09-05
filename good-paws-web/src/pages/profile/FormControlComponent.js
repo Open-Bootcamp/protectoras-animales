@@ -67,6 +67,7 @@ export default function FormControlComponent({
               placeholder={placeholder}
               onChange={formik.handleChange}
               value={formik.values.name}
+              onBlur={formik.handleBlur}
             />
           </InputGroup>
         </Box>
@@ -79,6 +80,7 @@ export default function FormControlComponent({
             placeholder={placeholder}
             onChange={formik.handleChange}
             value={formik.values.name}
+            onBlur={formik.handleBlur}
             color="gray5"
           />
         </Box>
