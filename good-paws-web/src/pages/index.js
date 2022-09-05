@@ -1,13 +1,11 @@
-import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import Header from '../components/Header/Header';
 import { About_us, Container } from '../components/About_us/About_us.jsx';
 import HappyFamilies from '../components/HappyFamilies';
 import ShelterMap from '../components/ShelterMap';
 import HomeNewPartner from '../components/HomeNewPartner';
-import Shelter from '../components/Shelters';
 
-const images = [
+export const images = [
 	{
 		id: 'a8s123123a',
 		url: 'img-1.jpeg',
@@ -33,23 +31,11 @@ const images = [
 export default function Home() {
 	return (
 		<div className={styles.container}>
-			<Head>
-				<title>Protectora de animales</title>
-				<meta
-					name='description'
-					content='Adoptando un animal, le das una segunda vida a aquellos que no han tenido tanta suerte'
-				/>
-				<link rel='icon' href='/accent.svg' />
-			</Head>
-
 			<Header />
-			<Shelter />
-			<HomeNewPartner />
+			<HomeNewPartner principal={'Tu nuevo compañero de vida'} secondary={'¿Eres más de gatos? ¿De perros? ¿De pájaros? ¡No importa! Te ayudaremos a encontrar a tu nuevo mejor amigo.'}/>
 			<About_us />
 			<ShelterMap />
 			<HappyFamilies images={images} />
-
-			<main className={styles.main}></main>
 		</div>
 	);
 }
