@@ -5,7 +5,7 @@ import Center from 'App/Models/Center'
 import Protector from 'App/Models/Protector'
 import ErrorReporter from 'App/Validators/Reporters/ErrorReporter'
 import { centerFilterSchema } from 'App/Validators/Schemas/CenterFilterSchema'
-import { centerSchema } from 'App/Validators/Schemas/CenterSchema'
+import { centerModifySchema, centerSchema } from 'App/Validators/Schemas/CenterSchema'
 import { paginationSchema } from 'App/Validators/Schemas/PaginationSchema'
 
 export default class CentersController {
@@ -51,17 +51,16 @@ export default class CentersController {
   public async update({ request, response }: HttpContextContract) {
     const id: number = request.param('id')
     const { picture, deleteImage, ...body } = await request.validate({
-      schema: centerSchema,
+      schema: centerModifySchema,
       reporter: ErrorReporter,
     })
-    const [latitude, longitude] = body.coordinates.split(',').map((value) => parseFloat(value))
 
     const center = await Center.findOrFail(id)
-    center.merge({
-      latitude,
-      longitude,
-      ...body,
-    })
+    center.merge({ ...body })
+    if (body.coordinates) {
+      const [latitude, longitude] = body.coordinates.split(',').map((value) => parseFloat(value))
+      center.merge({ latitude, longitude })
+    }
     if (picture) {
       center.merge({ picture: Attachment.fromFile(picture) })
     } else if (deleteImage) {

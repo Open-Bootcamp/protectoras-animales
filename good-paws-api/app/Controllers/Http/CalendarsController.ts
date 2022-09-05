@@ -2,7 +2,7 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { ModelPaginatorContract } from '@ioc:Adonis/Lucid/Orm'
 import Calendar from 'App/Models/Calendar'
 import ErrorReporter from 'App/Validators/Reporters/ErrorReporter'
-import { calendarSchema } from 'App/Validators/Schemas/CalendarSchema'
+import { calendarModifySchema, calendarSchema } from 'App/Validators/Schemas/CalendarSchema'
 import { paginationSchema } from 'App/Validators/Schemas/PaginationSchema'
 
 export default class CalendarsController {
@@ -42,7 +42,7 @@ export default class CalendarsController {
   public async update({ request, response }: HttpContextContract) {
     const id: number = request.param('id')
     const body = await request.validate({
-      schema: calendarSchema,
+      schema: calendarModifySchema,
       reporter: ErrorReporter,
     })
 
