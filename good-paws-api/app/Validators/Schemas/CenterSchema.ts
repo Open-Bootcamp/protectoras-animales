@@ -16,4 +16,5 @@ export const centerSchema = schema.create({
     extnames: ['jpg', 'gif', 'png'],
   }),
   status: schema.boolean.optional(),
+  deleteImage: schema.boolean.optional(),
 })
