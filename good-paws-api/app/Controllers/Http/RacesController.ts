@@ -3,7 +3,7 @@ import { ModelPaginatorContract } from '@ioc:Adonis/Lucid/Orm'
 import Race from 'App/Models/Race'
 import ErrorReporter from 'App/Validators/Reporters/ErrorReporter'
 import { paginationSchema } from 'App/Validators/Schemas/PaginationSchema'
-import { raceSchema } from 'App/Validators/Schemas/RaceSchema'
+import { raceModifySchema, raceSchema } from 'App/Validators/Schemas/RaceSchema'
 
 export default class RacesController {
   public async index({ request, response }: HttpContextContract) {
@@ -42,7 +42,7 @@ export default class RacesController {
   public async update({ request, response }: HttpContextContract) {
     const id: number = request.param('id')
     const body = await request.validate({
-      schema: raceSchema,
+      schema: raceModifySchema,
       reporter: ErrorReporter,
     })
 

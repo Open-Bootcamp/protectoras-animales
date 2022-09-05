@@ -2,7 +2,7 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { ModelPaginatorContract } from '@ioc:Adonis/Lucid/Orm'
 import Animal from 'App/Models/Animal'
 import ErrorReporter from 'App/Validators/Reporters/ErrorReporter'
-import { animalSchema } from 'App/Validators/Schemas/AnimalSchema'
+import { animalSchema, animalModifySchema } from 'App/Validators/Schemas/AnimalSchema'
 import { animalFilterSchema } from 'App/Validators/Schemas/AnimalFilterSchema'
 import { paginationSchema } from 'App/Validators/Schemas/PaginationSchema'
 import Race from 'App/Models/Race'
@@ -47,7 +47,7 @@ export default class AnimalsController {
   public async update({ request, response }: HttpContextContract) {
     const id: number = request.param('id')
     const body = await request.validate({
-      schema: animalSchema,
+      schema: animalModifySchema,
       reporter: ErrorReporter,
     })
 

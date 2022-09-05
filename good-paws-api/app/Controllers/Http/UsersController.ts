@@ -4,7 +4,7 @@ import { ModelPaginatorContract } from '@ioc:Adonis/Lucid/Orm'
 import User from 'App/Models/User'
 import ErrorReporter from 'App/Validators/Reporters/ErrorReporter'
 import { paginationSchema } from 'App/Validators/Schemas/PaginationSchema'
-import { userSchema } from 'App/Validators/Schemas/UserSchema'
+import { userModifySchema, userSchema } from 'App/Validators/Schemas/UserSchema'
 
 export default class UsersController {
   public async index({ request, response }: HttpContextContract) {
@@ -46,7 +46,7 @@ export default class UsersController {
   public async update({ request, response }: HttpContextContract) {
     const id: number = request.param('id')
     const { picture, ...body } = await request.validate({
-      schema: userSchema,
+      schema: userModifySchema,
       reporter: ErrorReporter,
     })
 

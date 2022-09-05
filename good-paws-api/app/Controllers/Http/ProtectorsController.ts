@@ -2,7 +2,7 @@ import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import { ModelPaginatorContract } from '@ioc:Adonis/Lucid/Orm'
 import ErrorReporter from 'App/Validators/Reporters/ErrorReporter'
 import { paginationSchema } from 'App/Validators/Schemas/PaginationSchema'
-import { protectorSchema } from 'App/Validators/Schemas/ProtectorSchema'
+import { protectorModifySchema, protectorSchema } from 'App/Validators/Schemas/ProtectorSchema'
 import Protector from 'App/Models/Protector'
 
 export default class ProtectorsController {
@@ -45,7 +45,7 @@ export default class ProtectorsController {
   public async update({ request, response }: HttpContextContract) {
     const id: number = request.param('id')
     const body = await request.validate({
-      schema: protectorSchema,
+      schema: protectorModifySchema,
       reporter: ErrorReporter,
     })
 

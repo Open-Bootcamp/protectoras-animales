@@ -3,7 +3,7 @@ import { ModelPaginatorContract } from '@ioc:Adonis/Lucid/Orm'
 import Sex from 'App/Models/Sex'
 import ErrorReporter from 'App/Validators/Reporters/ErrorReporter'
 import { paginationSchema } from 'App/Validators/Schemas/PaginationSchema'
-import { sexSchema } from 'App/Validators/Schemas/SexSchema'
+import { sexModifySchema, sexSchema } from 'App/Validators/Schemas/SexSchema'
 
 export default class SexesController {
   public async index({ request, response }: HttpContextContract) {
@@ -42,7 +42,7 @@ export default class SexesController {
   public async update({ request, response }: HttpContextContract) {
     const id: number = request.param('id')
     const body = await request.validate({
-      schema: sexSchema,
+      schema: sexModifySchema,
       reporter: ErrorReporter,
     })
 
