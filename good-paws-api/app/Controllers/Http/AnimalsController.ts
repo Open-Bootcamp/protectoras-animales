@@ -9,6 +9,7 @@ import Race from 'App/Models/Race'
 import Type from 'App/Models/Type'
 import Center from 'App/Models/Center'
 import Sex from 'App/Models/Sex'
+import AnimalImage from 'App/Models/AnimalImage'
 
 export default class AnimalsController {
   public async index({ request, response }: HttpContextContract) {
@@ -83,6 +84,7 @@ export default class AnimalsController {
       hasEspecialCondition = '',
       radius = 500,
       coordinates = '',
+      adultSize = '',
     } = await request.validate({
       schema: animalFilterSchema,
       reporter: ErrorReporter,
@@ -126,6 +128,12 @@ export default class AnimalsController {
       })
       .if(centerId, (query) => {
         query.whereIn('center_id', Center.query().select('centers.id').where('id', centerId))
+      })
+      .if(adultSize, (query) => {
+        query.where('adultSize', adultSize)
+      })
+      .preload('pictures', (pictureQuery) => {
+        pictureQuery.select('picture').first()
       })
       .paginate(page, size)
 

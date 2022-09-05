@@ -33,4 +33,5 @@ export const centerModifySchema = schema.create({
   }),
   deleteImage: schema.boolean.optional(),
   status: schema.boolean.optional(),
+  deleteImage: schema.boolean.optional(),
 })

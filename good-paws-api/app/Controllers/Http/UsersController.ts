@@ -45,7 +45,7 @@ export default class UsersController {
 
   public async update({ request, response }: HttpContextContract) {
     const id: number = request.param('id')
-    const { picture, ...body } = await request.validate({
+    const { picture, deleteImage, ...body } = await request.validate({
       schema: userModifySchema,
       reporter: ErrorReporter,
     })
@@ -54,6 +54,8 @@ export default class UsersController {
     user.merge(body)
     if (picture) {
       user.merge({ picture: Attachment.fromFile(picture) })
+    } else if (deleteImage) {
+      user.merge({ picture: null })
     }
     user.save()
 

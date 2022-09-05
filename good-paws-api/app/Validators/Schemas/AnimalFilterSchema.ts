@@ -1,5 +1,5 @@
 import { schema, rules } from '@ioc:Adonis/Core/Validator'
-import { coordinatesRegex } from 'App/Utils/constants'
+import { AdultSizeEnum, coordinatesRegex } from 'App/Utils/constants'
 
 export const animalFilterSchema = schema.create({
   name: schema.string.optional(),
@@ -11,6 +11,7 @@ export const animalFilterSchema = schema.create({
   canTravel: schema.boolean.optional(),
   isElder: schema.boolean.optional(),
   hasEspecialCondition: schema.boolean.optional(),
+  adultSize: schema.enum.optional(Object.values(AdultSizeEnum)),
   radius: schema.number.optional(),
   coordinates: schema.string.optional({}, [rules.regex(coordinatesRegex)]),
 })

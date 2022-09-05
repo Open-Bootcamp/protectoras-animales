@@ -12,6 +12,7 @@ export const userSchema = schema.create({
   }),
   userLevel: schema.enum(Object.values(UserLevelEnum)),
   centerId: schema.number.optional([rules.exists({ table: 'centers', column: 'id' })]),
+  deleteImage: schema.boolean.optional(),
 })
 
 export const userModifySchema = schema.create({
