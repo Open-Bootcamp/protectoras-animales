@@ -6,7 +6,6 @@ import HeadBox from "./Components/HeadBox";
 import CardsContainer from "../CardsContainer/CardsContainer";
 import Sidebar from "./Components/Sidebar";
 import { MainContext } from "../../context/maincontext";
-import ComboProvider from "../../context/combocontext";
 
 const Clickable = (props) => {
     const clickable = useClickable(props);
@@ -24,9 +23,7 @@ const FindNewPartner = () => {
       <Flex direction={'column'}>
         <HeadBox />
         <Flex direction={{ base: 'column', md: 'row'}}>
-          <ComboProvider>
-            <Sidebar />
-          </ComboProvider>
+          <Sidebar />
           <Flex w={'full'} direction={'column'}>
             <CardsContainer data={data.results && data.results} />
             <Box color={useColorModeValue("gray5", "gray2")}>
