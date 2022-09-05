@@ -11,6 +11,23 @@ export const userSchema = schema.create({
     extnames: ['jpg', 'gif', 'png'],
   }),
   userLevel: schema.enum(Object.values(UserLevelEnum)),
-  status: schema.boolean.optional(),
   centerId: schema.number.optional([rules.exists({ table: 'centers', column: 'id' })]),
+})
+
+export const userModifySchema = schema.create({
+  username: schema.string.optional(),
+  fullname: schema.string.optional(),
+  email: schema.string.optional({}, [
+    rules.email(),
+    rules.unique({ table: 'users', column: 'email' }),
+  ]),
+  password: schema.string.optional({}, [rules.confirmed()]),
+  picture: schema.file.optional({
+    size: '2mb',
+    extnames: ['jpg', 'gif', 'png'],
+  }),
+  userLevel: schema.enum.optional(Object.values(UserLevelEnum)),
+  centerId: schema.number.optional([rules.exists({ table: 'centers', column: 'id' })]),
+  deleteImage: schema.boolean.optional(),
+  status: schema.boolean.optional(),
 })
