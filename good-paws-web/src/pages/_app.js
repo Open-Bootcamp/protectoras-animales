@@ -4,20 +4,17 @@ import "../styles/globals.css";
 import theme from "../styles/ChakraTheme";
 import "@fontsource/inter";
 import MainProvider from "../context/maincontext";
-import ComboProvider from "../context/combocontext";
 import { wrapper } from "../store/store";
 import { Provider } from "react-redux";
 
 function MyApp({ Component, pageProps }) {
   return (
     <MainProvider>
-      <ComboProvider>
-        <ChakraProvider theme={theme}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </ChakraProvider>
-      </ComboProvider>
+      <ChakraProvider theme={theme}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ChakraProvider>
     </MainProvider>
   );
 }
