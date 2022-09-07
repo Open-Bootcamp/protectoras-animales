@@ -9,7 +9,6 @@ const CentrosMap = ({ centros, userLocation }) => {
     center: [userLocation[0], userLocation[1]],
     zoom: 6,
     markerIcon: new L.Icon({ iconUrl: "/marker.svg" }),
-    markerIconUser: new L.icon({ iconUrl: "/markerGreen.svg" }),
   };
 
   function CurrentLocation() {
