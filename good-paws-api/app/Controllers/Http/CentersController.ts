@@ -118,6 +118,7 @@ export default class CentersController {
       .if(location, (query) => {
         query.whereILike('location', `%${location}%`)
       })
+      .withCount('animals')
       .paginate(page, size)
 
     response.ok({
