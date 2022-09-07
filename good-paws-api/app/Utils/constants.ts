@@ -16,3 +16,7 @@ export enum MedicalStateEnum {
   pending,
   done,
 }
+export enum Order {
+  asc = 'asc',
+  desc = 'desc',
+}
