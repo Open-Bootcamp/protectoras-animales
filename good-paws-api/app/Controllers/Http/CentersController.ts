@@ -101,9 +101,10 @@ export default class CentersController {
       .if(coordinates, (query) => {
         const [latitude, longitude] = coordinates!.split(',').map((value) => parseFloat(value))
 
-        query
-          .whereRaw('ABS(latitude - :latitude) <= :radius', { latitude, radius })
-          .andWhereRaw('ABS(longitude - :longitude) <= :radius', { longitude, radius })
+        query.whereRaw(
+          'CBRT(POWER(latitude - :latitude,2)+POWER(longitude - :longitude,2)) <= :radius',
+          { latitude, longitude, radius }
+        )
       })
       .if(protectorName, (query) => {
         query.whereIn(
