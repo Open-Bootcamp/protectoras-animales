@@ -62,10 +62,7 @@ export default function Navbar(props) {
       ) : (
         <Box display={{ base: "none", lg: "block" }}>
           <MenuItem
-            to="/
-            
-            
-            imshelter"
+            to="/imshelter"
             title="Soy protectora"
             color="primary"
           />
