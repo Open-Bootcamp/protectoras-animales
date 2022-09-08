@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   FormLabel,
   IconButton,
   Input,
@@ -8,6 +9,7 @@ import {
   InputRightElement,
 } from "@chakra-ui/react";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function FormControlComponent({
   label,
@@ -17,6 +19,8 @@ export default function FormControlComponent({
   icon,
   formik,
 }) {
+  const [show, setShow] = useState(false);
+  const handleClick = () => setShow(!show);
   return (
     <>
       <Box w={{ lg: "25%" }}>
@@ -45,6 +49,8 @@ export default function FormControlComponent({
               <InputRightElement
                 children={
                   <IconButton
+                    as={Button}
+                    onClick={handleClick}
                     bgColor="transparent"
                     _hover={{ bg: "transparent" }}
                     _active={{ bg: "transparent" }}
@@ -57,10 +63,10 @@ export default function FormControlComponent({
             <Input
               id={name}
               name={name}
-              type={type}
+              type={type === "password" ? (show ? "text" : "password") : type}
               placeholder={placeholder}
               onChange={formik.handleChange}
-              value={formik.values.email}
+              value={formik.values.name}
             />
           </InputGroup>
         </Box>
@@ -72,7 +78,7 @@ export default function FormControlComponent({
             type={type}
             placeholder={placeholder}
             onChange={formik.handleChange}
-            value={formik.values.email}
+            value={formik.values.name}
             color="gray5"
           />
         </Box>
