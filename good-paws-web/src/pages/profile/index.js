@@ -17,6 +17,7 @@ import DesktopVersion from "./DesktopVersion";
 export default function index() {
   const formik = useFormik({
     initialValues: {
+      avatar: "",
       fullName: "",
       email: "",
       password: "",

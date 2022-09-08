@@ -1,9 +1,13 @@
-import { Box, IconButton, Text } from "@chakra-ui/react";
+import { Box, Input, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import React from "react";
 import upload from "../../../public/assets/images/upload-icon.svg";
 
-export default function UploadComponent({ pl, pr }) {
+export default function UploadComponent({ pl, pr, formik }) {
+  const handleChange = (e) => {
+    formik.setFieldValue("avatar", e.currentTarget.files[0]);
+    // console.log(e.currentTarget.files[0]);
+  };
   return (
     <Box
       borderColor="gray2"
@@ -14,12 +18,16 @@ export default function UploadComponent({ pl, pr }) {
       pl={pl}
       pr={pr}
     >
-      <IconButton
-        bgColor="transparent"
-        _hover={{ bg: "transparent" }}
-        _active={{ bg: "transparent" }}
-        fontSize="40px"
-        icon={<Image src={upload} alt="Upload icon" width={40} height={40} />}
+      <label htmlFor="avatar">
+        <Image src={upload} alt="Upload icon" width={40} height={40} />
+      </label>
+      <Input
+        type="file"
+        id="avatar"
+        name="avatar"
+        accept="image/*"
+        onChange={handleChange}
+        hidden
       />
       <Text color="gray4" fontSize="sm" fontWeight="400" mt={2} mb={2}>
         <Text as="b" color="primary" fontWeight="500">

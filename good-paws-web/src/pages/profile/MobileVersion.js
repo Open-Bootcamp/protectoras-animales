@@ -15,53 +15,49 @@ import UploadComponent from "./UploadComponent";
 export default function MobileProfile({ formik }) {
   return (
     <Box display={{ base: "block", lg: "none" }}>
-      <Box>
+      <form onSubmit={formik.handleSubmit}>
         <PersonalDataComponent />
-        <AvatarComponent />
-        <UploadComponent />
+        <AvatarComponent formik={formik} />
+        <UploadComponent formik={formik} />
         <Divider mt={6} mb={6} />
-        <Box>
-          <form onSubmit={formik.handleSubmit}>
-            <VStack
-              divider={<StackDivider borderColor={"#EAECF0"} />}
-              spacing={4}
-              align="stretch"
-            >
-              <FormControl>
-                <FormControlComponent
-                  label="Nombre y apellidos"
-                  name="fullname"
-                  type="text"
-                  placeholder="Marta García"
-                  formik={formik}
-                />
-              </FormControl>
-              <FormControl>
-                <FormControlComponent
-                  label="Email"
-                  name="email"
-                  type="email"
-                  placeholder="hola@open-devs.com"
-                  icon={envelope}
-                  formik={formik}
-                />
-              </FormControl>
+        <VStack
+          divider={<StackDivider borderColor={"#EAECF0"} />}
+          spacing={4}
+          align="stretch"
+        >
+          <FormControl>
+            <FormControlComponent
+              label="Nombre y apellidos"
+              name="fullname"
+              type="text"
+              placeholder="Marta García"
+              formik={formik}
+            />
+          </FormControl>
+          <FormControl>
+            <FormControlComponent
+              label="Email"
+              name="email"
+              type="email"
+              placeholder="hola@open-devs.com"
+              icon={envelope}
+              formik={formik}
+            />
+          </FormControl>
 
-              <FormControl>
-                <FormControlComponent
-                  label="Contraseña"
-                  name="password"
-                  type="password"
-                  placeholder="*********"
-                  icon={<ViewIcon />}
-                  formik={formik}
-                />
-              </FormControl>
-            </VStack>
-          </form>
-        </Box>
-        <Divider mt={6} mb={6} />
-      </Box>
+          <FormControl>
+            <FormControlComponent
+              label="Contraseña"
+              name="password"
+              type="password"
+              placeholder="*********"
+              icon={<ViewIcon />}
+              formik={formik}
+            />
+          </FormControl>
+        </VStack>
+      </form>
+      <Divider mt={6} mb={6} />
     </Box>
   );
 }

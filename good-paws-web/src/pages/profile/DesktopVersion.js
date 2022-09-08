@@ -9,18 +9,18 @@ import UploadComponent from "./UploadComponent";
 export default function DesktopProfile({ formik }) {
   return (
     <Box display={{ base: "none", lg: "block" }}>
-      <Flex align="center" justify="space-between">
-        <PersonalDataComponent />
-      </Flex>
-      <Divider mt={2} mb={6} />
-      <HStack spacing={10}>
-        <HStack spacing={20}>
-          <AvatarComponent />
-        </HStack>
-        <UploadComponent pl={20} pr={20} />
-      </HStack>
-      <Divider mt={6} mb={6} />
       <form onSubmit={formik.handleSubmit}>
+        <Flex align="center" justify="space-between">
+          <PersonalDataComponent />
+        </Flex>
+        <Divider mt={2} mb={6} />
+        <HStack spacing={10}>
+          <HStack spacing={20}>
+            <AvatarComponent formik={formik} />
+          </HStack>
+          <UploadComponent pl={20} pr={20} formik={formik} />
+        </HStack>
+        <Divider mt={6} mb={6} />
         <FormControl>
           <HStack>
             <FormControlComponent
