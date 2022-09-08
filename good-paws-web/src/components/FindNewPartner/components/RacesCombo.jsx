@@ -7,9 +7,11 @@ import { getRaces } from '../../../store/racesSlice';
 const RacesCombo = () => {
     const { filters, handleChange } = useContext(MainContext);
     const dispatch = useDispatch();
+    
     useEffect(() => {
         dispatch(getRaces());
     }, []);
+
     const races = useSelector((state) => state.races.races);
 
     return (
