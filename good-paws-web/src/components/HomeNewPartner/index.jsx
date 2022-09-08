@@ -1,14 +1,18 @@
-import React, { useContext, useEffect } from "react";
-import { MainContext } from "../../context/maincontext";
-import { Flex, Text, Heading } from "@chakra-ui/react";
-import ImgCarousel from "./ImgCarousel";
+import React, { useEffect } from "react";
+import { Flex, Text, Heading } from '@chakra-ui/react';
+import ImgCarousel from './ImgCarousel';
+import { useDispatch, useSelector } from "react-redux";
+import { getAnimals } from '../../store/animalsSlice';
 
 const HomeNewPartner = ({ principal, secondary }) => {
-  const { data, setInitRegs } = useContext(MainContext);
+    const dispatch = useDispatch();
+    const initState = { name: "", centerId: "", raceId: "", adultSize: "", isShelter: false, isUrgent: false, radius: 0, isElder: false, hasEspecialCondition: false, canTravel: false };
 
-  useEffect(() => {
-    setInitRegs(4);
-  }, []);
+    useEffect(() => {
+      dispatch(getAnimals({ filters: initState, initRegs: 4, currentPage: 1, userLocation: [] }));
+    }, []);
+  
+    const data = useSelector((state) => state.animals.animals);
 
   return (
     data.results && (

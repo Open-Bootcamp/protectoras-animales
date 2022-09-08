@@ -15,6 +15,9 @@ import HeadBox from "./Components/HeadBox";
 import CardsContainer from "../CardsContainer/CardsContainer";
 import Sidebar from "./Components/Sidebar";
 import { MainContext } from "../../context/maincontext";
+import { useDispatch, useSelector } from "react-redux";
+import { getAnimals } from '../../store/animalsSlice';
+import { usePagination } from "react-use-pagination";
 
 const Clickable = (props) => {
   const clickable = useClickable(props);
@@ -37,20 +40,14 @@ const Clickable = (props) => {
 };
 
 const FindNewPartner = () => {
-  const {
-    data,
-    currentPage,
-    totalPages,
-    setNextPage,
-    setPreviousPage,
-    nextEnabled,
-    previousEnabled,
-    setInitRegs,
-  } = useContext(MainContext);
+  const { filters, userLocation } = useContext(MainContext);
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.animals);
+  const { currentPage, totalPages, setNextPage, setPreviousPage, nextEnabled, previousEnabled } = usePagination({ totalItems: data.animals.totalResults, initialPageSize: 8 });
 
   useEffect(() => {
-    setInitRegs(8);
-  }, []);
+    dispatch(getAnimals({ filters, initRegs: 8, currentPage, userLocation  }));
+  }, [filters, currentPage]);
 
   return (
     <Stack p={10}>
@@ -59,7 +56,7 @@ const FindNewPartner = () => {
         <Flex direction={{ base: 'column', md: 'row'}}>
           <Sidebar />
           <Flex w={'full'} direction={'column'}>
-            <CardsContainer data={data.results && data.results} />
+            <CardsContainer data={data.animals.results && data.animals.results} />
             <Box color={useColorModeValue("gray5", "gray2")}>
               <Divider orientation="horizontal" />
               <Container

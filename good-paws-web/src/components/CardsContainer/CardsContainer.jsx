@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import NextLink from 'next/link';
 import { Image, Text, Button, Flex, Heading } from "@chakra-ui/react";
 import Card from "../Card/Card";
 import MoonLoader from 'react-spinners/MoonLoader';
-import { MainContext } from "../../context/maincontext";
+import { useSelector } from "react-redux";
 
 const NoData = () => {
   return (
@@ -21,14 +21,14 @@ const NoData = () => {
 }
 
 const CardsContainer = () => {
-  const { data, isLoading } = useContext(MainContext);
+  const data = useSelector((state) => state.animals);
   
   return (
     <Flex p={5} mb={10} alignItems={'center'} justifyContent={'center'} h={'full'}>
-      { isLoading ? <MoonLoader size={100} color="#578887" /> :
+      { data.loading ? <MoonLoader size={100} color="#578887" /> :
         <Flex h={'full'} w={'100%'} flexWrap={'wrap'} flexDirection={'row'}>
-          {data.totalResults > 0 && data.results.map((p) => ( <Card key={p.id} {...p} /> ))}
-          {data.totalResults === 0 && <NoData />}
+          {data.animals.totalResults > 0 && data.animals.results.map((p) => ( <Card key={p.id} {...p} /> ))}
+          {data.animals.totalResults === 0 && <NoData />}
         </Flex>
       }
     </Flex>
