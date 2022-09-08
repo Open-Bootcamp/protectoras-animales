@@ -69,11 +69,12 @@ export default function Navbar(props) {
           <Button
             bg="primary"
             _hover={{ bg: "primary" }}
+            _active={{ bg: "primary" }}
             color="white"
             ml={{ lg: 5, xl: 10 }}
           >
             <NextLink href="/login" passHref>
-              <Link>Iniciar sesion</Link>
+              <Link _hover={{ textDecoration: "none" }}>Iniciar sesion</Link>
             </NextLink>
           </Button>
         </Box>
