@@ -108,13 +108,19 @@ export default function MenuDrawer({ isOpen, onClose, exitIcon }) {
               <Button
                 bg="primary"
                 _hover={{ bg: "primary" }}
+                _active={{ bg: "primary" }}
                 color="white"
                 mb={6}
                 size="lg"
                 width="90%"
               >
                 <NextLink href="/login" passHref>
-                  <Link onClick={onClose}>Iniciar sesion</Link>
+                  <Link
+                    onClick={onClose}
+                    _hover={{ bg: "primary", textDecoration: "none" }}
+                  >
+                    Iniciar sesion
+                  </Link>
                 </NextLink>
               </Button>
               <MenuItem
