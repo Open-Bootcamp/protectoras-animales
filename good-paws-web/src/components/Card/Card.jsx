@@ -1,12 +1,12 @@
 import { Flex, Tag, Box, Image, useColorModeValue } from '@chakra-ui/react';
 import NextLink from "next/link";
 
-function Card({ id, name, sexId, extraDetails, adultSize, location }) {
+function Card({ id, name, sexId, extraDetails, adultSize, location, pictures }) {
   return (
     <Flex ml={2} p={1} w={60} h={350} alignItems="center" justifyContent="center">
       <NextLink href={`pet/${id}`} passHref>
         <Box cursor={'pointer'} bg={useColorModeValue('white', 'gray3')} borderWidth="1px" rounded="lg" shadow="lg">
-          <Image w={'100%'} roundedTop={'md'} src={'./dog.svg'} alt={name} />
+          <Image w={'100%'} roundedTop={'md'} src={pictures !== undefined && pictures.length > 0 ? `${process.env.NEXT_PUBLIC_HOST}${pictures[Math.round(Math.random() * ((pictures.length - 1) - 1) + 1)].picture.url.substring(1,1000)}` : './dog.svg'} alt={name} />
           <Flex h={'8rem'} justifyContent={'space-evenly'} direction={'column'} px="4">
             <Box fontSize="2xl" fontWeight="semibold" as="h4" lineHeight="tight">{name}</Box>
             <Flex alignItems={'center'} w={'full'} color={'primarylight'}>

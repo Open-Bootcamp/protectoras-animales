@@ -1,4 +1,5 @@
-import { Box, Button, Text } from "@chakra-ui/react";
+import { Box, Button, Link, Text } from "@chakra-ui/react";
+import NextLink from "next/link";
 import React from "react";
 
 export default function PersonalDataComponent() {
@@ -15,14 +16,28 @@ export default function PersonalDataComponent() {
       <Box mb={4}>
         <Button
           bgColor="transparent"
+          _hover={{ bg: "transparent" }}
+          _active={{ bg: "white" }}
           color="primary"
           fontWeight="500"
           width="50%"
         >
-          Cancelar
+          <NextLink href="/" passHref>
+            <Link>Cancelar</Link>
+          </NextLink>
         </Button>
-        <Button bgColor="primary" color="white" fontWeight="500" width="50%">
-          Guardar
+        <Button
+          type="sumbit"
+          bgColor="primary"
+          _hover={{ bg: "primary" }}
+          _active={{ bg: "primary" }}
+          color="white"
+          fontWeight="500"
+          width="50%"
+        >
+          <NextLink href="/" passHref>
+            <Link _hover={{ textDecoration: "none" }}>Guardar</Link>
+          </NextLink>
         </Button>
       </Box>
     </>
