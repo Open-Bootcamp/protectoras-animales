@@ -3,7 +3,7 @@ import { Box, Button } from "@chakra-ui/react";
 import MenuDrawer from "../MenuDrawer/MenuDrawer";
 import { HamburgerIcon } from "@chakra-ui/icons";
 
-export default function MobileMenu({ onOpen, isOpen, onClose }) {
+export default function MobileMenu({ onOpen, isOpen, onClose, exitIcon }) {
   const btnRef = useRef();
 
   return (
@@ -17,7 +17,7 @@ export default function MobileMenu({ onOpen, isOpen, onClose }) {
       >
         <HamburgerIcon w={25} h={25} color="gray5" />
       </Button>
-      <MenuDrawer isOpen={isOpen} onClose={onClose} />
+      <MenuDrawer isOpen={isOpen} onClose={onClose} exitIcon={exitIcon} />
     </Box>
   );
 }

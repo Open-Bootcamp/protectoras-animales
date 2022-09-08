@@ -1,7 +1,7 @@
 import { Avatar, Box, Text } from "@chakra-ui/react";
 import React from "react";
 
-export default function AvatarComponent() {
+export default function AvatarComponent({ formik }) {
   return (
     <>
       <Box>
@@ -12,9 +12,8 @@ export default function AvatarComponent() {
           Esta fotografía se mostrará en tu perfil
         </Text>
       </Box>
-
       <Box align="center" mt={10} mb={10}>
-        <Avatar name="name" src="" size="lg" align="center" />
+        <Avatar name={formik.values.fullName} src="" size="lg" align="center" />
       </Box>
     </>
   );

@@ -6,7 +6,6 @@ export const Card = styled.div`
   align-items: center;
   gap: 0.735rem;
   border-bottom: 1px solid #e1e2e3;
-  border-top: 1px solid #c3c6c8;
   @media screen and (max-width: 1024px) {
     margin-top: 1.5rem;
     padding-top: 1.5rem;

@@ -1,8 +1,10 @@
 import React, { useContext, useState } from 'react';
-import { Select, Hide, Text, CheckboxGroup, Checkbox, IconButton, Box, CloseButton, Flex, Image, useColorModeValue, Drawer, DrawerContent, FormControl, useDisclosure, FormLabel, InputGroup, InputLeftElement, Input } from '@chakra-ui/react';
+import { Select, Hide, Text, Checkbox, IconButton, Box, CloseButton, Flex, Image, useColorModeValue, Drawer, DrawerContent, FormControl, useDisclosure, FormLabel, InputGroup, InputLeftElement, Input } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
 import SliderInp from './Slider';
 import { MainContext } from '../../../context/maincontext';
+import CentersCombo from './CentersCombo';
+import RacesCombo from './RacesCombo';
 
 export default function Sidebar({ children }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -25,7 +27,7 @@ export default function Sidebar({ children }) {
 }
 
 const SidebarContent = ({ onClose, ...rest }) => {
-  const { filters, handleChange, centers, races } = useContext(MainContext);
+  const { filters, handleChange } = useContext(MainContext);
   const [isShelter, setIsShelter] = useState(true);
   const [isUrgent, setIsUrgent] = useState(true);
 
@@ -62,13 +64,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
             <FormControl>
                 <FormLabel>Buscar por protectora</FormLabel>
                 <InputGroup>
-                    <Select focusBorderColor={'primarylight'} value={filters.centerId} onChange={handleChange} name="centerId" placeholder='Selecciona una opción'>
-                      {centers.length > 0 && centers.map((center) => { 
-                        return (
-                          <option key={center.id} value={center.id}>{center.name}</option>
-                        );
-                      })}
-                    </Select>
+                  <CentersCombo />
                 </InputGroup>
             </FormControl>
             <FormControl w={'100%'} >
@@ -77,13 +73,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
             </FormControl>
             <FormControl>
                 <FormLabel>Especie</FormLabel>
-                <Select focusBorderColor={'primarylight'} value={filters.raceId} onChange={handleChange} name="raceId" placeholder='Selecciona una opción'>
-                  {races.length > 0 && races.map((race) => { 
-                    return (
-                      <option key={race.id} value={race.id}>{race.name}</option>
-                    );
-                  })}
-                </Select>
+                <RacesCombo />
             </FormControl>
             <FormControl>
                 <FormLabel>Edad</FormLabel>

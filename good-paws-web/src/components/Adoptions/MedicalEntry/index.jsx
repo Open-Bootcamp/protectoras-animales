@@ -25,21 +25,30 @@ export const MedicalEntry = ({ entry }) => {
                 <h2>
                     <AccordionButton>
                         <Box
-                            display="flex"
-                            flex={1} justifyContent="space-between" alignItems="center"
+                            display={{"2xl": "flex", sm: "block"}}
+                            flex={1} 
+                            justifyContent="space-between" 
+                            alignItems="center"
                         >
                             <InfoEntry>{title} - {clinic}</InfoEntry>
                             <Box
                                 display="flex"
-                                gap="8px" alignItems="center" marginRight="13px"
+                                gap="8px" 
+                                alignItems="center"
+                                justifyContent="space-between" 
+                                marginRight="13px"
                             >
                                 <DateEntry>{dateEntry.toLocaleDateString("es-ES", options)}</DateEntry>
-                                <Tag
-                                    text="Realizada" color="success"
-                                />
+                                <Box>
+                                    <Tag
+                                        text="Realizada" color="success"
+                                    />
+                                    <AccordionIcon />
+
+                                </Box>
                             </Box>
                         </Box>
-                        <AccordionIcon />
+                        
                     </AccordionButton>
                 </h2>
                 <AccordionPanel

@@ -36,14 +36,18 @@ export default function Footer() {
               © 2022 Open Devs.
             </Text>
             <NextLink href="/" passHref>
-              <Image src={github} alt="Github logo" width={24} height={24} />
+              <a>
+                <Image src={github} alt="Github logo" width={24} height={24} />
+              </a>
             </NextLink>
           </Flex>
         </Box>
 
         <Box display={{ base: "block", lg: "none" }}>
           <NextLink href="/" passHref>
-            <Image src={github} alt="Github logo" width={24} height={24} />
+            <a>
+              <Image src={github} alt="Github logo" width={24} height={24} />
+            </a>
           </NextLink>
           <Text color={"#98a2b3"} fontWeight="400" pt={5} pb={4}>
             © 2022 Open Devs.

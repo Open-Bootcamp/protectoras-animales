@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import NextLink from 'next/link';
-import { Button, Flex, Heading } from "@chakra-ui/react";
+import { Image, Text, Button, Flex, Heading } from "@chakra-ui/react";
 import Card from "../Card/Card";
 import MoonLoader from 'react-spinners/MoonLoader';
 import { MainContext } from "../../context/maincontext";
@@ -8,7 +8,11 @@ import { MainContext } from "../../context/maincontext";
 const NoData = () => {
   return (
     <Flex justifyContent={'center'} w={'100%'} direction={'column'} alignItems={'center'}>
-      <Heading mb={5}>No existe data para mostrar</Heading>
+      <Image alt={'No results'} objectFit={'contain'} src={'./ft_icon.svg'}/>
+      <Heading mb={5}>No hemos encontrado animales</Heading>
+      <Text mb={5} fontSize={{ base: 'md', lg: 'lg' }} color={'gray5'}>
+          ¡Modifica la búsqueda para poder verlos aquí!
+      </Text>
       <NextLink href="/">
           <Button color={'white'} _active={{ bg: 'primarypastel' }} _hover={{ bg: 'primarylight' }} bg={'primary'}>Volver al inicio</Button>
       </NextLink>

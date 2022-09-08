@@ -1,38 +1,42 @@
-import React, { useState } from 'react'
-import Input from '../../components/Input'
-import MainContainer from './styles'
-import * as Yup from 'yup'
-import styled from 'styled-components'
-import { Form, Formik } from 'formik'
-import Link from 'next/link'
+import React, { useState } from "react";
+import Input from "../../components/Input";
+import MainContainer from "./styles";
+import * as Yup from "yup";
+import { Form, Formik } from "formik";
+import Link from "next/link";
+import { setIsLoggedIn } from "../../store/authSlice";
+import { useDispatch } from "react-redux";
+import NextLink from "next/link";
 
 const initialState = {
-  email: '',
-  password: '',
+  email: "",
+  password: "",
   toggle: false,
-}
+};
 
 const index = () => {
-  const [values, setValues] = useState(initialState)
+  const [values, setValues] = useState(initialState);
 
-  const { email, password, toggle } = values
+  const { email, password, toggle } = values;
   const handleChange = (e) => {
-    setValues({ ...values, [e.target.name]: e.target.value })
-  }
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
 
   const formValidation = Yup.object({
     email: Yup.string()
-      .required('El correo es requerido')
-      .email('Ingrese un email valido'),
+      .required("El correo es requerido")
+      .email("Ingrese un email valido"),
     password: Yup.string()
-      .required('La contraseña es requerido')
-      .min(6, 'La contraseña debe contener 6 caracteres como minimo')
+      .required("La contraseña es requerido")
+      .min(6, "La contraseña debe contener 6 caracteres como minimo")
       .max(36, "La contraseña debe contener 6 caracteres como máximo'"),
-  })
+  });
+
+  const dispatch = useDispatch();
 
   return (
     <MainContainer>
-      <div className='section-form'>
+      <div className="section-form">
         <Formik
           enableReinitialize
           initialValues={{
@@ -42,31 +46,31 @@ const index = () => {
           }}
           validationSchema={formValidation}
           onSubmit={() => {
-            console.log('goi')
+            console.log("goi");
           }}
         >
           {(formik) => (
-            <Form className='form-container' onSubmit={formik.handleSubmit}>
+            <Form className="form-container" onSubmit={formik.handleSubmit}>
               <h3>Iniciar Sesión</h3>
               <Input
-                name='email'
-                placeholder='hola@open-devs.com'
-                labelText='Email'
+                name="email"
+                placeholder="hola@open-devs.com"
+                labelText="Email"
                 onChange={handleChange}
               />
               <Input
-                type='password'
-                name='password'
-                placeholder='********'
-                labelText='Contraseña'
+                type="password"
+                name="password"
+                placeholder="********"
+                labelText="Contraseña"
                 onChange={handleChange}
               />
 
-              <div className='recording'>
+              <div className="recording">
                 <div>
                   <input
-                    type='checkbox'
-                    name='toggle'
+                    type="checkbox"
+                    name="toggle"
                     onClick={() => setValues({ ...values, toggle: !toggle })}
                   />
                   Recordarme
@@ -74,22 +78,28 @@ const index = () => {
 
                 <p>Olvide mi contraseña</p>
               </div>
-              <button type='submit' className='btn '>
-                Iniciar Sesion
-              </button>
-              <Link href='/register'>
-                <div className='text-center'>Registrarme</div>
+              <NextLink href="/" passHref>
+                <button
+                  type="submit"
+                  className="btn "
+                  onClick={() => dispatch(setIsLoggedIn(true))}
+                >
+                  Iniciar Sesion
+                </button>
+              </NextLink>
+              <Link href="/register">
+                <div className="text-center">Registrarme</div>
               </Link>
             </Form>
           )}
         </Formik>
 
-        <div className='img-container'>
-          <img src='./ilustracion.svg' alt='' />
+        <div className="img-container">
+          <img src="./ilustracion.svg" alt="" />
         </div>
       </div>
     </MainContainer>
-  )
-}
+  );
+};
 
-export default index
+export default index;
