@@ -26,8 +26,9 @@ const CentroCard = ({ centro, isMap }) => {
       </div>
 
       <div className={styles.centroCardText}>
-        <h2>{isMap ? centro.name : centro.name}</h2>
+        <h2>{centro.name}</h2>
         <p>
+          {isMap ? null : centro.protectoraName} -
           <Image
             src="/location.svg"
             alt="Location icon"
@@ -36,7 +37,7 @@ const CentroCard = ({ centro, isMap }) => {
           />
           {centro.location}
         </p>
-        <span>{centro.numAnimals} animales</span>
+        <span>{centro.totalPets} animales</span>
       </div>
 
       <div className={styles.centroCardStars}>

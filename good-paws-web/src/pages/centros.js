@@ -5,9 +5,6 @@ import styles from "../styles/Centros/Centros.module.css";
 import dynamic from "next/dynamic";
 import { CenterContext } from "../context/CenterContext";
 
-// TODO: Implementar num animales
-// TODO: Implementar nombre protectora
-// TODO: Implementar orden por cercanía
 function Centros() {
   const { data, userLocation, handleChange, filters } =
     useContext(CenterContext);

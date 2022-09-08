@@ -24,18 +24,21 @@ export default function CenterProvider({ children }) {
   useEffect(() => {
     (async () => {
       try {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_HOST}centers/filterBy?centerName=${filters.centerName}&radius=${filters.radius}&coordinates=${userLocation}`,
+        await fetch(
+          `http://localhost:3333/centers/filterBy?centerName=${filters.centerName}&radius=${filters.radius}&coordinates=${userLocation}`,
           {
             method: "GET",
             headers: {
               "Content-Type": "application/json",
             },
           }
-        );
-        console.log(process.env.NEXT_PUBLIC_HOST);
-        const data = await res.json();
-        setData(data.results);
+        )
+          .then((res) => {
+            return res.json();
+          })
+          .then((res) => {
+            setData(res.results);
+          });
       } catch (e) {
         console.log(e);
       }
