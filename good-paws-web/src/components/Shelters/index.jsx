@@ -1,9 +1,16 @@
-import { useContext } from "react";
+import { useEffect } from "react";
 import { Flex, Image, Text, WrapItem, Divider, Container } from "@chakra-ui/react";
-import { ComboContext } from "../../context/combocontext";
+import NextLink from "next/link";
+import { useDispatch, useSelector } from "react-redux";
+import { getCenters } from '../../store/centersSlice';
 
 export default function Shelter({ content }) {
-  const { centers } = useContext(ComboContext);
+  const dispatch = useDispatch();
+  useEffect(() => {
+      dispatch(getCenters());
+  }, []);
+
+  const centers = useSelector((state) => state.centers.centers);
 
   return (
     <>
