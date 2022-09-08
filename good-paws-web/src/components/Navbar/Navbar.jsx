@@ -62,21 +62,19 @@ export default function Navbar(props) {
       ) : (
         <Box display={{ base: "none", lg: "block" }}>
           <MenuItem
-            to="/
-            
-            
-            imshelter"
+            to="/imshelter"
             title="Soy protectora"
             color="primary"
           />
           <Button
             bg="primary"
             _hover={{ bg: "primary" }}
+            _active={{ bg: "primary" }}
             color="white"
             ml={{ lg: 5, xl: 10 }}
           >
             <NextLink href="/login" passHref>
-              <Link>Iniciar sesion</Link>
+              <Link _hover={{ textDecoration: "none" }}>Iniciar sesion</Link>
             </NextLink>
           </Button>
         </Box>
