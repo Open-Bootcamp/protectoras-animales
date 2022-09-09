@@ -5,16 +5,18 @@ import theme from "../styles/ChakraTheme";
 import "@fontsource/inter";
 import MainProvider from "../context/maincontext";
 import { wrapper } from "../store/store";
-import { Provider } from "react-redux";
+import CenterProvider from "../context/CenterContext";
 
 function MyApp({ Component, pageProps }) {
   return (
     <MainProvider>
-      <ChakraProvider theme={theme}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </ChakraProvider>
+      <CenterProvider>
+        <ChakraProvider theme={theme}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ChakraProvider>
+      </CenterProvider>
     </MainProvider>
   );
 }
