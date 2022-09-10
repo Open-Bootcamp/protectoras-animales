@@ -1,7 +1,8 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, HasMany, hasMany } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, BelongsTo, belongsTo, column, HasMany, hasMany } from '@ioc:Adonis/Lucid/Orm'
 import { attachment, AttachmentContract } from '@ioc:Adonis/Addons/AttachmentLite'
 import Animal from './Animal'
+import Protector from './Protector'
 
 export default class Center extends BaseModel {
   @column({ isPrimary: true })
@@ -33,6 +34,9 @@ export default class Center extends BaseModel {
 
   @column({ serializeAs: 'protectorId' })
   public protectorId: number
+
+  @belongsTo(() => Protector)
+  public protector: BelongsTo<typeof Protector>
 
   @column({ serializeAs: 'averageRate', serialize: (value) => parseFloat(value.toFixed(2)) })
   public averageRate: number

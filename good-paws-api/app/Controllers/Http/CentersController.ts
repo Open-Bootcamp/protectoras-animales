@@ -119,6 +119,7 @@ export default class CentersController {
         query.whereILike('location', `%${location}%`)
       })
       .withCount('animals')
+      .preload('protector', (protectorQuery) => protectorQuery.select('name'))
       .paginate(page, size)
 
     response.ok({
