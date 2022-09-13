@@ -5,15 +5,18 @@ import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import { ChakraProvider } from '@chakra-ui/react'
 import MainProvider from './context/mainContext';
+import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <MainProvider>
-      <ChakraProvider>
-        <App />
-      </ChakraProvider>
-    </MainProvider>
+    <BrowserRouter>    
+      <MainProvider>
+        <ChakraProvider>
+          <App />
+        </ChakraProvider>
+      </MainProvider>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
