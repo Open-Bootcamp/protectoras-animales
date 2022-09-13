@@ -7,14 +7,14 @@ export default function MainProvider({ children }) {
     const [data, setData] = useState({});
 
     const handleLogin = (initialObject) => {
-      const { email, password, rememberMe } = initialObject;
+      const { email, password } = initialObject;
 
       (async () => {
         try {
-            const rs = await fetch('http://localhost:4005/login', {
+            const rs = await fetch(`${process.env.REACT_APP_HOST_URL}/login`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, password, rememberMe })
+                body: JSON.stringify({ email, password })
             });
             const data = await rs.json();
             if (rs.status === 200) setIsLogged(true);
