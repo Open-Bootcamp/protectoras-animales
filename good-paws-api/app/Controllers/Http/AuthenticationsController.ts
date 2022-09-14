@@ -18,7 +18,7 @@ export default class AuthenticationsController {
       expiresIn: '2hours',
     })
 
-    response.ok(token)
+    response.ok({ ...token.toJSON(), user: token.user })
   }
 
   public async logout({ auth, response }: HttpContextContract) {
