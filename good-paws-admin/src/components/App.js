@@ -1,9 +1,7 @@
+import { Route, Routes } from 'react-router-dom'
 import Dashboard from '../pages/Dashboard'
-import HomeLogin from '../pages/Home/HomeLogin';
-import RegisterAdmin from '../pages/RegisterAdmin/RegisterAdmin';
-import { Routes, Route } from "react-router-dom";
-import '../styles/App.css';
-
+import HomeLogin from '../pages/Home/HomeLogin'
+import RegisterAdmin from '../pages/RegisterAdmin/RegisterAdmin'
 
 function App() {
   return (
@@ -17,4 +15,4 @@ function App() {
   )
 }
 
-export default App;
+export default App
