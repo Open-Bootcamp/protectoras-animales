@@ -3,6 +3,10 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
      margin-top: 1.5rem;
+     @media screen and (max-width: 1024px) {
+        padding-top: 1.375rem;
+    border-top: 1px solid #C3C6C8;
+  }
 `;
 
 export const Title = styled.h2`

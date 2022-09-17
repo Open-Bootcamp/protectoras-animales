@@ -9,6 +9,9 @@ export const NamePet = styled.h2`
   font-weight: 600;
   line-height: 2.25rem;
   margin-bottom: 0.5rem;
+  @media screen and (max-width: 1024px) {
+    margin-top: 1.125rem;
+  }
 `;
 
 export const InfoPet = styled.p`

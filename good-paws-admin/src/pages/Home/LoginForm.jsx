@@ -1,7 +1,8 @@
 import { useContext } from 'react';
+import { Link } from "react-router-dom";
 import { MainContext } from '../../context/mainContext';
 import { useFormik } from "formik";
-import { Link, Hide, Image, HStack, Stack, Box, Button, Checkbox, Flex, FormControl, FormLabel, Input, VStack } from "@chakra-ui/react";
+import { Hide, Image, HStack, Stack, Box, Button, Checkbox, Flex, FormControl, FormLabel, Input, VStack } from "@chakra-ui/react";
 import { PasswordField } from "./PasswordField";
 import { colors } from "../../utils/colors";
 
@@ -38,7 +39,9 @@ export default function App() {
                         </HStack>
                         <Button p={6} type="submit" color={colors.white} _hover={{ bg: colors.primarylight }} bg={colors.primary} width="full">Iniciar sesión</Button>
                         <Stack w={'100%'} spacing="6">
-                            <Button variant="link" color={colors.primarylight}>Registrarse</Button>
+                            <Link to="/register">
+                                <Button variant="link" color={colors.primarylight}>Registrarse</Button>
+                            </Link>
                         </Stack>
                     </VStack>
                 </form>

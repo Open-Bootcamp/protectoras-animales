@@ -1,28 +1,34 @@
 import { ViewIcon } from "@chakra-ui/icons";
-import { Box, Divider, Flex, FormControl, HStack } from "@chakra-ui/react";
+import {
+  Box,
+  Divider,
+  FormControl,
+  FormErrorMessage,
+  StackDivider,
+  VStack,
+} from "@chakra-ui/react";
 import envelope from "../../../public/assets/images/envelope-icon.svg";
 import AvatarComponent from "./AvatarComponent";
 import FormControlComponent from "./FormControlComponent";
 import PersonalDataComponent from "./PersonalDataComponent";
 import UploadComponent from "./UploadComponent";
 
-export default function DesktopProfile({ formik }) {
+export default function MobileProfile({ formik }) {
   return (
-    <Box display={{ base: "none", lg: "block" }}>
-      <Flex align="center" justify="space-between">
-        <PersonalDataComponent />
-      </Flex>
-      <Divider mt={2} mb={6} />
-      <HStack spacing={10}>
-        <HStack spacing={20}>
-          <AvatarComponent />
-        </HStack>
-        <UploadComponent pl={20} pr={20} />
-      </HStack>
-      <Divider mt={6} mb={6} />
+    <Box display={{ base: "block", lg: "none" }}>
       <form onSubmit={formik.handleSubmit}>
-        <FormControl>
-          <HStack>
+        <PersonalDataComponent />
+        <AvatarComponent formik={formik} />
+        <UploadComponent formik={formik} />
+        <Divider mt={6} mb={6} />
+        <VStack
+          divider={<StackDivider borderColor={"#EAECF0"} />}
+          spacing={4}
+          align="stretch"
+        >
+          <FormControl
+            isInvalid={!!formik.errors.fullname && formik.touched.fullname}
+          >
             <FormControlComponent
               label="Nombre y apellidos"
               name="fullname"
@@ -30,11 +36,12 @@ export default function DesktopProfile({ formik }) {
               placeholder="Marta García"
               formik={formik}
             />
-          </HStack>
-        </FormControl>
-        <Divider mt={6} mb={6} />
-        <FormControl>
-          <HStack>
+            <FormErrorMessage>{formik.errors.fullname}</FormErrorMessage>
+          </FormControl>
+
+          <FormControl
+            isInvalid={!!formik.errors.email && formik.touched.email}
+          >
             <FormControlComponent
               label="Email"
               name="email"
@@ -43,11 +50,12 @@ export default function DesktopProfile({ formik }) {
               icon={envelope}
               formik={formik}
             />
-          </HStack>
-        </FormControl>
-        <Divider mt={6} mb={6} />
-        <FormControl>
-          <HStack>
+            <FormErrorMessage>{formik.errors.email}</FormErrorMessage>
+          </FormControl>
+
+          <FormControl
+            isInvalid={!!formik.errors.password && formik.touched.password}
+          >
             <FormControlComponent
               label="Contraseña"
               name="password"
@@ -56,8 +64,9 @@ export default function DesktopProfile({ formik }) {
               icon={<ViewIcon />}
               formik={formik}
             />
-          </HStack>
-        </FormControl>
+            <FormErrorMessage>{formik.errors.password}</FormErrorMessage>
+          </FormControl>
+        </VStack>
       </form>
       <Divider mt={6} mb={6} />
     </Box>
