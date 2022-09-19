@@ -7,6 +7,7 @@ import Link from "next/link";
 import { setIsLoggedIn } from "../../store/authSlice";
 import { useDispatch } from "react-redux";
 import NextLink from "next/link";
+import { Text, Link as ChakraLink } from "@chakra-ui/react";
 
 const initialState = {
   email: "",
@@ -76,7 +77,11 @@ const index = () => {
                   Recordarme
                 </div>
 
-                <p>Olvide mi contraseña</p>
+                <NextLink href="/reset-password" passHref>
+                  <ChakraLink color="primary" fontWeight="500">
+                    ¿Has olvidado la contraseña?
+                  </ChakraLink>
+                </NextLink>
               </div>
               <NextLink href="/" passHref>
                 <button
