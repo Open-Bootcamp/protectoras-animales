@@ -26,6 +26,23 @@ const theme = extendTheme({
     error: "#667085",
   },
   components: {
+    Divider: {
+      variants: {
+        solid: {
+          borderColor: "gray3",
+        },
+      },
+    },
+    Input: {
+      variants: {
+        outline: {
+          field: {
+            borderColor: "gray3",
+          },
+        },
+      },
+      defaultProps: { variant: "outline", errorBorderColor: "gray3" },
+    },
     Tabs: {
       variants: {
         line: {
