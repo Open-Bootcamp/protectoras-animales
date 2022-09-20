@@ -77,7 +77,7 @@ const index = () => {
                   Recordarme
                 </div>
 
-                <NextLink href="/reset-password" passHref>
+                <NextLink href="/recovery-password" passHref>
                   <ChakraLink color="primary" fontWeight="500">
                     ¿Has olvidado la contraseña?
                   </ChakraLink>
