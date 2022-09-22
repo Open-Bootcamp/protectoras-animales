@@ -81,7 +81,6 @@ export default function FormControlComponent({
             onChange={formik.handleChange}
             value={formik.values.name}
             onBlur={formik.handleBlur}
-            color="gray5"
           />
         </Box>
       )}

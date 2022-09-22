@@ -2,7 +2,6 @@ import React from "react";
 import {
   Avatar,
   Box,
-  Button,
   Divider,
   Drawer,
   DrawerBody,
@@ -23,6 +22,7 @@ import NextLink from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsLoggedIn, setIsLoggedIn } from "../../../store/authSlice";
 import Image from "next/image";
+import CommonButton from "../../CommonButton/CommonButton";
 
 export default function MenuDrawer({ isOpen, onClose, exitIcon }) {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -105,24 +105,13 @@ export default function MenuDrawer({ isOpen, onClose, exitIcon }) {
             </Box>
           ) : (
             <>
-              <Button
-                bg="primary"
-                _hover={{ bg: "primary" }}
-                _active={{ bg: "primary" }}
-                color="white"
+              <CommonButton
+                text="Iniciar sesion"
                 mb={6}
-                size="lg"
+                href="/login"
                 width="90%"
-              >
-                <NextLink href="/login" passHref>
-                  <Link
-                    onClick={onClose}
-                    _hover={{ bg: "primary", textDecoration: "none" }}
-                  >
-                    Iniciar sesion
-                  </Link>
-                </NextLink>
-              </Button>
+                onClick={onClose}
+              />
               <MenuItem
                 to="/soyprotectora"
                 title="Soy protectora"
