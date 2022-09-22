@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import { theme } from '../src/styles/ChakraTheme'
 import App from './components/App'
-import MainProvider from './context/mainContext'
+import LoginProvider from './context/loginContext'
 import reportWebVitals from './reportWebVitals'
 import './styles/index.css'
 
@@ -14,11 +14,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
     <BrowserRouter>    
-      <MainProvider>
+      <LoginProvider>
         <ChakraProvider theme={theme}>
           <App />
         </ChakraProvider>
-      </MainProvider>
+      </LoginProvider>
     </BrowserRouter>
   </React.StrictMode>
 )

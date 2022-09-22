@@ -1,14 +1,15 @@
-import { useContext } from 'react';
-import { Link } from "react-router-dom";
-import { MainContext } from '../../context/mainContext';
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import { Hide, Image, HStack, Stack, Box, Button, Checkbox, Flex, FormControl, FormLabel, Input, VStack } from "@chakra-ui/react";
+import { Hide, Image, HStack, Box, Button, Checkbox, Flex, FormControl, FormLabel, Input, VStack } from "@chakra-ui/react";
 import { PasswordField } from "./PasswordField";
 import { colors } from "../../utils/colors";
+import { LoginContext } from '../../context/loginContext';
 
-export default function App() {
-    const { handleLogin } = useContext(MainContext);
-    
+export default function LoginForm() {
+    const { token, saveToken } = useContext(LoginContext);
+    const navigate = useNavigate();
+
     const formik = useFormik({
         initialValues: {
         email: "",
@@ -19,6 +20,31 @@ export default function App() {
             handleLogin(values);
         }
     });
+
+    const handleLogin = (initialObject) => {
+        const { email, password } = initialObject;
+    
+        (async () => {
+          try {
+              const rs = await fetch(`${process.env.REACT_APP_HOST_URL}/login`, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ email, password })
+              });
+              const data = await rs.json();
+              if (rs.status === 200) {
+                saveToken(data);
+              };
+          } catch (e) {
+              console.log('error', e);
+          }
+        })();
+    };
+
+    if (token !== null) {
+        navigate('/dashboard');
+        return;
+    }
 
     return (
         <Flex justifyContent={'center'} h={'100vh'} alignItems={'center'} w="100%">
@@ -38,11 +64,11 @@ export default function App() {
                             <Button variant="link" color={colors.primarylight} size="sm">Olvidó su contraseña?</Button>
                         </HStack>
                         <Button p={6} type="submit" color={colors.white} _hover={{ bg: colors.primarylight }} bg={colors.primary} width="full">Iniciar sesión</Button>
-                        <Stack w={'100%'} spacing="6">
+                        <Flex justifyContent={'center'} alignItems={'center'} w={'100%'} spacing="6">
                             <Link to="/register">
                                 <Button variant="link" color={colors.primarylight}>Registrarse</Button>
                             </Link>
-                        </Stack>
+                        </Flex>
                     </VStack>
                 </form>
             </Box>

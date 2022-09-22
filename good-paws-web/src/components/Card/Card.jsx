@@ -2,6 +2,7 @@ import { Flex, Tag, Box, Image, useColorModeValue } from '@chakra-ui/react';
 import NextLink from "next/link";
 
 function Card({ id, name, sexId, extraDetails, adultSize, location, pictures }) {
+  console.log(pictures);
   return (
     <Flex ml={2} p={1} w={60} h={350} alignItems="center" justifyContent="center">
       <NextLink href={`pet/${id}`} passHref>
