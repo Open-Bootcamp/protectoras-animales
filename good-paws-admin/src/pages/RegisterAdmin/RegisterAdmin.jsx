@@ -135,7 +135,7 @@ const RegisterOne = ({ pase, setPase }) => {
               </div>
             </div>
             <button type='submit' className='btn '>
-              Button CTA
+              Siguiente
             </button>
           </Form>
         )}
@@ -239,7 +239,7 @@ const RegisterTwo = ({ pase, setPase }) => {
             />
 
             <button type='submit' className='btn '>
-              Button CTA
+              Resgistrarme
             </button>
           </Form>
         )}
