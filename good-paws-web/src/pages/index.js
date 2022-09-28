@@ -32,6 +32,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Header />
+      <Shelter />
       <HomeNewPartner
         principal={"Tu nuevo compañero de vida"}
         secondary={
@@ -39,7 +40,7 @@ export default function Home() {
         }
       />
       <AboutUs />
-      {/* <ShelterMap /> */}
+      <ShelterMap />
       <HappyFamilies images={images} />
     </div>
   );
