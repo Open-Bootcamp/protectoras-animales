@@ -4,6 +4,7 @@ import { AboutUs } from "../components/AboutUs/AboutUs.jsx";
 import HappyFamilies from "../components/HappyFamilies";
 import ShelterMap from "../components/ShelterMap";
 import HomeNewPartner from "../components/HomeNewPartner";
+import Shelter from "../components/Shelters";
 
 export const images = [
   {
