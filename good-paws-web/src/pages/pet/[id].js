@@ -6,7 +6,7 @@ import { ProtectorWidget } from '../../components/ProtectorWidget'
 import { SimilarPets } from '../../components/SimilarPets'
 import useScreenSize from '../../hooks/useScreenSize'
 
-import { Grid, GridItem1, GridItem2, GridItem3 } from './styles'
+import Grid, { GridItem1, GridItem2, GridItem3 } from './styles'
 
 const PetOverview = ({ data }) => {
   const { width } = useScreenSize()

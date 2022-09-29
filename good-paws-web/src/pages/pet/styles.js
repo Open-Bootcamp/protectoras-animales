@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
-export const Grid = styled.div`
+const Grid = styled.div`
   max-width: 1440px;
   margin: 0 auto;
   padding: 36px 38px;
@@ -13,10 +13,10 @@ export const Grid = styled.div`
     gap: 0;
     margin-top: 0.625rem;
   }
-`;
+`
 
-export const GridItem1 = styled.div``;
-export const GridItem2 = styled.div``;
+export const GridItem1 = styled.div``
+export const GridItem2 = styled.div``
 export const GridItem3 = styled.div`
   border-left: 1px solid #d9d9d9;
   padding-left: 1.375rem;
@@ -24,4 +24,6 @@ export const GridItem3 = styled.div`
     padding-left: 0;
     border: none;
   }
-`;
+`
+
+export default Grid
