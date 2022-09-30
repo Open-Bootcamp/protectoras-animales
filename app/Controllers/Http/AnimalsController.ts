@@ -9,7 +9,6 @@ import Race from 'App/Models/Race'
 import Type from 'App/Models/Type'
 import Center from 'App/Models/Center'
 import Sex from 'App/Models/Sex'
-import AnimalImage from 'App/Models/AnimalImage'
 
 export default class AnimalsController {
   public async index({ request, response }: HttpContextContract) {

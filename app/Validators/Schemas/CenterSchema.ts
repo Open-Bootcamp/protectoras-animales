@@ -32,6 +32,5 @@ export const centerModifySchema = schema.create({
     extnames: ['jpg', 'gif', 'png'],
   }),
   deleteImage: schema.boolean.optional(),
-  status: schema.boolean.optional(),
-  deleteImage: schema.boolean.optional(),
+  status: schema.boolean.optional(),ç
 })
