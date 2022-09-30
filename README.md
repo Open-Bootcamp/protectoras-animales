@@ -3,7 +3,6 @@
 1. Initialize the project:
     ```bash
     git clone [repository_name]
-    cd ./protectoras-animales/good-paws-api
     npm i
     ```
 
