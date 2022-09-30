@@ -53,11 +53,11 @@ const databaseConfig: DatabaseConfig = {
     pg_url: {
       client: 'pg',
       connection: {
-        host: Env.get('PG_HOST', DATABASE_URL.hostname),
-        port: Env.get('PG_PORT', DATABASE_URL.port),
-        user: Env.get('PG_USER', DATABASE_URL.username),
-        password: Env.get('PG_PASSWORD', DATABASE_URL.password),
-        database: Env.get('PG_DB_NAME', DATABASE_URL.pathname.substr(1)),
+        host: DATABASE_URL.hostname,
+        port: DATABASE_URL.port,
+        user: DATABASE_URL.username,
+        password: DATABASE_URL.password,
+        database: DATABASE_URL.pathname.substr(1),
         ssl: {
           rejectUnauthorized: false,
         },
