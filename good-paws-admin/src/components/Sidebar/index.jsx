@@ -26,7 +26,7 @@ const Sidebar = () => {
           <NavItem text="Reseñas" icon={<IconReseñas />} pref={`/dashboard/reviews`} />
         </VStack>
         <VStack alignItems={'start'}>
-          <NavItem text="Ajustes" icon={<IconSettings />} pref={`/dashboard/settings`} />
+          <NavItem text="Ajustes" icon={<IconSettings />} pref={`/settings`} />
           <Card />
           <Divider orientation="horizontal" borderBottomWidth={1.5} borderColor={colors.gray6} h={2} />
           <Footer />
